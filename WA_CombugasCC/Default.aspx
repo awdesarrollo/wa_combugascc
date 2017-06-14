@@ -74,6 +74,11 @@
         <script src="assets/global/plugins/backstretch/jquery.backstretch.min.js" type="text/javascript"></script>
         <script src="assets/global/scripts/app.min.js" type="text/javascript"></script>
         <script src="assets/pages/scripts/login-4.js" type="text/javascript"></script>
+        <script type="text/javascript">
+            $("#Form").submit(function () {
+
+            });
+        </script>
     </body>
 
 </html>
