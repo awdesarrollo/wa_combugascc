@@ -32,7 +32,19 @@
                 <img src="assets/pages/img/lgcombugas.png" alt="" width="180" /> </a>
         </div>
         <div class="content">
-            <form class="login-form" id="Form" runat="server" method="post">
+            <div id="notificacionError" style="margin-top:20px; margin-left:20px; margin-right:20px; display: none;">
+                <div  class="alert alert-danger"> <i class="fa fa-ban"></i>
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <div id="lblMensajeError"></div>
+                </div>
+            </div>
+            <div id="notificacionExito" style="margin-top:20px; margin-left:20px; margin-right:20px; display: none;">
+                <div  class="alert alert-success"> <i class="fa fa-ban"></i>
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <div id="lblMensajeExito"></div>
+                </div>
+            </div>
+            <div class="login-form" id="Form" method="post">
                 <h3 class="form-title">Inicio de Sesión</h3>
                 <div class="alert alert-danger display-hide">
                     <button class="close" data-close="alert"></button>
@@ -49,15 +61,15 @@
                     <label class="control-label visible-ie8 visible-ie9">Contraseña</label>
                     <div class="input-icon">
                         <i class="fa fa-lock"></i>
-                        <input ="txtPassword" type="password"  class="form-control placeholder-no-fix" autocomplete="off" placeholder="Contraseña"   />
+                        <input id="txtPassword" type="password"  class="form-control placeholder-no-fix" autocomplete="off" placeholder="Contraseña"   />
                     </div>
                 </div>
                 <div class="form-actions">
-                    <button id="btnEntrar" class="btn red pull-right" type="submit">Entrar</button>
+                    <button id="btnEntrar" class="btn red pull-right" type="button">Entrar</button>
                 </div>
               
 
-            </form>
+            </div>
         </div>
         <div class="copyright"> <% Response.Write(DateTime.Now.Year.ToString()); %> &copy; COMBUSTIBLES Y GASES DE TORREON S.A. DE C.V. </div>
         <script src="assets/global/plugins/jquery.min.js" type="text/javascript"></script>
@@ -74,6 +86,36 @@
         <script src="assets/global/plugins/backstretch/jquery.backstretch.min.js" type="text/javascript"></script>
         <script src="assets/global/scripts/app.min.js" type="text/javascript"></script>
         <script src="assets/pages/scripts/login-4.js" type="text/javascript"></script>
+        <script type="text/javascript">
+
+            $("#btnEntrar").click(function () {
+                login();
+            });
+
+            $('#txtUser').keypress(function (event) {
+                if (event.keyCode == 13) {
+                    $("#notificacionError").hide("fast");
+                    login();
+                }
+            });
+
+            $('#txtPassword').keypress(function (event) {
+                if (event.keyCode == 13) {
+                    $("#notificacionError").hide("fast");
+                    login();
+                }
+            });
+
+            function login() {
+                if ($("#txtUser").val() == "" || $("#txtPassword").val() == "") {
+                    $("#lblMensajeError").html("Los datos de inicio de sesión son requeridos. Verifique por favor");
+                    $("#notificacionError").show("fast");
+                    setTimeout(function () { $("#notificacionError").hide("fast"); }, 3500);
+                } else {
+                    
+                }
+            }
+        </script>
     </body>
 
 </html>
