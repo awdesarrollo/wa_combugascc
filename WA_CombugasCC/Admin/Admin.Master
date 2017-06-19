@@ -4,7 +4,7 @@
     <!--<![endif]-->
     <head>
         <meta charset="utf-8" />
-        <title>Combugas | Call Center</title>
+        <title>Combugas | Administador Sistema</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta content="width=device-width, initial-scale=1" name="viewport" />
         <meta content="Sistema Call Center" name="description" />
@@ -24,8 +24,43 @@
         <link href="../assets/layouts/layout3/css/layout.min.css" rel="stylesheet" type="text/css" />
         <link href="../assets/layouts/layout3/css/themes/default.min.css" rel="stylesheet" type="text/css" id="style_color" />
         <link href="../assets/layouts/layout3/css/custom.min.css" rel="stylesheet" type="text/css" />
-        <link rel="shortcut icon" href="../favicon.png" /> </head>
-    <body class="page-container-bg-solid page-boxed" onload="mueveReloj()">
+        <link href="../assets/global/plugins/datatables/datatables.min.css" rel="stylesheet" type="text/css" />
+        <link href="../assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.css" rel="stylesheet" type="text/css" />
+        <link href="../assets/global/plugins/bootstrap-toastr/toastr.min.css" rel="stylesheet" type="text/css" />
+        
+
+                <!--[if lt IE 9]>
+                <script src="../assets/global/plugins/respond.min.js"></script>
+                <script src="../assets/global/plugins/excanvas.min.js"></script> 
+                <![endif]-->
+
+        <script src="../assets/global/plugins/jquery.min.js" type="text/javascript"></script>
+        <script src="../assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+        <script src="../assets/global/plugins/js.cookie.min.js" type="text/javascript"></script>
+        <script src="../assets/global/plugins/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js" type="text/javascript"></script>
+        <script src="../assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+        <script src="../assets/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
+        <script src="../assets/global/plugins/uniform/jquery.uniform.min.js" type="text/javascript"></script>
+        <script src="../assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
+        <script src="../assets/global/plugins/moment.min.js" type="text/javascript"></script>
+        <script src="../assets/global/plugins/bootstrap-daterangepicker/daterangepicker.min.js" type="text/javascript"></script>
+        <script src="../assets/global/scripts/datatable.js" type="text/javascript"></script>
+        <script src="../assets/global/plugins/datatables/datatables.min.js" type="text/javascript"></script>
+        <script src="../assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.js" type="text/javascript"></script>
+        <script src="../assets/pages/scripts/table-datatables-responsive.min.js" type="text/javascript"></script>
+        <script src="../assets/global/scripts/app.min.js" type="text/javascript"></script>
+        <script src="../assets/layouts/layout3/scripts/layout.min.js" type="text/javascript"></script>
+        <script src="../assets/layouts/layout3/scripts/demo.min.js" type="text/javascript"></script>
+        <script src="../assets/layouts/global/scripts/quick-sidebar.min.js" type="text/javascript"></script>
+        <script src="../assets/global/plugins/bootstrap-toastr/toastr.min.js" type="text/javascript"></script>
+        <script src="../assets/pages/scripts/ui-toastr.min.js" type="text/javascript"></script>
+
+
+        <link rel="shortcut icon" href="../favicon.png" /> 
+
+    </head>
+    <body class="page-container-bg-solid page-boxed" >
+
         <div class="page-header">
             <div class="page-header-top">
                 <div class="container">
@@ -71,34 +106,7 @@
             <div class="page-header-menu">
                 <div class="container">
                     <div class="hor-menu  ">
-                        <ul class="nav navbar-nav">
-                            <li class="">
-                                <a href="#"> Dashboard
-                                    <span class="arrow"></span>
-                                </a>
-                            </li>
-                            <li class="menu-dropdown classic-menu-dropdown">
-                                <a href=""> Catálogos
-                                    <span class="arrow"></span>
-                                </a>
-                                <ul class="dropdown-menu pull-left">
-                                    <li class=" ">
-                                        <a href="#" class="nav-link ">
-                                             Roles
-                                        </a>
-                                    </li>
-                                    <li class=" ">
-                                        <a href="#" class="nav-link  ">
-                                             Usuarios 
-                                        </a>
-                                    </li>
-                                    <li class=" ">
-                                        <a href="#" class="nav-link  ">
-                                            Permisos
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
+                        <ul class="nav navbar-nav" id="menuAdmin">
                            
                         </ul>
                     </div>
@@ -124,24 +132,7 @@
         <div class="scroll-to-top">
             <i class="icon-arrow-up"></i>
         </div>
-        <!--[if lt IE 9]>
-<script src="../assets/global/plugins/respond.min.js"></script>
-<script src="../assets/global/plugins/excanvas.min.js"></script> 
-<![endif]-->
-        <script src="../assets/global/plugins/jquery.min.js" type="text/javascript"></script>
-        <script src="../assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-        <script src="../assets/global/plugins/js.cookie.min.js" type="text/javascript"></script>
-        <script src="../assets/global/plugins/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js" type="text/javascript"></script>
-        <script src="../assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
-        <script src="../assets/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
-        <script src="../assets/global/plugins/uniform/jquery.uniform.min.js" type="text/javascript"></script>
-        <script src="../assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
-        <script src="../assets/global/plugins/moment.min.js" type="text/javascript"></script>
-        <script src="../assets/global/plugins/bootstrap-daterangepicker/daterangepicker.min.js" type="text/javascript"></script>
-        <script src="../assets/global/scripts/app.min.js" type="text/javascript"></script>
-        <script src="../assets/layouts/layout3/scripts/layout.min.js" type="text/javascript"></script>
-        <script src="../assets/layouts/layout3/scripts/demo.min.js" type="text/javascript"></script>
-        <script src="../assets/layouts/global/scripts/quick-sidebar.min.js" type="text/javascript"></script>
+        
 
         <script type="text/javascript">
 
@@ -150,20 +141,47 @@
             function cargaMenu() {
                 $.ajax({
                     type: "POST",
-                    url: "Default.aspx/CargaMenu",
+                    url: "Default.aspx/CargaMenuPadre",
                     data: '{ }',
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
+                    async: false,
                     success: function (response) {
-                        console.log("DATA: " + response.d.Data);
                         if (response.d.Result) {
-                            
-                        } else {
-                            
+                            var datamenu = JSON.parse(response.d.Data);
+                            var menu = "";
+                            for (var i = 0; i < datamenu.length; i++) {
+                                menu += '<li class="menu-dropdown classic-menu-dropdown"><a href="' + datamenu[i].url + '"> ' + datamenu[i].titulo + ' <span class="arrow"></span></a>';
+
+                                $.ajax({
+                                    type: "POST",
+                                    url: "Default.aspx/CargaMenuHijo",
+                                    data: '{ idmodulo: "' + datamenu[i].idmodulo + '" }',
+                                    contentType: "application/json; charset=utf-8",
+                                    dataType: "json",
+                                    async: false,
+                                    success: function (responseHijo) {
+                                        if (responseHijo.d.Result) {
+                                            var datahijo = JSON.parse(responseHijo.d.Data);
+                                            menu += '<ul class="dropdown-menu pull-left">';
+                                            for (var j = 0; j < datahijo.length; j++) { // Nodos Hijo
+                                                menu += '<li class=" "><a href="' + $.trim(datahijo[j].url) + '" class="nav-link "> ' + $.trim(datahijo[j].titulo) + ' </a></li>';
+                                            }
+                                            menu += "</ul>";
+                                        }
+                                    }, error: function (error) { console.log(error); }
+
+                                });
+                            }
+
+                            menu += "</li>";
+
+                            $("#menuAdmin").html(menu);
                         }
+                       
                     },
                     error: function (error) {
-                        console.log("ERROR: " + error);
+                        console.log("ERROR: " + JSON.stringify(error));
                     }
                 });
             }

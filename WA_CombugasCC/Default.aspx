@@ -25,6 +25,7 @@
     <link href="assets/global/css/plugins.min.css" rel="stylesheet" type="text/css" />
     <link href="assets/pages/css/login-4.min.css" rel="stylesheet" type="text/css" />
     <link rel="shortcut icon" href="favicon.png" />
+    <script src="assets/global/plugins/jquery.min.js" type="text/javascript"></script>
 </head>
 
 <body class=" login">
@@ -77,7 +78,7 @@
         </div>
     </div>
     <div class="copyright"><% Response.Write(DateTime.Now.Year.ToString()); %> &copy; COMBUSTIBLES Y GASES DE TORREON S.A. DE C.V. </div>
-    <script src="assets/global/plugins/jquery.min.js" type="text/javascript"></script>
+    
     <script src="assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
     <script src="assets/global/plugins/js.cookie.min.js" type="text/javascript"></script>
     <script src="assets/global/plugins/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js" type="text/javascript"></script>

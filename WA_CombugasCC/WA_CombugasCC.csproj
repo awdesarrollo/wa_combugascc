@@ -96,6 +96,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Admin\Default.aspx" />
+    <Content Include="Admin\Modulos.aspx" />
+    <Content Include="Admin\Roles.aspx" />
     <Content Include="CallCenter\Default.aspx" />
     <Content Include="packages.config" />
     <Content Include="ApplicationInsights.config">
@@ -135,6 +137,20 @@
     </Compile>
     <Compile Include="Admin\Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Modulos.aspx.cs">
+      <DependentUpon>Modulos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Modulos.aspx.designer.cs">
+      <DependentUpon>Modulos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Roles.aspx.cs">
+      <DependentUpon>Roles.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Roles.aspx.designer.cs">
+      <DependentUpon>Roles.aspx</DependentUpon>
     </Compile>
     <Compile Include="CallCenter\CallCenter.Master.cs">
       <DependentUpon>CallCenter.Master</DependentUpon>
