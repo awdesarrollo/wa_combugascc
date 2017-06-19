@@ -33,9 +33,6 @@ namespace WA_CombugasCC.Core
     partial void Insertasigna_ruta_repartidor(asigna_ruta_repartidor instance);
     partial void Updateasigna_ruta_repartidor(asigna_ruta_repartidor instance);
     partial void Deleteasigna_ruta_repartidor(asigna_ruta_repartidor instance);
-    partial void Insertzona(zona instance);
-    partial void Updatezona(zona instance);
-    partial void Deletezona(zona instance);
     partial void Insertasigna_ruta_user(asigna_ruta_user instance);
     partial void Updateasigna_ruta_user(asigna_ruta_user instance);
     partial void Deleteasigna_ruta_user(asigna_ruta_user instance);
@@ -60,6 +57,9 @@ namespace WA_CombugasCC.Core
     partial void Insertformas_pago(formas_pago instance);
     partial void Updateformas_pago(formas_pago instance);
     partial void Deleteformas_pago(formas_pago instance);
+    partial void Insertmodulo(modulo instance);
+    partial void Updatemodulo(modulo instance);
+    partial void Deletemodulo(modulo instance);
     partial void Insertpedido(pedido instance);
     partial void Updatepedido(pedido instance);
     partial void Deletepedido(pedido instance);
@@ -102,6 +102,9 @@ namespace WA_CombugasCC.Core
     partial void Insertusuario(usuario instance);
     partial void Updateusuario(usuario instance);
     partial void Deleteusuario(usuario instance);
+    partial void Insertzona(zona instance);
+    partial void Updatezona(zona instance);
+    partial void Deletezona(zona instance);
     #endregion
 		
 		public ContextCombugasDataContext() : 
@@ -139,14 +142,6 @@ namespace WA_CombugasCC.Core
 			get
 			{
 				return this.GetTable<asigna_ruta_repartidor>();
-			}
-		}
-		
-		public System.Data.Linq.Table<zona> zonas
-		{
-			get
-			{
-				return this.GetTable<zona>();
 			}
 		}
 		
@@ -211,6 +206,14 @@ namespace WA_CombugasCC.Core
 			get
 			{
 				return this.GetTable<formas_pago>();
+			}
+		}
+		
+		public System.Data.Linq.Table<modulo> modulos
+		{
+			get
+			{
+				return this.GetTable<modulo>();
 			}
 		}
 		
@@ -323,6 +326,14 @@ namespace WA_CombugasCC.Core
 			get
 			{
 				return this.GetTable<usuario>();
+			}
+		}
+		
+		public System.Data.Linq.Table<zona> zonas
+		{
+			get
+			{
+				return this.GetTable<zona>();
 			}
 		}
 	}
@@ -540,312 +551,6 @@ namespace WA_CombugasCC.Core
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.zonas")]
-	public partial class zona : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _id_zona;
-		
-		private string _descripcion;
-		
-		private bool _estado;
-		
-		private EntitySet<calle> _calles;
-		
-		private EntitySet<ciudade> _ciudades;
-		
-		private EntitySet<colonia> _colonias;
-		
-		private EntitySet<direccione> _direcciones;
-		
-		private EntitySet<estado> _estados;
-		
-		private EntitySet<repartidor> _repartidors;
-		
-		private EntitySet<ruta> _rutas;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void Onid_zonaChanging(int value);
-    partial void Onid_zonaChanged();
-    partial void OndescripcionChanging(string value);
-    partial void OndescripcionChanged();
-    partial void OnestadoChanging(bool value);
-    partial void OnestadoChanged();
-    #endregion
-		
-		public zona()
-		{
-			this._calles = new EntitySet<calle>(new Action<calle>(this.attach_calles), new Action<calle>(this.detach_calles));
-			this._ciudades = new EntitySet<ciudade>(new Action<ciudade>(this.attach_ciudades), new Action<ciudade>(this.detach_ciudades));
-			this._colonias = new EntitySet<colonia>(new Action<colonia>(this.attach_colonias), new Action<colonia>(this.detach_colonias));
-			this._direcciones = new EntitySet<direccione>(new Action<direccione>(this.attach_direcciones), new Action<direccione>(this.detach_direcciones));
-			this._estados = new EntitySet<estado>(new Action<estado>(this.attach_estados), new Action<estado>(this.detach_estados));
-			this._repartidors = new EntitySet<repartidor>(new Action<repartidor>(this.attach_repartidors), new Action<repartidor>(this.detach_repartidors));
-			this._rutas = new EntitySet<ruta>(new Action<ruta>(this.attach_rutas), new Action<ruta>(this.detach_rutas));
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_zona", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int id_zona
-		{
-			get
-			{
-				return this._id_zona;
-			}
-			set
-			{
-				if ((this._id_zona != value))
-				{
-					this.Onid_zonaChanging(value);
-					this.SendPropertyChanging();
-					this._id_zona = value;
-					this.SendPropertyChanged("id_zona");
-					this.Onid_zonaChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_descripcion", DbType="VarChar(200) NOT NULL", CanBeNull=false)]
-		public string descripcion
-		{
-			get
-			{
-				return this._descripcion;
-			}
-			set
-			{
-				if ((this._descripcion != value))
-				{
-					this.OndescripcionChanging(value);
-					this.SendPropertyChanging();
-					this._descripcion = value;
-					this.SendPropertyChanged("descripcion");
-					this.OndescripcionChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_estado", DbType="Bit NOT NULL")]
-		public bool estado
-		{
-			get
-			{
-				return this._estado;
-			}
-			set
-			{
-				if ((this._estado != value))
-				{
-					this.OnestadoChanging(value);
-					this.SendPropertyChanging();
-					this._estado = value;
-					this.SendPropertyChanged("estado");
-					this.OnestadoChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="zona_calle", Storage="_calles", ThisKey="id_zona", OtherKey="id_zona")]
-		public EntitySet<calle> calles
-		{
-			get
-			{
-				return this._calles;
-			}
-			set
-			{
-				this._calles.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="zona_ciudade", Storage="_ciudades", ThisKey="id_zona", OtherKey="id_zona")]
-		public EntitySet<ciudade> ciudades
-		{
-			get
-			{
-				return this._ciudades;
-			}
-			set
-			{
-				this._ciudades.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="zona_colonia", Storage="_colonias", ThisKey="id_zona", OtherKey="id_zona")]
-		public EntitySet<colonia> colonias
-		{
-			get
-			{
-				return this._colonias;
-			}
-			set
-			{
-				this._colonias.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="zona_direccione", Storage="_direcciones", ThisKey="id_zona", OtherKey="id_zona")]
-		public EntitySet<direccione> direcciones
-		{
-			get
-			{
-				return this._direcciones;
-			}
-			set
-			{
-				this._direcciones.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="zona_estado", Storage="_estados", ThisKey="id_zona", OtherKey="id_zona")]
-		public EntitySet<estado> estados
-		{
-			get
-			{
-				return this._estados;
-			}
-			set
-			{
-				this._estados.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="zona_repartidor", Storage="_repartidors", ThisKey="id_zona", OtherKey="id_zona")]
-		public EntitySet<repartidor> repartidors
-		{
-			get
-			{
-				return this._repartidors;
-			}
-			set
-			{
-				this._repartidors.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="zona_ruta", Storage="_rutas", ThisKey="id_zona", OtherKey="id_zona")]
-		public EntitySet<ruta> rutas
-		{
-			get
-			{
-				return this._rutas;
-			}
-			set
-			{
-				this._rutas.Assign(value);
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_calles(calle entity)
-		{
-			this.SendPropertyChanging();
-			entity.zona = this;
-		}
-		
-		private void detach_calles(calle entity)
-		{
-			this.SendPropertyChanging();
-			entity.zona = null;
-		}
-		
-		private void attach_ciudades(ciudade entity)
-		{
-			this.SendPropertyChanging();
-			entity.zona = this;
-		}
-		
-		private void detach_ciudades(ciudade entity)
-		{
-			this.SendPropertyChanging();
-			entity.zona = null;
-		}
-		
-		private void attach_colonias(colonia entity)
-		{
-			this.SendPropertyChanging();
-			entity.zona = this;
-		}
-		
-		private void detach_colonias(colonia entity)
-		{
-			this.SendPropertyChanging();
-			entity.zona = null;
-		}
-		
-		private void attach_direcciones(direccione entity)
-		{
-			this.SendPropertyChanging();
-			entity.zona = this;
-		}
-		
-		private void detach_direcciones(direccione entity)
-		{
-			this.SendPropertyChanging();
-			entity.zona = null;
-		}
-		
-		private void attach_estados(estado entity)
-		{
-			this.SendPropertyChanging();
-			entity.zona = this;
-		}
-		
-		private void detach_estados(estado entity)
-		{
-			this.SendPropertyChanging();
-			entity.zona = null;
-		}
-		
-		private void attach_repartidors(repartidor entity)
-		{
-			this.SendPropertyChanging();
-			entity.zona = this;
-		}
-		
-		private void detach_repartidors(repartidor entity)
-		{
-			this.SendPropertyChanging();
-			entity.zona = null;
-		}
-		
-		private void attach_rutas(ruta entity)
-		{
-			this.SendPropertyChanging();
-			entity.zona = this;
-		}
-		
-		private void detach_rutas(ruta entity)
-		{
-			this.SendPropertyChanging();
-			entity.zona = null;
 		}
 	}
 	
@@ -1089,13 +794,13 @@ namespace WA_CombugasCC.Core
 		
 		private EntitySet<repartidor> _repartidors;
 		
-		private EntityRef<zona> _zona;
-		
 		private EntityRef<ciudade> _ciudade;
 		
 		private EntityRef<colonia> _colonia;
 		
 		private EntityRef<estado> _estado;
+		
+		private EntityRef<zona> _zona;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -1121,10 +826,10 @@ namespace WA_CombugasCC.Core
 		{
 			this._direcciones = new EntitySet<direccione>(new Action<direccione>(this.attach_direcciones), new Action<direccione>(this.detach_direcciones));
 			this._repartidors = new EntitySet<repartidor>(new Action<repartidor>(this.attach_repartidors), new Action<repartidor>(this.detach_repartidors));
-			this._zona = default(EntityRef<zona>);
 			this._ciudade = default(EntityRef<ciudade>);
 			this._colonia = default(EntityRef<colonia>);
 			this._estado = default(EntityRef<estado>);
+			this._zona = default(EntityRef<zona>);
 			OnCreated();
 		}
 		
@@ -1310,40 +1015,6 @@ namespace WA_CombugasCC.Core
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="zona_calle", Storage="_zona", ThisKey="id_zona", OtherKey="id_zona", IsForeignKey=true)]
-		public zona zona
-		{
-			get
-			{
-				return this._zona.Entity;
-			}
-			set
-			{
-				zona previousValue = this._zona.Entity;
-				if (((previousValue != value) 
-							|| (this._zona.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._zona.Entity = null;
-						previousValue.calles.Remove(this);
-					}
-					this._zona.Entity = value;
-					if ((value != null))
-					{
-						value.calles.Add(this);
-						this._id_zona = value.id_zona;
-					}
-					else
-					{
-						this._id_zona = default(int);
-					}
-					this.SendPropertyChanged("zona");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ciudade_calle", Storage="_ciudade", ThisKey="id_ciudad", OtherKey="id_ciudad", IsForeignKey=true)]
 		public ciudade ciudade
 		{
@@ -1446,6 +1117,40 @@ namespace WA_CombugasCC.Core
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="zona_calle", Storage="_zona", ThisKey="id_zona", OtherKey="id_zona", IsForeignKey=true)]
+		public zona zona
+		{
+			get
+			{
+				return this._zona.Entity;
+			}
+			set
+			{
+				zona previousValue = this._zona.Entity;
+				if (((previousValue != value) 
+							|| (this._zona.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._zona.Entity = null;
+						previousValue.calles.Remove(this);
+					}
+					this._zona.Entity = value;
+					if ((value != null))
+					{
+						value.calles.Add(this);
+						this._id_zona = value.id_zona;
+					}
+					else
+					{
+						this._id_zona = default(int);
+					}
+					this.SendPropertyChanged("zona");
+				}
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -1515,9 +1220,9 @@ namespace WA_CombugasCC.Core
 		
 		private EntitySet<repartidor> _repartidors;
 		
-		private EntityRef<zona> _zona;
-		
 		private EntityRef<estado> _estado;
+		
+		private EntityRef<zona> _zona;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -1541,8 +1246,8 @@ namespace WA_CombugasCC.Core
 			this._colonias = new EntitySet<colonia>(new Action<colonia>(this.attach_colonias), new Action<colonia>(this.detach_colonias));
 			this._direcciones = new EntitySet<direccione>(new Action<direccione>(this.attach_direcciones), new Action<direccione>(this.detach_direcciones));
 			this._repartidors = new EntitySet<repartidor>(new Action<repartidor>(this.attach_repartidors), new Action<repartidor>(this.detach_repartidors));
-			this._zona = default(EntityRef<zona>);
 			this._estado = default(EntityRef<estado>);
+			this._zona = default(EntityRef<zona>);
 			OnCreated();
 		}
 		
@@ -1706,40 +1411,6 @@ namespace WA_CombugasCC.Core
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="zona_ciudade", Storage="_zona", ThisKey="id_zona", OtherKey="id_zona", IsForeignKey=true)]
-		public zona zona
-		{
-			get
-			{
-				return this._zona.Entity;
-			}
-			set
-			{
-				zona previousValue = this._zona.Entity;
-				if (((previousValue != value) 
-							|| (this._zona.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._zona.Entity = null;
-						previousValue.ciudades.Remove(this);
-					}
-					this._zona.Entity = value;
-					if ((value != null))
-					{
-						value.ciudades.Add(this);
-						this._id_zona = value.id_zona;
-					}
-					else
-					{
-						this._id_zona = default(int);
-					}
-					this.SendPropertyChanged("zona");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="estado_ciudade", Storage="_estado", ThisKey="id_estado", OtherKey="id_estado", IsForeignKey=true)]
 		public estado estado
 		{
@@ -1770,6 +1441,40 @@ namespace WA_CombugasCC.Core
 						this._id_estado = default(int);
 					}
 					this.SendPropertyChanged("estado");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="zona_ciudade", Storage="_zona", ThisKey="id_zona", OtherKey="id_zona", IsForeignKey=true)]
+		public zona zona
+		{
+			get
+			{
+				return this._zona.Entity;
+			}
+			set
+			{
+				zona previousValue = this._zona.Entity;
+				if (((previousValue != value) 
+							|| (this._zona.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._zona.Entity = null;
+						previousValue.ciudades.Remove(this);
+					}
+					this._zona.Entity = value;
+					if ((value != null))
+					{
+						value.ciudades.Add(this);
+						this._id_zona = value.id_zona;
+					}
+					else
+					{
+						this._id_zona = default(int);
+					}
+					this.SendPropertyChanged("zona");
 				}
 			}
 		}
@@ -2340,9 +2045,9 @@ namespace WA_CombugasCC.Core
 		
 		private EntityRef<ciudade> _ciudade;
 		
-		private EntityRef<zona> _zona;
-		
 		private EntityRef<estado> _estado;
+		
+		private EntityRef<zona> _zona;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -2368,8 +2073,8 @@ namespace WA_CombugasCC.Core
 			this._direcciones = new EntitySet<direccione>(new Action<direccione>(this.attach_direcciones), new Action<direccione>(this.detach_direcciones));
 			this._repartidors = new EntitySet<repartidor>(new Action<repartidor>(this.attach_repartidors), new Action<repartidor>(this.detach_repartidors));
 			this._ciudade = default(EntityRef<ciudade>);
-			this._zona = default(EntityRef<zona>);
 			this._estado = default(EntityRef<estado>);
+			this._zona = default(EntityRef<zona>);
 			OnCreated();
 		}
 		
@@ -2578,40 +2283,6 @@ namespace WA_CombugasCC.Core
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="zona_colonia", Storage="_zona", ThisKey="id_zona", OtherKey="id_zona", IsForeignKey=true)]
-		public zona zona
-		{
-			get
-			{
-				return this._zona.Entity;
-			}
-			set
-			{
-				zona previousValue = this._zona.Entity;
-				if (((previousValue != value) 
-							|| (this._zona.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._zona.Entity = null;
-						previousValue.colonias.Remove(this);
-					}
-					this._zona.Entity = value;
-					if ((value != null))
-					{
-						value.colonias.Add(this);
-						this._id_zona = value.id_zona;
-					}
-					else
-					{
-						this._id_zona = default(int);
-					}
-					this.SendPropertyChanged("zona");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="estado_colonia", Storage="_estado", ThisKey="id_estado", OtherKey="id_estado", IsForeignKey=true)]
 		public estado estado
 		{
@@ -2642,6 +2313,40 @@ namespace WA_CombugasCC.Core
 						this._id_estado = default(int);
 					}
 					this.SendPropertyChanged("estado");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="zona_colonia", Storage="_zona", ThisKey="id_zona", OtherKey="id_zona", IsForeignKey=true)]
+		public zona zona
+		{
+			get
+			{
+				return this._zona.Entity;
+			}
+			set
+			{
+				zona previousValue = this._zona.Entity;
+				if (((previousValue != value) 
+							|| (this._zona.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._zona.Entity = null;
+						previousValue.colonias.Remove(this);
+					}
+					this._zona.Entity = value;
+					if ((value != null))
+					{
+						value.colonias.Add(this);
+						this._id_zona = value.id_zona;
+					}
+					else
+					{
+						this._id_zona = default(int);
+					}
+					this.SendPropertyChanged("zona");
 				}
 			}
 		}
@@ -2745,9 +2450,9 @@ namespace WA_CombugasCC.Core
 		
 		private EntityRef<colonia> _colonia;
 		
-		private EntityRef<zona> _zona;
-		
 		private EntityRef<estado> _estado;
+		
+		private EntityRef<zona> _zona;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -2788,8 +2493,8 @@ namespace WA_CombugasCC.Core
 			this._ciudade = default(EntityRef<ciudade>);
 			this._cliente = default(EntityRef<cliente>);
 			this._colonia = default(EntityRef<colonia>);
-			this._zona = default(EntityRef<zona>);
 			this._estado = default(EntityRef<estado>);
+			this._zona = default(EntityRef<zona>);
 			OnCreated();
 		}
 		
@@ -3226,40 +2931,6 @@ namespace WA_CombugasCC.Core
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="zona_direccione", Storage="_zona", ThisKey="id_zona", OtherKey="id_zona", IsForeignKey=true)]
-		public zona zona
-		{
-			get
-			{
-				return this._zona.Entity;
-			}
-			set
-			{
-				zona previousValue = this._zona.Entity;
-				if (((previousValue != value) 
-							|| (this._zona.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._zona.Entity = null;
-						previousValue.direcciones.Remove(this);
-					}
-					this._zona.Entity = value;
-					if ((value != null))
-					{
-						value.direcciones.Add(this);
-						this._id_zona = value.id_zona;
-					}
-					else
-					{
-						this._id_zona = default(int);
-					}
-					this.SendPropertyChanged("zona");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="estado_direccione", Storage="_estado", ThisKey="id_estado", OtherKey="id_estado", IsForeignKey=true)]
 		public estado estado
 		{
@@ -3290,6 +2961,40 @@ namespace WA_CombugasCC.Core
 						this._id_estado = default(int);
 					}
 					this.SendPropertyChanged("estado");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="zona_direccione", Storage="_zona", ThisKey="id_zona", OtherKey="id_zona", IsForeignKey=true)]
+		public zona zona
+		{
+			get
+			{
+				return this._zona.Entity;
+			}
+			set
+			{
+				zona previousValue = this._zona.Entity;
+				if (((previousValue != value) 
+							|| (this._zona.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._zona.Entity = null;
+						previousValue.direcciones.Remove(this);
+					}
+					this._zona.Entity = value;
+					if ((value != null))
+					{
+						value.direcciones.Add(this);
+						this._id_zona = value.id_zona;
+					}
+					else
+					{
+						this._id_zona = default(int);
+					}
+					this.SendPropertyChanged("zona");
 				}
 			}
 		}
@@ -3805,6 +3510,192 @@ namespace WA_CombugasCC.Core
 		{
 			this.SendPropertyChanging();
 			entity.formas_pago = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.modulos")]
+	public partial class modulo : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _id_modulo;
+		
+		private string _titulo;
+		
+		private string _url_modulo;
+		
+		private System.Nullable<bool> _isactive;
+		
+		private int _id_modulo_padre;
+		
+		private EntitySet<permiso> _permisos;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void Onid_moduloChanging(int value);
+    partial void Onid_moduloChanged();
+    partial void OntituloChanging(string value);
+    partial void OntituloChanged();
+    partial void Onurl_moduloChanging(string value);
+    partial void Onurl_moduloChanged();
+    partial void OnisactiveChanging(System.Nullable<bool> value);
+    partial void OnisactiveChanged();
+    partial void Onid_modulo_padreChanging(int value);
+    partial void Onid_modulo_padreChanged();
+    #endregion
+		
+		public modulo()
+		{
+			this._permisos = new EntitySet<permiso>(new Action<permiso>(this.attach_permisos), new Action<permiso>(this.detach_permisos));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_modulo", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int id_modulo
+		{
+			get
+			{
+				return this._id_modulo;
+			}
+			set
+			{
+				if ((this._id_modulo != value))
+				{
+					this.Onid_moduloChanging(value);
+					this.SendPropertyChanging();
+					this._id_modulo = value;
+					this.SendPropertyChanged("id_modulo");
+					this.Onid_moduloChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_titulo", DbType="NChar(50)")]
+		public string titulo
+		{
+			get
+			{
+				return this._titulo;
+			}
+			set
+			{
+				if ((this._titulo != value))
+				{
+					this.OntituloChanging(value);
+					this.SendPropertyChanging();
+					this._titulo = value;
+					this.SendPropertyChanged("titulo");
+					this.OntituloChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_url_modulo", DbType="NChar(100)")]
+		public string url_modulo
+		{
+			get
+			{
+				return this._url_modulo;
+			}
+			set
+			{
+				if ((this._url_modulo != value))
+				{
+					this.Onurl_moduloChanging(value);
+					this.SendPropertyChanging();
+					this._url_modulo = value;
+					this.SendPropertyChanged("url_modulo");
+					this.Onurl_moduloChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_isactive", DbType="Bit")]
+		public System.Nullable<bool> isactive
+		{
+			get
+			{
+				return this._isactive;
+			}
+			set
+			{
+				if ((this._isactive != value))
+				{
+					this.OnisactiveChanging(value);
+					this.SendPropertyChanging();
+					this._isactive = value;
+					this.SendPropertyChanged("isactive");
+					this.OnisactiveChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_modulo_padre", DbType="Int NOT NULL")]
+		public int id_modulo_padre
+		{
+			get
+			{
+				return this._id_modulo_padre;
+			}
+			set
+			{
+				if ((this._id_modulo_padre != value))
+				{
+					this.Onid_modulo_padreChanging(value);
+					this.SendPropertyChanging();
+					this._id_modulo_padre = value;
+					this.SendPropertyChanged("id_modulo_padre");
+					this.Onid_modulo_padreChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="modulo_permiso", Storage="_permisos", ThisKey="id_modulo", OtherKey="id_modulo")]
+		public EntitySet<permiso> permisos
+		{
+			get
+			{
+				return this._permisos;
+			}
+			set
+			{
+				this._permisos.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_permisos(permiso entity)
+		{
+			this.SendPropertyChanging();
+			entity.modulo = this;
+		}
+		
+		private void detach_permisos(permiso entity)
+		{
+			this.SendPropertyChanging();
+			entity.modulo = null;
 		}
 	}
 	
@@ -4863,30 +4754,30 @@ namespace WA_CombugasCC.Core
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private int _id_rol_user;
+		private int _id_rol_modulo;
 		
 		private int _id_rol;
 		
-		private int _id_usuario;
+		private int _id_modulo;
 		
 		private string _observacion;
 		
 		private bool _status;
 		
-		private EntityRef<role> _role;
+		private EntityRef<modulo> _modulo;
 		
-		private EntityRef<usuario> _usuario;
+		private EntityRef<role> _role;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void Onid_rol_userChanging(int value);
-    partial void Onid_rol_userChanged();
+    partial void Onid_rol_moduloChanging(int value);
+    partial void Onid_rol_moduloChanged();
     partial void Onid_rolChanging(int value);
     partial void Onid_rolChanged();
-    partial void Onid_usuarioChanging(int value);
-    partial void Onid_usuarioChanged();
+    partial void Onid_moduloChanging(int value);
+    partial void Onid_moduloChanged();
     partial void OnobservacionChanging(string value);
     partial void OnobservacionChanged();
     partial void OnstatusChanging(bool value);
@@ -4895,27 +4786,27 @@ namespace WA_CombugasCC.Core
 		
 		public permiso()
 		{
+			this._modulo = default(EntityRef<modulo>);
 			this._role = default(EntityRef<role>);
-			this._usuario = default(EntityRef<usuario>);
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_rol_user", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int id_rol_user
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_rol_modulo", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int id_rol_modulo
 		{
 			get
 			{
-				return this._id_rol_user;
+				return this._id_rol_modulo;
 			}
 			set
 			{
-				if ((this._id_rol_user != value))
+				if ((this._id_rol_modulo != value))
 				{
-					this.Onid_rol_userChanging(value);
+					this.Onid_rol_moduloChanging(value);
 					this.SendPropertyChanging();
-					this._id_rol_user = value;
-					this.SendPropertyChanged("id_rol_user");
-					this.Onid_rol_userChanged();
+					this._id_rol_modulo = value;
+					this.SendPropertyChanged("id_rol_modulo");
+					this.Onid_rol_moduloChanged();
 				}
 			}
 		}
@@ -4944,26 +4835,26 @@ namespace WA_CombugasCC.Core
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_usuario", DbType="Int NOT NULL")]
-		public int id_usuario
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_modulo", DbType="Int NOT NULL")]
+		public int id_modulo
 		{
 			get
 			{
-				return this._id_usuario;
+				return this._id_modulo;
 			}
 			set
 			{
-				if ((this._id_usuario != value))
+				if ((this._id_modulo != value))
 				{
-					if (this._usuario.HasLoadedOrAssignedValue)
+					if (this._modulo.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
-					this.Onid_usuarioChanging(value);
+					this.Onid_moduloChanging(value);
 					this.SendPropertyChanging();
-					this._id_usuario = value;
-					this.SendPropertyChanged("id_usuario");
-					this.Onid_usuarioChanged();
+					this._id_modulo = value;
+					this.SendPropertyChanged("id_modulo");
+					this.Onid_moduloChanged();
 				}
 			}
 		}
@@ -5008,6 +4899,40 @@ namespace WA_CombugasCC.Core
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="modulo_permiso", Storage="_modulo", ThisKey="id_modulo", OtherKey="id_modulo", IsForeignKey=true)]
+		public modulo modulo
+		{
+			get
+			{
+				return this._modulo.Entity;
+			}
+			set
+			{
+				modulo previousValue = this._modulo.Entity;
+				if (((previousValue != value) 
+							|| (this._modulo.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._modulo.Entity = null;
+						previousValue.permisos.Remove(this);
+					}
+					this._modulo.Entity = value;
+					if ((value != null))
+					{
+						value.permisos.Add(this);
+						this._id_modulo = value.id_modulo;
+					}
+					else
+					{
+						this._id_modulo = default(int);
+					}
+					this.SendPropertyChanged("modulo");
+				}
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="role_permiso", Storage="_role", ThisKey="id_rol", OtherKey="id_rol", IsForeignKey=true)]
 		public role role
 		{
@@ -5038,40 +4963,6 @@ namespace WA_CombugasCC.Core
 						this._id_rol = default(int);
 					}
 					this.SendPropertyChanged("role");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="usuario_permiso", Storage="_usuario", ThisKey="id_usuario", OtherKey="id_usuario", IsForeignKey=true)]
-		public usuario usuario
-		{
-			get
-			{
-				return this._usuario.Entity;
-			}
-			set
-			{
-				usuario previousValue = this._usuario.Entity;
-				if (((previousValue != value) 
-							|| (this._usuario.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._usuario.Entity = null;
-						previousValue.permisos.Remove(this);
-					}
-					this._usuario.Entity = value;
-					if ((value != null))
-					{
-						value.permisos.Add(this);
-						this._id_usuario = value.id_usuario;
-					}
-					else
-					{
-						this._id_usuario = default(int);
-					}
-					this.SendPropertyChanged("usuario");
 				}
 			}
 		}
@@ -5415,11 +5306,11 @@ namespace WA_CombugasCC.Core
 		
 		private EntityRef<estado> _estado;
 		
-		private EntityRef<zona> _zona;
-		
 		private EntityRef<tipo_repartidor> _tipo_repartidor;
 		
 		private EntityRef<unidade> _unidade;
+		
+		private EntityRef<zona> _zona;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -5467,9 +5358,9 @@ namespace WA_CombugasCC.Core
 			this._ciudade = default(EntityRef<ciudade>);
 			this._colonia = default(EntityRef<colonia>);
 			this._estado = default(EntityRef<estado>);
-			this._zona = default(EntityRef<zona>);
 			this._tipo_repartidor = default(EntityRef<tipo_repartidor>);
 			this._unidade = default(EntityRef<unidade>);
+			this._zona = default(EntityRef<zona>);
 			OnCreated();
 		}
 		
@@ -5983,40 +5874,6 @@ namespace WA_CombugasCC.Core
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="zona_repartidor", Storage="_zona", ThisKey="id_zona", OtherKey="id_zona", IsForeignKey=true)]
-		public zona zona
-		{
-			get
-			{
-				return this._zona.Entity;
-			}
-			set
-			{
-				zona previousValue = this._zona.Entity;
-				if (((previousValue != value) 
-							|| (this._zona.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._zona.Entity = null;
-						previousValue.repartidors.Remove(this);
-					}
-					this._zona.Entity = value;
-					if ((value != null))
-					{
-						value.repartidors.Add(this);
-						this._id_zona = value.id_zona;
-					}
-					else
-					{
-						this._id_zona = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("zona");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tipo_repartidor_repartidor", Storage="_tipo_repartidor", ThisKey="id_tipo", OtherKey="id_tipo", IsForeignKey=true)]
 		public tipo_repartidor tipo_repartidor
 		{
@@ -6081,6 +5938,40 @@ namespace WA_CombugasCC.Core
 						this._id_unidad = default(Nullable<int>);
 					}
 					this.SendPropertyChanged("unidade");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="zona_repartidor", Storage="_zona", ThisKey="id_zona", OtherKey="id_zona", IsForeignKey=true)]
+		public zona zona
+		{
+			get
+			{
+				return this._zona.Entity;
+			}
+			set
+			{
+				zona previousValue = this._zona.Entity;
+				if (((previousValue != value) 
+							|| (this._zona.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._zona.Entity = null;
+						previousValue.repartidors.Remove(this);
+					}
+					this._zona.Entity = value;
+					if ((value != null))
+					{
+						value.repartidors.Add(this);
+						this._id_zona = value.id_zona;
+					}
+					else
+					{
+						this._id_zona = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("zona");
 				}
 			}
 		}
@@ -6545,6 +6436,8 @@ namespace WA_CombugasCC.Core
 		
 		private EntitySet<permiso> _permisos;
 		
+		private EntitySet<usuario> _usuarios;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -6560,6 +6453,7 @@ namespace WA_CombugasCC.Core
 		public role()
 		{
 			this._permisos = new EntitySet<permiso>(new Action<permiso>(this.attach_permisos), new Action<permiso>(this.detach_permisos));
+			this._usuarios = new EntitySet<usuario>(new Action<usuario>(this.attach_usuarios), new Action<usuario>(this.detach_usuarios));
 			OnCreated();
 		}
 		
@@ -6636,6 +6530,19 @@ namespace WA_CombugasCC.Core
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="role_usuario", Storage="_usuarios", ThisKey="id_rol", OtherKey="id_rol")]
+		public EntitySet<usuario> usuarios
+		{
+			get
+			{
+				return this._usuarios;
+			}
+			set
+			{
+				this._usuarios.Assign(value);
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -6663,6 +6570,18 @@ namespace WA_CombugasCC.Core
 		}
 		
 		private void detach_permisos(permiso entity)
+		{
+			this.SendPropertyChanging();
+			entity.role = null;
+		}
+		
+		private void attach_usuarios(usuario entity)
+		{
+			this.SendPropertyChanging();
+			entity.role = this;
+		}
+		
+		private void detach_usuarios(usuario entity)
 		{
 			this.SendPropertyChanging();
 			entity.role = null;
@@ -7805,15 +7724,13 @@ namespace WA_CombugasCC.Core
 		
 		private string _passwords;
 		
-		private string _token;
-		
-		private bool _isActive;
+		private bool _isactive;
 		
 		private bool _userisonline;
 		
-		private System.Nullable<System.DateTime> _ultimo_acceso;
+		private System.Nullable<System.DateTime> _ultimoacceso;
 		
-		private bool _status;
+		private System.Nullable<int> _id_rol;
 		
 		private EntitySet<asigna_ruta_user> _asigna_ruta_users;
 		
@@ -7821,7 +7738,7 @@ namespace WA_CombugasCC.Core
 		
 		private EntitySet<pedidos_detalle> _pedidos_detalles;
 		
-		private EntitySet<permiso> _permisos;
+		private EntityRef<role> _role;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -7835,16 +7752,14 @@ namespace WA_CombugasCC.Core
     partial void OnusernameChanged();
     partial void OnpasswordsChanging(string value);
     partial void OnpasswordsChanged();
-    partial void OntokenChanging(string value);
-    partial void OntokenChanged();
-    partial void OnisActiveChanging(bool value);
-    partial void OnisActiveChanged();
+    partial void OnisactiveChanging(bool value);
+    partial void OnisactiveChanged();
     partial void OnuserisonlineChanging(bool value);
     partial void OnuserisonlineChanged();
-    partial void Onultimo_accesoChanging(System.Nullable<System.DateTime> value);
-    partial void Onultimo_accesoChanged();
-    partial void OnstatusChanging(bool value);
-    partial void OnstatusChanged();
+    partial void OnultimoaccesoChanging(System.Nullable<System.DateTime> value);
+    partial void OnultimoaccesoChanged();
+    partial void Onid_rolChanging(System.Nullable<int> value);
+    partial void Onid_rolChanged();
     #endregion
 		
 		public usuario()
@@ -7852,7 +7767,7 @@ namespace WA_CombugasCC.Core
 			this._asigna_ruta_users = new EntitySet<asigna_ruta_user>(new Action<asigna_ruta_user>(this.attach_asigna_ruta_users), new Action<asigna_ruta_user>(this.detach_asigna_ruta_users));
 			this._pedidos = new EntitySet<pedido>(new Action<pedido>(this.attach_pedidos), new Action<pedido>(this.detach_pedidos));
 			this._pedidos_detalles = new EntitySet<pedidos_detalle>(new Action<pedidos_detalle>(this.attach_pedidos_detalles), new Action<pedidos_detalle>(this.detach_pedidos_detalles));
-			this._permisos = new EntitySet<permiso>(new Action<permiso>(this.attach_permisos), new Action<permiso>(this.detach_permisos));
+			this._role = default(EntityRef<role>);
 			OnCreated();
 		}
 		
@@ -7936,42 +7851,22 @@ namespace WA_CombugasCC.Core
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_token", DbType="VarChar(30) NOT NULL", CanBeNull=false)]
-		public string token
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_isactive", DbType="Bit NOT NULL")]
+		public bool isactive
 		{
 			get
 			{
-				return this._token;
+				return this._isactive;
 			}
 			set
 			{
-				if ((this._token != value))
+				if ((this._isactive != value))
 				{
-					this.OntokenChanging(value);
+					this.OnisactiveChanging(value);
 					this.SendPropertyChanging();
-					this._token = value;
-					this.SendPropertyChanged("token");
-					this.OntokenChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_isActive", DbType="Bit NOT NULL")]
-		public bool isActive
-		{
-			get
-			{
-				return this._isActive;
-			}
-			set
-			{
-				if ((this._isActive != value))
-				{
-					this.OnisActiveChanging(value);
-					this.SendPropertyChanging();
-					this._isActive = value;
-					this.SendPropertyChanged("isActive");
-					this.OnisActiveChanged();
+					this._isactive = value;
+					this.SendPropertyChanged("isactive");
+					this.OnisactiveChanged();
 				}
 			}
 		}
@@ -7996,42 +7891,46 @@ namespace WA_CombugasCC.Core
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ultimo_acceso", DbType="Date")]
-		public System.Nullable<System.DateTime> ultimo_acceso
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ultimoacceso", DbType="Date")]
+		public System.Nullable<System.DateTime> ultimoacceso
 		{
 			get
 			{
-				return this._ultimo_acceso;
+				return this._ultimoacceso;
 			}
 			set
 			{
-				if ((this._ultimo_acceso != value))
+				if ((this._ultimoacceso != value))
 				{
-					this.Onultimo_accesoChanging(value);
+					this.OnultimoaccesoChanging(value);
 					this.SendPropertyChanging();
-					this._ultimo_acceso = value;
-					this.SendPropertyChanged("ultimo_acceso");
-					this.Onultimo_accesoChanged();
+					this._ultimoacceso = value;
+					this.SendPropertyChanged("ultimoacceso");
+					this.OnultimoaccesoChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_status", DbType="Bit NOT NULL")]
-		public bool status
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_rol", DbType="Int")]
+		public System.Nullable<int> id_rol
 		{
 			get
 			{
-				return this._status;
+				return this._id_rol;
 			}
 			set
 			{
-				if ((this._status != value))
+				if ((this._id_rol != value))
 				{
-					this.OnstatusChanging(value);
+					if (this._role.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.Onid_rolChanging(value);
 					this.SendPropertyChanging();
-					this._status = value;
-					this.SendPropertyChanged("status");
-					this.OnstatusChanged();
+					this._id_rol = value;
+					this.SendPropertyChanged("id_rol");
+					this.Onid_rolChanged();
 				}
 			}
 		}
@@ -8075,16 +7974,37 @@ namespace WA_CombugasCC.Core
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="usuario_permiso", Storage="_permisos", ThisKey="id_usuario", OtherKey="id_usuario")]
-		public EntitySet<permiso> permisos
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="role_usuario", Storage="_role", ThisKey="id_rol", OtherKey="id_rol", IsForeignKey=true)]
+		public role role
 		{
 			get
 			{
-				return this._permisos;
+				return this._role.Entity;
 			}
 			set
 			{
-				this._permisos.Assign(value);
+				role previousValue = this._role.Entity;
+				if (((previousValue != value) 
+							|| (this._role.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._role.Entity = null;
+						previousValue.usuarios.Remove(this);
+					}
+					this._role.Entity = value;
+					if ((value != null))
+					{
+						value.usuarios.Add(this);
+						this._id_rol = value.id_rol;
+					}
+					else
+					{
+						this._id_rol = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("role");
+				}
 			}
 		}
 		
@@ -8143,17 +8063,311 @@ namespace WA_CombugasCC.Core
 			this.SendPropertyChanging();
 			entity.usuario = null;
 		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.zonas")]
+	public partial class zona : INotifyPropertyChanging, INotifyPropertyChanged
+	{
 		
-		private void attach_permisos(permiso entity)
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _id_zona;
+		
+		private string _descripcion;
+		
+		private bool _estado;
+		
+		private EntitySet<calle> _calles;
+		
+		private EntitySet<ciudade> _ciudades;
+		
+		private EntitySet<colonia> _colonias;
+		
+		private EntitySet<direccione> _direcciones;
+		
+		private EntitySet<estado> _estados;
+		
+		private EntitySet<repartidor> _repartidors;
+		
+		private EntitySet<ruta> _rutas;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void Onid_zonaChanging(int value);
+    partial void Onid_zonaChanged();
+    partial void OndescripcionChanging(string value);
+    partial void OndescripcionChanged();
+    partial void OnestadoChanging(bool value);
+    partial void OnestadoChanged();
+    #endregion
+		
+		public zona()
 		{
-			this.SendPropertyChanging();
-			entity.usuario = this;
+			this._calles = new EntitySet<calle>(new Action<calle>(this.attach_calles), new Action<calle>(this.detach_calles));
+			this._ciudades = new EntitySet<ciudade>(new Action<ciudade>(this.attach_ciudades), new Action<ciudade>(this.detach_ciudades));
+			this._colonias = new EntitySet<colonia>(new Action<colonia>(this.attach_colonias), new Action<colonia>(this.detach_colonias));
+			this._direcciones = new EntitySet<direccione>(new Action<direccione>(this.attach_direcciones), new Action<direccione>(this.detach_direcciones));
+			this._estados = new EntitySet<estado>(new Action<estado>(this.attach_estados), new Action<estado>(this.detach_estados));
+			this._repartidors = new EntitySet<repartidor>(new Action<repartidor>(this.attach_repartidors), new Action<repartidor>(this.detach_repartidors));
+			this._rutas = new EntitySet<ruta>(new Action<ruta>(this.attach_rutas), new Action<ruta>(this.detach_rutas));
+			OnCreated();
 		}
 		
-		private void detach_permisos(permiso entity)
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_zona", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int id_zona
+		{
+			get
+			{
+				return this._id_zona;
+			}
+			set
+			{
+				if ((this._id_zona != value))
+				{
+					this.Onid_zonaChanging(value);
+					this.SendPropertyChanging();
+					this._id_zona = value;
+					this.SendPropertyChanged("id_zona");
+					this.Onid_zonaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_descripcion", DbType="VarChar(200) NOT NULL", CanBeNull=false)]
+		public string descripcion
+		{
+			get
+			{
+				return this._descripcion;
+			}
+			set
+			{
+				if ((this._descripcion != value))
+				{
+					this.OndescripcionChanging(value);
+					this.SendPropertyChanging();
+					this._descripcion = value;
+					this.SendPropertyChanged("descripcion");
+					this.OndescripcionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_estado", DbType="Bit NOT NULL")]
+		public bool estado
+		{
+			get
+			{
+				return this._estado;
+			}
+			set
+			{
+				if ((this._estado != value))
+				{
+					this.OnestadoChanging(value);
+					this.SendPropertyChanging();
+					this._estado = value;
+					this.SendPropertyChanged("estado");
+					this.OnestadoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="zona_calle", Storage="_calles", ThisKey="id_zona", OtherKey="id_zona")]
+		public EntitySet<calle> calles
+		{
+			get
+			{
+				return this._calles;
+			}
+			set
+			{
+				this._calles.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="zona_ciudade", Storage="_ciudades", ThisKey="id_zona", OtherKey="id_zona")]
+		public EntitySet<ciudade> ciudades
+		{
+			get
+			{
+				return this._ciudades;
+			}
+			set
+			{
+				this._ciudades.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="zona_colonia", Storage="_colonias", ThisKey="id_zona", OtherKey="id_zona")]
+		public EntitySet<colonia> colonias
+		{
+			get
+			{
+				return this._colonias;
+			}
+			set
+			{
+				this._colonias.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="zona_direccione", Storage="_direcciones", ThisKey="id_zona", OtherKey="id_zona")]
+		public EntitySet<direccione> direcciones
+		{
+			get
+			{
+				return this._direcciones;
+			}
+			set
+			{
+				this._direcciones.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="zona_estado", Storage="_estados", ThisKey="id_zona", OtherKey="id_zona")]
+		public EntitySet<estado> estados
+		{
+			get
+			{
+				return this._estados;
+			}
+			set
+			{
+				this._estados.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="zona_repartidor", Storage="_repartidors", ThisKey="id_zona", OtherKey="id_zona")]
+		public EntitySet<repartidor> repartidors
+		{
+			get
+			{
+				return this._repartidors;
+			}
+			set
+			{
+				this._repartidors.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="zona_ruta", Storage="_rutas", ThisKey="id_zona", OtherKey="id_zona")]
+		public EntitySet<ruta> rutas
+		{
+			get
+			{
+				return this._rutas;
+			}
+			set
+			{
+				this._rutas.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_calles(calle entity)
 		{
 			this.SendPropertyChanging();
-			entity.usuario = null;
+			entity.zona = this;
+		}
+		
+		private void detach_calles(calle entity)
+		{
+			this.SendPropertyChanging();
+			entity.zona = null;
+		}
+		
+		private void attach_ciudades(ciudade entity)
+		{
+			this.SendPropertyChanging();
+			entity.zona = this;
+		}
+		
+		private void detach_ciudades(ciudade entity)
+		{
+			this.SendPropertyChanging();
+			entity.zona = null;
+		}
+		
+		private void attach_colonias(colonia entity)
+		{
+			this.SendPropertyChanging();
+			entity.zona = this;
+		}
+		
+		private void detach_colonias(colonia entity)
+		{
+			this.SendPropertyChanging();
+			entity.zona = null;
+		}
+		
+		private void attach_direcciones(direccione entity)
+		{
+			this.SendPropertyChanging();
+			entity.zona = this;
+		}
+		
+		private void detach_direcciones(direccione entity)
+		{
+			this.SendPropertyChanging();
+			entity.zona = null;
+		}
+		
+		private void attach_estados(estado entity)
+		{
+			this.SendPropertyChanging();
+			entity.zona = this;
+		}
+		
+		private void detach_estados(estado entity)
+		{
+			this.SendPropertyChanging();
+			entity.zona = null;
+		}
+		
+		private void attach_repartidors(repartidor entity)
+		{
+			this.SendPropertyChanging();
+			entity.zona = this;
+		}
+		
+		private void detach_repartidors(repartidor entity)
+		{
+			this.SendPropertyChanging();
+			entity.zona = null;
+		}
+		
+		private void attach_rutas(ruta entity)
+		{
+			this.SendPropertyChanging();
+			entity.zona = this;
+		}
+		
+		private void detach_rutas(ruta entity)
+		{
+			this.SendPropertyChanging();
+			entity.zona = null;
 		}
 	}
 }
