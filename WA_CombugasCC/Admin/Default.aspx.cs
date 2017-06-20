@@ -54,7 +54,7 @@ namespace WA_CombugasCC.Admin
                 var objModulos = (from modulos in context.modulos
                               join permisos in context.permisos on modulos.id_modulo equals permisos.id_modulo
                               where permisos.id_rol == ((usuario)HttpContext.Current.Session["sesionUsuario"]).id_rol 
-                              && modulos.id_modulo_padre == 0
+                              && modulos.id_modulo_padre == 0 && modulos.isactive == true
                               select modulos).ToList();
 
                 List<menuClass> menu = new List<menuClass>();
@@ -98,7 +98,7 @@ namespace WA_CombugasCC.Admin
                 var objModulos = (from modulos in context.modulos
                                   join permisos in context.permisos on modulos.id_modulo equals permisos.id_modulo
                                   where permisos.id_rol == ((usuario)HttpContext.Current.Session["sesionUsuario"]).id_rol
-                                  && modulos.id_modulo_padre == idmodulo
+                                  && modulos.id_modulo_padre == idmodulo && modulos.isactive == true
                                   select modulos).ToList();
 
                 List<menuClass> menu = new List<menuClass>();

@@ -119,6 +119,7 @@
                 var datos = JSON.parse(response.d.Data);
                 tablaRoles.fnClearTable();
                 for (var i = 0; i < datos.length; i++) {
+
                     tablaRoles.fnAddData([datos[i].nombreRol, '<a href="#" onclick="editarRol(' + datos[i].idRol + ')" class="btn btn-default"><span class="fa fa-edit"></span> </a>']);
                 }
             },

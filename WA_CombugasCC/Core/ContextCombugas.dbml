@@ -10,6 +10,20 @@
       <Association Name="ruta_asigna_ruta_repartidor" Member="ruta" ThisKey="id_ruta" OtherKey="id_ruta" Type="ruta" IsForeignKey="true" />
     </Type>
   </Table>
+  <Table Name="dbo.zonas" Member="zonas">
+    <Type Name="zona">
+      <Column Name="id_zona" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="descripcion" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="estado" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="zona_calle" Member="calles" ThisKey="id_zona" OtherKey="id_zona" Type="calle" />
+      <Association Name="zona_ciudade" Member="ciudades" ThisKey="id_zona" OtherKey="id_zona" Type="ciudade" />
+      <Association Name="zona_colonia" Member="colonias" ThisKey="id_zona" OtherKey="id_zona" Type="colonia" />
+      <Association Name="zona_direccione" Member="direcciones" ThisKey="id_zona" OtherKey="id_zona" Type="direccione" />
+      <Association Name="zona_estado" Member="estados" ThisKey="id_zona" OtherKey="id_zona" Type="estado" />
+      <Association Name="zona_repartidor" Member="repartidors" ThisKey="id_zona" OtherKey="id_zona" Type="repartidor" />
+      <Association Name="zona_ruta" Member="rutas" ThisKey="id_zona" OtherKey="id_zona" Type="ruta" />
+    </Type>
+  </Table>
   <Table Name="dbo.asigna_ruta_user" Member="asigna_ruta_users">
     <Type Name="asigna_ruta_user">
       <Column Name="id_asigna" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -31,10 +45,10 @@
       <Column Name="status" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Association Name="calle_direccione" Member="direcciones" ThisKey="id_calle" OtherKey="id_calle" Type="direccione" />
       <Association Name="calle_repartidor" Member="repartidors" ThisKey="id_calle" OtherKey="id_calle" Type="repartidor" />
+      <Association Name="zona_calle" Member="zona" ThisKey="id_zona" OtherKey="id_zona" Type="zona" IsForeignKey="true" />
       <Association Name="ciudade_calle" Member="ciudade" ThisKey="id_ciudad" OtherKey="id_ciudad" Type="ciudade" IsForeignKey="true" />
       <Association Name="colonia_calle" Member="colonia" ThisKey="id_colonia" OtherKey="id_colonia" Type="colonia" IsForeignKey="true" />
       <Association Name="estado_calle" Member="estado" ThisKey="id_estado" OtherKey="id_estado" Type="estado" IsForeignKey="true" />
-      <Association Name="zona_calle" Member="zona" ThisKey="id_zona" OtherKey="id_zona" Type="zona" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.ciudades" Member="ciudades">
@@ -48,8 +62,8 @@
       <Association Name="ciudade_colonia" Member="colonias" ThisKey="id_ciudad" OtherKey="id_ciudad" Type="colonia" />
       <Association Name="ciudade_direccione" Member="direcciones" ThisKey="id_ciudad" OtherKey="id_ciudad" Type="direccione" />
       <Association Name="ciudade_repartidor" Member="repartidors" ThisKey="id_ciudad" OtherKey="id_ciudad" Type="repartidor" />
-      <Association Name="estado_ciudade" Member="estado" ThisKey="id_estado" OtherKey="id_estado" Type="estado" IsForeignKey="true" />
       <Association Name="zona_ciudade" Member="zona" ThisKey="id_zona" OtherKey="id_zona" Type="zona" IsForeignKey="true" />
+      <Association Name="estado_ciudade" Member="estado" ThisKey="id_estado" OtherKey="id_estado" Type="estado" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.clientes" Member="clientes">
@@ -85,8 +99,8 @@
       <Association Name="colonia_direccione" Member="direcciones" ThisKey="id_colonia" OtherKey="id_colonia" Type="direccione" />
       <Association Name="colonia_repartidor" Member="repartidors" ThisKey="id_colonia" OtherKey="id_colonia" Type="repartidor" />
       <Association Name="ciudade_colonia" Member="ciudade" ThisKey="id_ciudad" OtherKey="id_ciudad" Type="ciudade" IsForeignKey="true" />
-      <Association Name="estado_colonia" Member="estado" ThisKey="id_estado" OtherKey="id_estado" Type="estado" IsForeignKey="true" />
       <Association Name="zona_colonia" Member="zona" ThisKey="id_zona" OtherKey="id_zona" Type="zona" IsForeignKey="true" />
+      <Association Name="estado_colonia" Member="estado" ThisKey="id_estado" OtherKey="id_estado" Type="estado" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.direcciones" Member="direcciones">
@@ -109,8 +123,8 @@
       <Association Name="ciudade_direccione" Member="ciudade" ThisKey="id_ciudad" OtherKey="id_ciudad" Type="ciudade" IsForeignKey="true" />
       <Association Name="cliente_direccione" Member="cliente" ThisKey="id_cliente" OtherKey="id_cliente" Type="cliente" IsForeignKey="true" />
       <Association Name="colonia_direccione" Member="colonia" ThisKey="id_colonia" OtherKey="id_colonia" Type="colonia" IsForeignKey="true" />
-      <Association Name="estado_direccione" Member="estado" ThisKey="id_estado" OtherKey="id_estado" Type="estado" IsForeignKey="true" />
       <Association Name="zona_direccione" Member="zona" ThisKey="id_zona" OtherKey="id_zona" Type="zona" IsForeignKey="true" />
+      <Association Name="estado_direccione" Member="estado" ThisKey="id_estado" OtherKey="id_estado" Type="estado" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.estados" Member="estados">
@@ -143,6 +157,7 @@
       <Column Name="url_modulo" Type="System.String" DbType="NChar(100)" CanBeNull="true" />
       <Column Name="isactive" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="id_modulo_padre" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="descripcion" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
       <Association Name="modulo_permiso" Member="permisos" ThisKey="id_modulo" OtherKey="id_modulo" Type="permiso" />
     </Type>
   </Table>
@@ -235,9 +250,9 @@
       <Association Name="ciudade_repartidor" Member="ciudade" ThisKey="id_ciudad" OtherKey="id_ciudad" Type="ciudade" IsForeignKey="true" />
       <Association Name="colonia_repartidor" Member="colonia" ThisKey="id_colonia" OtherKey="id_colonia" Type="colonia" IsForeignKey="true" />
       <Association Name="estado_repartidor" Member="estado" ThisKey="id_estado" OtherKey="id_estado" Type="estado" IsForeignKey="true" />
+      <Association Name="zona_repartidor" Member="zona" ThisKey="id_zona" OtherKey="id_zona" Type="zona" IsForeignKey="true" />
       <Association Name="tipo_repartidor_repartidor" Member="tipo_repartidor" ThisKey="id_tipo" OtherKey="id_tipo" Type="tipo_repartidor" IsForeignKey="true" />
       <Association Name="unidade_repartidor" Member="unidade" ThisKey="id_unidad" OtherKey="id_unidad" Type="unidade" IsForeignKey="true" />
-      <Association Name="zona_repartidor" Member="zona" ThisKey="id_zona" OtherKey="id_zona" Type="zona" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.reporte_fallas" Member="reporte_fallas">
@@ -338,20 +353,6 @@
       <Association Name="usuario_pedido" Member="pedidos" ThisKey="id_usuario" OtherKey="id_usuario" Type="pedido" />
       <Association Name="usuario_pedidos_detalle" Member="pedidos_detalles" ThisKey="id_usuario" OtherKey="id_usuario" Type="pedidos_detalle" />
       <Association Name="role_usuario" Member="role" ThisKey="id_rol" OtherKey="id_rol" Type="role" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.zonas" Member="zonas">
-    <Type Name="zona">
-      <Column Name="id_zona" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="descripcion" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
-      <Column Name="estado" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Association Name="zona_calle" Member="calles" ThisKey="id_zona" OtherKey="id_zona" Type="calle" />
-      <Association Name="zona_ciudade" Member="ciudades" ThisKey="id_zona" OtherKey="id_zona" Type="ciudade" />
-      <Association Name="zona_colonia" Member="colonias" ThisKey="id_zona" OtherKey="id_zona" Type="colonia" />
-      <Association Name="zona_direccione" Member="direcciones" ThisKey="id_zona" OtherKey="id_zona" Type="direccione" />
-      <Association Name="zona_estado" Member="estados" ThisKey="id_zona" OtherKey="id_zona" Type="estado" />
-      <Association Name="zona_repartidor" Member="repartidors" ThisKey="id_zona" OtherKey="id_zona" Type="repartidor" />
-      <Association Name="zona_ruta" Member="rutas" ThisKey="id_zona" OtherKey="id_zona" Type="ruta" />
     </Type>
   </Table>
 </Database>

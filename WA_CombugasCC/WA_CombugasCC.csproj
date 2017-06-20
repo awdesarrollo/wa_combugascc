@@ -97,6 +97,7 @@
   <ItemGroup>
     <Content Include="Admin\Default.aspx" />
     <Content Include="Admin\Modulos.aspx" />
+    <Content Include="Admin\Permisos.aspx" />
     <Content Include="Admin\Roles.aspx" />
     <Content Include="CallCenter\Default.aspx" />
     <Content Include="packages.config" />
@@ -144,6 +145,13 @@
     </Compile>
     <Compile Include="Admin\Modulos.aspx.designer.cs">
       <DependentUpon>Modulos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Permisos.aspx.cs">
+      <DependentUpon>Permisos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Permisos.aspx.designer.cs">
+      <DependentUpon>Permisos.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\Roles.aspx.cs">
       <DependentUpon>Roles.aspx</DependentUpon>

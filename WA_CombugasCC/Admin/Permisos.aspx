@@ -1,13 +1,12 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/Admin.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="WA_CombugasCC.Admin.Default" %>
-
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/Admin.Master" AutoEventWireup="true" CodeBehind="Permisos.aspx.cs" Inherits="WA_CombugasCC.Admin.Permisos" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    
-    <div class="page-container" >
+
+     <div class="page-container" >
             <div class="page-content-wrapper">
                 <div class="page-head">
                     <div class="container">
                         <div class="page-title">
-                            <h1>Dashboard</h1>
+                            <h1>Permisos</h1>
                         </div>
                     </div>
                 </div>
@@ -19,7 +18,7 @@
                                 <i class="fa fa-circle"></i>
                             </li>
                             <li>
-                                <span>Dashboard</span>
+                                <span>Permisos</span>
                             </li>
                         </ul>
                         <div class="page-content-inner" style="min-height: 400px;">
@@ -28,7 +27,7 @@
                                     <div class="portlet light ">
                                         <div class="portlet-title">
                                             <div class="caption caption-md">
-                                                
+                                                Asignacion de Permisos Por Rol
                                             </div>
                                         </div>
                                         <div class="portlet-body">

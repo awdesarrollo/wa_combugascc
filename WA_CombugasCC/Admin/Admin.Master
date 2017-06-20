@@ -17,8 +17,7 @@
         <link href="../assets/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet" type="text/css" />
         <link href="../assets/global/plugins/bootstrap-daterangepicker/daterangepicker.min.css" rel="stylesheet" type="text/css" />
         <link href="../assets/global/plugins/morris/morris.css" rel="stylesheet" type="text/css" />
-        <link href="../assets/global/plugins/fullcalendar/fullcalendar.min.css" rel="stylesheet" type="text/css" />
-        <link href="../assets/global/plugins/jqvmap/jqvmap/jqvmap.css" rel="stylesheet" type="text/css" />
+        <link href="../assets/global/plugins/icheck/skins/all.css" rel="stylesheet" type="text/css" />
         <link href="../assets/global/css/components.min.css" rel="stylesheet" id="style_components" type="text/css" />
         <link href="../assets/global/css/plugins.min.css" rel="stylesheet" type="text/css" />
         <link href="../assets/layouts/layout3/css/layout.min.css" rel="stylesheet" type="text/css" />
@@ -44,6 +43,7 @@
         <script src="../assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
         <script src="../assets/global/plugins/moment.min.js" type="text/javascript"></script>
         <script src="../assets/global/plugins/bootstrap-daterangepicker/daterangepicker.min.js" type="text/javascript"></script>
+        <script src="../assets/global/plugins/icheck/icheck.min.js" type="text/javascript"></script>
         <script src="../assets/global/scripts/datatable.js" type="text/javascript"></script>
         <script src="../assets/global/plugins/datatables/datatables.min.js" type="text/javascript"></script>
         <script src="../assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.js" type="text/javascript"></script>
@@ -74,7 +74,7 @@
                         <ul class="nav navbar-nav pull-right">
                             <li class="dropdown dropdown-user dropdown-dark">
                                 <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                                    <span class="username username-hide-mobile"></span>
+                                    <span class="username username-hide-mobile"><%Response.Write(((WA_CombugasCC.Core.usuario)Session["sesionUsuario"]).nombre);%> </span>
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-default">
                                     <li>
