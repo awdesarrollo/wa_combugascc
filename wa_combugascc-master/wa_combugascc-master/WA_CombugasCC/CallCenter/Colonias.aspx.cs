@@ -71,7 +71,7 @@ namespace WA_CombugasCC.CallCenter
                 ContextCombugasDataContext context = new ContextCombugasDataContext();
                 var agrupacion = from col in context.colonias join cd in context.ciudades on col.id_ciudad equals cd.id_ciudad
                                  join std in context.estados on cd.id_estado equals std.id_estado join zn in context.zonas on
-                                 std.id_zona equals zn.id_zona select new { col.id_colonia, col.descripcion, cd=cd.descripcion, std=std.descripcion,
+                                 std.id_zona equals zn.id_zona where zn.estado==true & std.status==true &cd.status==true select new { col.id_colonia, col.descripcion, cd=cd.descripcion, std=std.descripcion,
                                  zona=zn.descripcion,col.status};
                 List<ColonClass> lista = new List<ColonClass>();
                 foreach (var grupo in agrupacion)
@@ -99,7 +99,8 @@ namespace WA_CombugasCC.CallCenter
             try
             {
                 ContextCombugasDataContext context = new ContextCombugasDataContext();
-                var agrupacion = from p in context.ciudades where p.id_estado == idEst select p;
+                var agrupacion = from p in context.ciudades
+                                 join z in context.zonas on p.id_zona equals z.id_zona where p.id_estado == idEst & z.estado==true select p;
                 List<CiudadClass> lista = new List<CiudadClass>();
                 foreach (var grupo in agrupacion)
                 {

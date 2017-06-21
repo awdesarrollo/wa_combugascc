@@ -78,7 +78,7 @@ namespace WA_CombugasCC.CallCenter
             try
             {
                 ContextCombugasDataContext context = new ContextCombugasDataContext();
-                var agrupacion = from p in context.ciudades join z in context.zonas on p.id_zona equals z.id_zona join e in context.estados on p.id_estado equals e.id_estado select new { p.id_ciudad, p.descripcion,Est=e.descripcion, zona = z.descripcion, p.status };
+                var agrupacion = from p in context.ciudades join z in context.zonas on p.id_zona equals z.id_zona join e in context.estados on p.id_estado equals e.id_estado where z.estado==true & e.status==true select new { p.id_ciudad, p.descripcion,Est=e.descripcion, zona = z.descripcion, p.status };
                 List<CiudadClass> lista = new List<CiudadClass>();
                 foreach (var grupo in agrupacion)
                 {
@@ -105,7 +105,7 @@ namespace WA_CombugasCC.CallCenter
             try
             {
                 ContextCombugasDataContext context = new ContextCombugasDataContext();
-                var agrupacion = from p in context.zonas select p;
+                var agrupacion = from p in context.zonas where p.estado==true select p;
                 List<zonaClass> lista = new List<zonaClass>();
                 foreach (var grupo in agrupacion)
                 {
@@ -132,7 +132,7 @@ namespace WA_CombugasCC.CallCenter
             try
             {
                 ContextCombugasDataContext context = new ContextCombugasDataContext();
-                var agrupacion = from p in context.estados select p;
+                var agrupacion = from p in context.estados where p.status==true select p;
                 List<EstadoClass> lista = new List<EstadoClass>();
                 foreach (var grupo in agrupacion)
                 {
@@ -159,7 +159,7 @@ namespace WA_CombugasCC.CallCenter
             try
             {
                 ContextCombugasDataContext context = new ContextCombugasDataContext();
-                var agrupacion = from p in context.estados where p.id_zona == idzone select p;
+                var agrupacion = from p in context.estados where p.id_zona == idzone & p.status==true select p;
                 List<EstadoClass> lista = new List<EstadoClass>();
                 foreach (var grupo in agrupacion)
                 {
