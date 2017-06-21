@@ -99,6 +99,7 @@
     <Content Include="Admin\Modulos.aspx" />
     <Content Include="Admin\Permisos.aspx" />
     <Content Include="Admin\Roles.aspx" />
+    <Content Include="Admin\Usuarios.aspx" />
     <Content Include="CallCenter\Default.aspx" />
     <Content Include="packages.config" />
     <Content Include="ApplicationInsights.config">
@@ -159,6 +160,13 @@
     </Compile>
     <Compile Include="Admin\Roles.aspx.designer.cs">
       <DependentUpon>Roles.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Usuarios.aspx.cs">
+      <DependentUpon>Usuarios.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Usuarios.aspx.designer.cs">
+      <DependentUpon>Usuarios.aspx</DependentUpon>
     </Compile>
     <Compile Include="CallCenter\CallCenter.Master.cs">
       <DependentUpon>CallCenter.Master</DependentUpon>

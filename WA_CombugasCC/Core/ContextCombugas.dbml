@@ -349,6 +349,7 @@
       <Column Name="userisonline" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Column Name="ultimoacceso" Type="System.DateTime" DbType="Date" CanBeNull="true" />
       <Column Name="id_rol" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="horaultimoacceso" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Association Name="usuario_asigna_ruta_user" Member="asigna_ruta_users" ThisKey="id_usuario" OtherKey="id_usuario" Type="asigna_ruta_user" />
       <Association Name="usuario_pedido" Member="pedidos" ThisKey="id_usuario" OtherKey="id_usuario" Type="pedido" />
       <Association Name="usuario_pedidos_detalle" Member="pedidos_detalles" ThisKey="id_usuario" OtherKey="id_usuario" Type="pedidos_detalle" />

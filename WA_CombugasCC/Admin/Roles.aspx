@@ -12,15 +12,7 @@
                 </div>
                 <div class="page-content">
                     <div class="container">
-                        <ul class="page-breadcrumb breadcrumb">
-                            <li>
-                                <a href="index.html">Home</a>
-                                <i class="fa fa-circle"></i>
-                            </li>
-                            <li>
-                                <span>Roles</span>
-                            </li>
-                        </ul>
+
                         <div class="page-content-inner" style="min-height: 400px;">
                             <div class="row">
                                 <div class="col-md-6 col-sm-6">

@@ -50,7 +50,7 @@ namespace WA_CombugasCC
                         Response.Data = null;
 
 
-                        objUsuario.ultimoacceso = DateTime.Now;
+                        objUsuario.horaultimoacceso = DateTime.Now;
                         objUsuario.userisonline = true;
                         HttpContext.Current.Session["sesionUsuario"] = objUsuario;
                         context.SubmitChanges();

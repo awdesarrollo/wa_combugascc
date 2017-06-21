@@ -8062,6 +8062,8 @@ namespace WA_CombugasCC.Core
 		
 		private System.Nullable<int> _id_rol;
 		
+		private System.Nullable<System.DateTime> _horaultimoacceso;
+		
 		private EntitySet<asigna_ruta_user> _asigna_ruta_users;
 		
 		private EntitySet<pedido> _pedidos;
@@ -8090,6 +8092,8 @@ namespace WA_CombugasCC.Core
     partial void OnultimoaccesoChanged();
     partial void Onid_rolChanging(System.Nullable<int> value);
     partial void Onid_rolChanged();
+    partial void OnhoraultimoaccesoChanging(System.Nullable<System.DateTime> value);
+    partial void OnhoraultimoaccesoChanged();
     #endregion
 		
 		public usuario()
@@ -8261,6 +8265,26 @@ namespace WA_CombugasCC.Core
 					this._id_rol = value;
 					this.SendPropertyChanged("id_rol");
 					this.Onid_rolChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_horaultimoacceso", DbType="DateTime")]
+		public System.Nullable<System.DateTime> horaultimoacceso
+		{
+			get
+			{
+				return this._horaultimoacceso;
+			}
+			set
+			{
+				if ((this._horaultimoacceso != value))
+				{
+					this.OnhoraultimoaccesoChanging(value);
+					this.SendPropertyChanging();
+					this._horaultimoacceso = value;
+					this.SendPropertyChanged("horaultimoacceso");
+					this.OnhoraultimoaccesoChanged();
 				}
 			}
 		}
