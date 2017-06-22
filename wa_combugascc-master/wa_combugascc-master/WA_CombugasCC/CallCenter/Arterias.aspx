@@ -40,8 +40,8 @@
                             <div class="portlet light ">       
                                 <div class="portlet-body">
                                     <div class="row">
-                                     <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12"></div>
-                                    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">           
+                                     <div class="col-lg-1 col-md-1 col-sm-12 col-xs-12"></div>
+                                    <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">           
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                             <center><h3 >Agregar una arteria nueva.</h3></center>
                                         </div>
@@ -51,43 +51,39 @@
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top:5px;margin-bottom:10px;">
                                             <input id="nombreCol" class="form-control" type="text"/>
                                         </div>
-                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                                             <label>Selecciona una zona.</label>
-                                        </div>
-                                        <div class=" col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top:5px;margin-bottom:10px;">
                                             <select class="js-example-basic-single form-control col-md-12 col-sm-12 col-xs-12" id="ZNSELEC">
                                                 <option value="-1"></option>
                                             </select>
                                         </div>
-                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        
+                                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                                             <label>Selecciona un estado.</label>
-                                        </div>
-                                        <div class=" col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top:5px;margin-bottom:10px;">
-                                            <select class="js-example-basic-single form-control col-md-12 col-sm-12 col-xs-12" id="ZNSELEC2">
+                                             <select class="js-example-basic-single form-control col-md-12 col-sm-12 col-xs-12" id="ZNSELEC2">
                                                  <option value="-1" disabled>Primero: seleccione una zona.</option>
                                             </select>
                                         </div>
-                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                       
+                                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                                             <label>Selecciona una ciudad.</label>
-                                        </div>
-                                        <div class=" col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top:5px;margin-bottom:10px;">
                                             <select class="js-example-basic-single form-control col-md-12 col-sm-12 col-xs-12" id="ZNSELEC3">
                                                  <option value="-1" disabled>Primero: seleccione un estado.</option>
                                             </select>
                                         </div>
-                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        
+                                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                                             <label>Selecciona una colonia.</label>
-                                        </div>
-                                        <div class=" col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top:5px;margin-bottom:10px;">
                                             <select class="js-example-basic-single form-control col-md-12 col-sm-12 col-xs-12" id="ZNSELEC4">
                                                  <option value="-1" disabled>Primero: seleccione una ciudad</option>
                                             </select>
                                         </div>
+                                        
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                             <right><button id="btnguardar" class="btn red pull-right" type="button" style="margin-top: 15px !important;" onclick="Guardar()">Guardar</button></right>
                                         </div>
                                     </div>
-                                    <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12"></div>
+                                    <div class="col-lg-1 col-md-1 col-sm-12 col-xs-12"></div>
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top:10px;">
                                         <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12"></div>
                                         <div id="alertaCont" class="col-lg-8 col-md-8 col-sm-12 col-xs-12 alert alert-danger alert-dismissable" style="display:none;">

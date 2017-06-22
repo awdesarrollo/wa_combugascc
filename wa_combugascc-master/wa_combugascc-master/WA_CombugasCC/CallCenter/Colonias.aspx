@@ -46,35 +46,32 @@
                                             <center><h3 >Agregar una colonia nueva.</h3></center>
                                         </div>
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                            <label style="margin-top: 30px;">Nombre de la colonia.</label>
+                                            <label style="margin-top: 10px;">Nombre de la colonia.</label>
                                         </div>
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top:5px;margin-bottom:10px;">
                                             <input id="nombreCol" class="form-control" type="text"/>
                                         </div>
-                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                                             <label>Selecciona una zona.</label>
-                                        </div>
-                                        <div class=" col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top:5px;margin-bottom:10px;">
-                                            <select class="js-example-basic-single form-control col-md-12 col-sm-12 col-xs-12" id="ZNSELEC">
+                                             <select class="js-example-basic-single form-control col-md-12 col-sm-12 col-xs-12" id="ZNSELEC">
                                                  <option value="-1"></option>
                                             </select>
                                         </div>
-                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        
+                                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                                             <label>Selecciona un estado.</label>
-                                        </div>
-                                        <div class=" col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top:5px;margin-bottom:10px;">
                                             <select class="js-example-basic-single form-control col-md-12 col-sm-12 col-xs-12" id="ZNSELEC2">
                                                  <option value="-1" disabled>Primero: seleccione una zona.</option>
                                             </select>
                                         </div>
-                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                       
+                                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                                             <label>Selecciona una ciudad.</label>
-                                        </div>
-                                        <div class=" col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top:5px;margin-bottom:10px;">
-                                            <select class="js-example-basic-single form-control col-md-12 col-sm-12 col-xs-12" id="ZNSELEC3">
+                                             <select class="js-example-basic-single form-control col-md-12 col-sm-12 col-xs-12" id="ZNSELEC3">
                                                  <option value="-1" >Primero: seleccione un estado</option>
                                             </select>
                                         </div>
+                                        
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                             <right><button id="btnguardar" class="btn red pull-right" type="button" style="margin-top: 15px !important;" onclick="Guardar()">Guardar</button></right>
                                         </div>
@@ -101,8 +98,8 @@
                                                         <th style="text-align: center; color:white;" >Ciudad</th>
                                                         <th style="text-align: center; color:white;" >Estado</th>
                                                         <th style="text-align: center; color:white;" >Zona</th>
-                                                        <th style="text-align: center; color:white;" >¿Activo?</th>
-                                                        <th style="text-align: center; color:white;" >Editar</th>
+                                                        <th style="text-align: center; color:white; width:40px;" >¿Activo?</th>
+                                                        <th style="text-align: center; color:white; width:40px;" >Editar</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody id="tablecols">
@@ -203,7 +200,7 @@
         var GBLIDCOL = -1;
         //Inicializar Cargar zonas y colonias
         $(document).ready(function () {
-            $("#ZNSELEC3").select2();
+           // $("#ZNSELEC3").select2();
             llenarZona();
             actualizaTabla();
         });

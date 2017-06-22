@@ -36,12 +36,12 @@
                 </ul>
                 <div class="page-content-inner" style="min-height: 400px;">
                     <div class="row">
-                        <div class="col-md-12 col-sm-12">
+                        <div class="col-md-4 col-sm-12">
                             <div class="portlet light ">       
                                 <div class="portlet-body">
                                     <div class="row">
-                                    <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12"></div>
-                                    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">           
+                                    
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">           
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                             <center><h3 >Agregar una zona nueva.</h3></center>
                                         </div>
@@ -52,20 +52,30 @@
                                             <input id="nombrezona" class="form-control" type="text"/>
                                         </div>
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                            <right><button id="btnguardar" class="btn red pull-right" type="button" style="margin-top: 15px !important;" onclick="Guardar();">Guardar</button></right>
+                                            <right><button id="btnguardar" class="btn red pull-right" type="button" style="margin-top:15px !important;" onclick="Guardar();">Guardar</button></right>
                                         </div>
                                        
                                     </div>
-                                    <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12"></div>
+                                  
                                         
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top:10px;">
-                                        <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12"></div>
-                                        <div id="alertaCont" class="col-lg-8 col-md-8 col-sm-12 col-xs-12 alert alert-danger alert-dismissable" style="display:none;">
+                                        
+                                        <div id="alertaCont" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 alert alert-danger alert-dismissable" style="display:none;">
                                             <center><strong id="mensajs">Agregar un nombre.</strong></center>
                                         </div>
-                                        <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12"></div>
+                                       
                                     </div>
-                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="border-bottom:3px #eff3f8 solid;margin-top:10px;margin-bottom:10px;"></div>                                      
+                                
+                                    </div>
+                                        
+                                </div>
+                            </div>
+                        </div>
+                           <div class="col-md-8 col-sm-12">
+                            <div class="portlet light ">       
+                                <div class="portlet-body">
+                                    <div class="row">
+                                                             
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">      
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                             <center><h3 >Listado de zonas.</h3></center>
@@ -76,8 +86,8 @@
                                                     <tr>
                                                         <th hidden>ID</th>
                                                         <th  style="color:white;">Nombre</th>
-                                                        <th style="text-align: center; color:white;" >¿Activo?</th>
-                                                        <th style="text-align: center; color:white;" >Editar</th>
+                                                        <th style="text-align: center; color:white; width:40px;" >¿Activo?</th>
+                                                        <th style="text-align: center; color:white; width:40px;" >Editar</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody id="tablezonas">
