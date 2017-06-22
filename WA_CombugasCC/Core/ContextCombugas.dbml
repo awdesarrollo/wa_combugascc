@@ -136,6 +136,17 @@
       <Association Name="formas_pago_pedidos" Member="pedidos" ThisKey="id_formas_pago" OtherKey="id_formas_pagos" Type="pedidos" />
     </Type>
   </Table>
+  <Table Name="dbo.modulos" Member="modulos">
+    <Type Name="modulo">
+      <Column Name="id_modulo" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="titulo" Type="System.String" DbType="NChar(50)" CanBeNull="true" />
+      <Column Name="url_modulo" Type="System.String" DbType="NChar(100)" CanBeNull="true" />
+      <Column Name="isactive" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="id_modulo_padre" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="descripcion" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Association Name="modulo_permiso" Member="permisos" ThisKey="id_modulo" OtherKey="id_modulo" Type="permiso" />
+    </Type>
+  </Table>
   <Table Name="dbo.pedidos" Member="pedidos">
     <Type Name="pedidos">
       <Column Name="id_pedido" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -179,14 +190,24 @@
     </Type>
   </Table>
   <Table Name="dbo.permisos" Member="permisos">
+<<<<<<< HEAD
     <Type Name="permisos">
       <Column Name="id_rol_user" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+=======
+    <Type Name="permiso">
+      <Column Name="id_rol_modulo" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+>>>>>>> Eduardo
       <Column Name="id_rol" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="id_usuario" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="id_modulo" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="observacion" Type="System.String" DbType="VarChar(700) NOT NULL" CanBeNull="false" />
       <Column Name="status" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+<<<<<<< HEAD
       <Association Name="roles_permisos" Member="roles" ThisKey="id_rol" OtherKey="id_rol" Type="roles" IsForeignKey="true" />
       <Association Name="usuarios_permisos" Member="usuarios" ThisKey="id_usuario" OtherKey="id_usuario" Type="usuarios" IsForeignKey="true" />
+=======
+      <Association Name="modulo_permiso" Member="modulo" ThisKey="id_modulo" OtherKey="id_modulo" Type="modulo" IsForeignKey="true" />
+      <Association Name="role_permiso" Member="role" ThisKey="id_rol" OtherKey="id_rol" Type="role" IsForeignKey="true" />
+>>>>>>> Eduardo
     </Type>
   </Table>
   <Table Name="dbo.precios" Member="precios">
@@ -252,7 +273,12 @@
       <Column Name="id_rol" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="descripcion" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
       <Column Name="status" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+<<<<<<< HEAD
       <Association Name="roles_permisos" Member="permisos" ThisKey="id_rol" OtherKey="id_rol" Type="permisos" />
+=======
+      <Association Name="role_permiso" Member="permisos" ThisKey="id_rol" OtherKey="id_rol" Type="permiso" />
+      <Association Name="role_usuario" Member="usuarios" ThisKey="id_rol" OtherKey="id_rol" Type="usuario" />
+>>>>>>> Eduardo
     </Type>
   </Table>
   <Table Name="dbo.rutas" Member="rutas">
@@ -322,6 +348,7 @@
       <Column Name="isactive" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Column Name="userisonline" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Column Name="ultimoacceso" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+<<<<<<< HEAD
       <Association Name="usuarios_asigna_ruta_user" Member="asigna_ruta_user" ThisKey="id_usuario" OtherKey="id_usuario" Type="asigna_ruta_user" />
       <Association Name="usuarios_pedidos" Member="pedidos" ThisKey="id_usuario" OtherKey="id_usuario" Type="pedidos" />
       <Association Name="usuarios_pedidos_detalle" Member="pedidos_detalle" ThisKey="id_usuario" OtherKey="id_usuario" Type="pedidos_detalle" />
@@ -340,6 +367,14 @@
       <Association Name="zonas_estados" Member="estados" ThisKey="id_zona" OtherKey="id_zona" Type="estados" />
       <Association Name="zonas_repartidor" Member="repartidor" ThisKey="id_zona" OtherKey="id_zona" Type="repartidor" />
       <Association Name="zonas_rutas" Member="rutas" ThisKey="id_zona" OtherKey="id_zona" Type="rutas" />
+=======
+      <Column Name="id_rol" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="horaultimoacceso" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="usuario_asigna_ruta_user" Member="asigna_ruta_users" ThisKey="id_usuario" OtherKey="id_usuario" Type="asigna_ruta_user" />
+      <Association Name="usuario_pedido" Member="pedidos" ThisKey="id_usuario" OtherKey="id_usuario" Type="pedido" />
+      <Association Name="usuario_pedidos_detalle" Member="pedidos_detalles" ThisKey="id_usuario" OtherKey="id_usuario" Type="pedidos_detalle" />
+      <Association Name="role_usuario" Member="role" ThisKey="id_rol" OtherKey="id_rol" Type="role" IsForeignKey="true" />
+>>>>>>> Eduardo
     </Type>
   </Table>
 </Database>

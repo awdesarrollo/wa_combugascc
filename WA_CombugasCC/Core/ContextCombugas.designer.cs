@@ -57,9 +57,18 @@ namespace WA_CombugasCC.Core
     partial void Insertformas_pago(formas_pago instance);
     partial void Updateformas_pago(formas_pago instance);
     partial void Deleteformas_pago(formas_pago instance);
+<<<<<<< HEAD
     partial void Insertpedidos(pedidos instance);
     partial void Updatepedidos(pedidos instance);
     partial void Deletepedidos(pedidos instance);
+=======
+    partial void Insertmodulo(modulo instance);
+    partial void Updatemodulo(modulo instance);
+    partial void Deletemodulo(modulo instance);
+    partial void Insertpedido(pedido instance);
+    partial void Updatepedido(pedido instance);
+    partial void Deletepedido(pedido instance);
+>>>>>>> Eduardo
     partial void Insertpedidos_detalle(pedidos_detalle instance);
     partial void Updatepedidos_detalle(pedidos_detalle instance);
     partial void Deletepedidos_detalle(pedidos_detalle instance);
@@ -206,7 +215,19 @@ namespace WA_CombugasCC.Core
 			}
 		}
 		
+<<<<<<< HEAD
 		public System.Data.Linq.Table<pedidos> pedidos
+=======
+		public System.Data.Linq.Table<modulo> modulos
+		{
+			get
+			{
+				return this.GetTable<modulo>();
+			}
+		}
+		
+		public System.Data.Linq.Table<pedido> pedidos
+>>>>>>> Eduardo
 		{
 			get
 			{
@@ -3504,6 +3525,216 @@ namespace WA_CombugasCC.Core
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.modulos")]
+	public partial class modulo : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _id_modulo;
+		
+		private string _titulo;
+		
+		private string _url_modulo;
+		
+		private System.Nullable<bool> _isactive;
+		
+		private int _id_modulo_padre;
+		
+		private string _descripcion;
+		
+		private EntitySet<permiso> _permisos;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void Onid_moduloChanging(int value);
+    partial void Onid_moduloChanged();
+    partial void OntituloChanging(string value);
+    partial void OntituloChanged();
+    partial void Onurl_moduloChanging(string value);
+    partial void Onurl_moduloChanged();
+    partial void OnisactiveChanging(System.Nullable<bool> value);
+    partial void OnisactiveChanged();
+    partial void Onid_modulo_padreChanging(int value);
+    partial void Onid_modulo_padreChanged();
+    partial void OndescripcionChanging(string value);
+    partial void OndescripcionChanged();
+    #endregion
+		
+		public modulo()
+		{
+			this._permisos = new EntitySet<permiso>(new Action<permiso>(this.attach_permisos), new Action<permiso>(this.detach_permisos));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_modulo", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int id_modulo
+		{
+			get
+			{
+				return this._id_modulo;
+			}
+			set
+			{
+				if ((this._id_modulo != value))
+				{
+					this.Onid_moduloChanging(value);
+					this.SendPropertyChanging();
+					this._id_modulo = value;
+					this.SendPropertyChanged("id_modulo");
+					this.Onid_moduloChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_titulo", DbType="NChar(50)")]
+		public string titulo
+		{
+			get
+			{
+				return this._titulo;
+			}
+			set
+			{
+				if ((this._titulo != value))
+				{
+					this.OntituloChanging(value);
+					this.SendPropertyChanging();
+					this._titulo = value;
+					this.SendPropertyChanged("titulo");
+					this.OntituloChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_url_modulo", DbType="NChar(100)")]
+		public string url_modulo
+		{
+			get
+			{
+				return this._url_modulo;
+			}
+			set
+			{
+				if ((this._url_modulo != value))
+				{
+					this.Onurl_moduloChanging(value);
+					this.SendPropertyChanging();
+					this._url_modulo = value;
+					this.SendPropertyChanged("url_modulo");
+					this.Onurl_moduloChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_isactive", DbType="Bit")]
+		public System.Nullable<bool> isactive
+		{
+			get
+			{
+				return this._isactive;
+			}
+			set
+			{
+				if ((this._isactive != value))
+				{
+					this.OnisactiveChanging(value);
+					this.SendPropertyChanging();
+					this._isactive = value;
+					this.SendPropertyChanged("isactive");
+					this.OnisactiveChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_modulo_padre", DbType="Int NOT NULL")]
+		public int id_modulo_padre
+		{
+			get
+			{
+				return this._id_modulo_padre;
+			}
+			set
+			{
+				if ((this._id_modulo_padre != value))
+				{
+					this.Onid_modulo_padreChanging(value);
+					this.SendPropertyChanging();
+					this._id_modulo_padre = value;
+					this.SendPropertyChanged("id_modulo_padre");
+					this.Onid_modulo_padreChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_descripcion", DbType="NVarChar(100)")]
+		public string descripcion
+		{
+			get
+			{
+				return this._descripcion;
+			}
+			set
+			{
+				if ((this._descripcion != value))
+				{
+					this.OndescripcionChanging(value);
+					this.SendPropertyChanging();
+					this._descripcion = value;
+					this.SendPropertyChanged("descripcion");
+					this.OndescripcionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="modulo_permiso", Storage="_permisos", ThisKey="id_modulo", OtherKey="id_modulo")]
+		public EntitySet<permiso> permisos
+		{
+			get
+			{
+				return this._permisos;
+			}
+			set
+			{
+				this._permisos.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_permisos(permiso entity)
+		{
+			this.SendPropertyChanging();
+			entity.modulo = this;
+		}
+		
+		private void detach_permisos(permiso entity)
+		{
+			this.SendPropertyChanging();
+			entity.modulo = null;
+		}
+	}
+	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.pedidos")]
 	public partial class pedidos : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -4559,30 +4790,36 @@ namespace WA_CombugasCC.Core
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private int _id_rol_user;
+		private int _id_rol_modulo;
 		
 		private int _id_rol;
 		
-		private int _id_usuario;
+		private int _id_modulo;
 		
 		private string _observacion;
 		
 		private bool _status;
 		
+<<<<<<< HEAD
 		private EntityRef<roles> _roles;
 		
 		private EntityRef<usuarios> _usuarios;
+=======
+		private EntityRef<modulo> _modulo;
+		
+		private EntityRef<role> _role;
+>>>>>>> Eduardo
 		
     #region Definiciones de métodos de extensibilidad
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void Onid_rol_userChanging(int value);
-    partial void Onid_rol_userChanged();
+    partial void Onid_rol_moduloChanging(int value);
+    partial void Onid_rol_moduloChanged();
     partial void Onid_rolChanging(int value);
     partial void Onid_rolChanged();
-    partial void Onid_usuarioChanging(int value);
-    partial void Onid_usuarioChanged();
+    partial void Onid_moduloChanging(int value);
+    partial void Onid_moduloChanged();
     partial void OnobservacionChanging(string value);
     partial void OnobservacionChanged();
     partial void OnstatusChanging(bool value);
@@ -4591,27 +4828,32 @@ namespace WA_CombugasCC.Core
 		
 		public permisos()
 		{
+<<<<<<< HEAD
 			this._roles = default(EntityRef<roles>);
 			this._usuarios = default(EntityRef<usuarios>);
+=======
+			this._modulo = default(EntityRef<modulo>);
+			this._role = default(EntityRef<role>);
+>>>>>>> Eduardo
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_rol_user", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int id_rol_user
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_rol_modulo", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int id_rol_modulo
 		{
 			get
 			{
-				return this._id_rol_user;
+				return this._id_rol_modulo;
 			}
 			set
 			{
-				if ((this._id_rol_user != value))
+				if ((this._id_rol_modulo != value))
 				{
-					this.Onid_rol_userChanging(value);
+					this.Onid_rol_moduloChanging(value);
 					this.SendPropertyChanging();
-					this._id_rol_user = value;
-					this.SendPropertyChanged("id_rol_user");
-					this.Onid_rol_userChanged();
+					this._id_rol_modulo = value;
+					this.SendPropertyChanged("id_rol_modulo");
+					this.Onid_rol_moduloChanged();
 				}
 			}
 		}
@@ -4640,26 +4882,30 @@ namespace WA_CombugasCC.Core
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_usuario", DbType="Int NOT NULL")]
-		public int id_usuario
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_modulo", DbType="Int NOT NULL")]
+		public int id_modulo
 		{
 			get
 			{
-				return this._id_usuario;
+				return this._id_modulo;
 			}
 			set
 			{
-				if ((this._id_usuario != value))
+				if ((this._id_modulo != value))
 				{
+<<<<<<< HEAD
 					if (this._usuarios.HasLoadedOrAssignedValue)
+=======
+					if (this._modulo.HasLoadedOrAssignedValue)
+>>>>>>> Eduardo
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
-					this.Onid_usuarioChanging(value);
+					this.Onid_moduloChanging(value);
 					this.SendPropertyChanging();
-					this._id_usuario = value;
-					this.SendPropertyChanged("id_usuario");
-					this.Onid_usuarioChanged();
+					this._id_modulo = value;
+					this.SendPropertyChanged("id_modulo");
+					this.Onid_moduloChanged();
 				}
 			}
 		}
@@ -4704,6 +4950,7 @@ namespace WA_CombugasCC.Core
 			}
 		}
 		
+<<<<<<< HEAD
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="roles_permisos", Storage="_roles", ThisKey="id_rol", OtherKey="id_rol", IsForeignKey=true)]
 		public roles roles
 		{
@@ -4716,28 +4963,54 @@ namespace WA_CombugasCC.Core
 				roles previousValue = this._roles.Entity;
 				if (((previousValue != value) 
 							|| (this._roles.HasLoadedOrAssignedValue == false)))
+=======
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="modulo_permiso", Storage="_modulo", ThisKey="id_modulo", OtherKey="id_modulo", IsForeignKey=true)]
+		public modulo modulo
+		{
+			get
+			{
+				return this._modulo.Entity;
+			}
+			set
+			{
+				modulo previousValue = this._modulo.Entity;
+				if (((previousValue != value) 
+							|| (this._modulo.HasLoadedOrAssignedValue == false)))
+>>>>>>> Eduardo
 				{
 					this.SendPropertyChanging();
 					if ((previousValue != null))
 					{
+<<<<<<< HEAD
 						this._roles.Entity = null;
 						previousValue.permisos.Remove(this);
 					}
 					this._roles.Entity = value;
+=======
+						this._modulo.Entity = null;
+						previousValue.permisos.Remove(this);
+					}
+					this._modulo.Entity = value;
+>>>>>>> Eduardo
 					if ((value != null))
 					{
 						value.permisos.Add(this);
-						this._id_rol = value.id_rol;
+						this._id_modulo = value.id_modulo;
 					}
 					else
 					{
-						this._id_rol = default(int);
+						this._id_modulo = default(int);
 					}
+<<<<<<< HEAD
 					this.SendPropertyChanged("roles");
+=======
+					this.SendPropertyChanged("modulo");
+>>>>>>> Eduardo
 				}
 			}
 		}
 		
+<<<<<<< HEAD
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="usuarios_permisos", Storage="_usuarios", ThisKey="id_usuario", OtherKey="id_usuario", IsForeignKey=true)]
 		public usuarios usuarios
 		{
@@ -4750,24 +5023,49 @@ namespace WA_CombugasCC.Core
 				usuarios previousValue = this._usuarios.Entity;
 				if (((previousValue != value) 
 							|| (this._usuarios.HasLoadedOrAssignedValue == false)))
+=======
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="role_permiso", Storage="_role", ThisKey="id_rol", OtherKey="id_rol", IsForeignKey=true)]
+		public role role
+		{
+			get
+			{
+				return this._role.Entity;
+			}
+			set
+			{
+				role previousValue = this._role.Entity;
+				if (((previousValue != value) 
+							|| (this._role.HasLoadedOrAssignedValue == false)))
+>>>>>>> Eduardo
 				{
 					this.SendPropertyChanging();
 					if ((previousValue != null))
 					{
+<<<<<<< HEAD
 						this._usuarios.Entity = null;
 						previousValue.permisos.Remove(this);
 					}
 					this._usuarios.Entity = value;
+=======
+						this._role.Entity = null;
+						previousValue.permisos.Remove(this);
+					}
+					this._role.Entity = value;
+>>>>>>> Eduardo
 					if ((value != null))
 					{
 						value.permisos.Add(this);
-						this._id_usuario = value.id_usuario;
+						this._id_rol = value.id_rol;
 					}
 					else
 					{
-						this._id_usuario = default(int);
+						this._id_rol = default(int);
 					}
+<<<<<<< HEAD
 					this.SendPropertyChanged("usuarios");
+=======
+					this.SendPropertyChanged("role");
+>>>>>>> Eduardo
 				}
 			}
 		}
@@ -6241,7 +6539,13 @@ namespace WA_CombugasCC.Core
 		
 		private EntitySet<permisos> _permisos;
 		
+<<<<<<< HEAD
     #region Definiciones de métodos de extensibilidad
+=======
+		private EntitySet<usuario> _usuarios;
+		
+    #region Extensibility Method Definitions
+>>>>>>> Eduardo
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
@@ -6255,7 +6559,12 @@ namespace WA_CombugasCC.Core
 		
 		public roles()
 		{
+<<<<<<< HEAD
 			this._permisos = new EntitySet<permisos>(new Action<permisos>(this.attach_permisos), new Action<permisos>(this.detach_permisos));
+=======
+			this._permisos = new EntitySet<permiso>(new Action<permiso>(this.attach_permisos), new Action<permiso>(this.detach_permisos));
+			this._usuarios = new EntitySet<usuario>(new Action<usuario>(this.attach_usuarios), new Action<usuario>(this.detach_usuarios));
+>>>>>>> Eduardo
 			OnCreated();
 		}
 		
@@ -6332,6 +6641,19 @@ namespace WA_CombugasCC.Core
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="role_usuario", Storage="_usuarios", ThisKey="id_rol", OtherKey="id_rol")]
+		public EntitySet<usuario> usuarios
+		{
+			get
+			{
+				return this._usuarios;
+			}
+			set
+			{
+				this._usuarios.Assign(value);
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -6362,6 +6684,18 @@ namespace WA_CombugasCC.Core
 		{
 			this.SendPropertyChanging();
 			entity.roles = null;
+		}
+		
+		private void attach_usuarios(usuario entity)
+		{
+			this.SendPropertyChanging();
+			entity.role = this;
+		}
+		
+		private void detach_usuarios(usuario entity)
+		{
+			this.SendPropertyChanging();
+			entity.role = null;
 		}
 	}
 	
@@ -7506,6 +7840,13 @@ namespace WA_CombugasCC.Core
 		private bool _userisonline;
 		
 		private System.Nullable<System.DateTime> _ultimoacceso;
+<<<<<<< HEAD
+=======
+		
+		private System.Nullable<int> _id_rol;
+		
+		private System.Nullable<System.DateTime> _horaultimoacceso;
+>>>>>>> Eduardo
 		
 		private EntitySet<asigna_ruta_user> _asigna_ruta_user;
 		
@@ -7513,7 +7854,11 @@ namespace WA_CombugasCC.Core
 		
 		private EntitySet<pedidos_detalle> _pedidos_detalle;
 		
+<<<<<<< HEAD
 		private EntitySet<permisos> _permisos;
+=======
+		private EntityRef<role> _role;
+>>>>>>> Eduardo
 		
     #region Definiciones de métodos de extensibilidad
     partial void OnLoaded();
@@ -7533,14 +7878,28 @@ namespace WA_CombugasCC.Core
     partial void OnuserisonlineChanged();
     partial void OnultimoaccesoChanging(System.Nullable<System.DateTime> value);
     partial void OnultimoaccesoChanged();
+<<<<<<< HEAD
+=======
+    partial void Onid_rolChanging(System.Nullable<int> value);
+    partial void Onid_rolChanged();
+    partial void OnhoraultimoaccesoChanging(System.Nullable<System.DateTime> value);
+    partial void OnhoraultimoaccesoChanged();
+>>>>>>> Eduardo
     #endregion
 		
 		public usuarios()
 		{
+<<<<<<< HEAD
 			this._asigna_ruta_user = new EntitySet<asigna_ruta_user>(new Action<asigna_ruta_user>(this.attach_asigna_ruta_user), new Action<asigna_ruta_user>(this.detach_asigna_ruta_user));
 			this._pedidos = new EntitySet<pedidos>(new Action<pedidos>(this.attach_pedidos), new Action<pedidos>(this.detach_pedidos));
 			this._pedidos_detalle = new EntitySet<pedidos_detalle>(new Action<pedidos_detalle>(this.attach_pedidos_detalle), new Action<pedidos_detalle>(this.detach_pedidos_detalle));
 			this._permisos = new EntitySet<permisos>(new Action<permisos>(this.attach_permisos), new Action<permisos>(this.detach_permisos));
+=======
+			this._asigna_ruta_users = new EntitySet<asigna_ruta_user>(new Action<asigna_ruta_user>(this.attach_asigna_ruta_users), new Action<asigna_ruta_user>(this.detach_asigna_ruta_users));
+			this._pedidos = new EntitySet<pedido>(new Action<pedido>(this.attach_pedidos), new Action<pedido>(this.detach_pedidos));
+			this._pedidos_detalles = new EntitySet<pedidos_detalle>(new Action<pedidos_detalle>(this.attach_pedidos_detalles), new Action<pedidos_detalle>(this.detach_pedidos_detalles));
+			this._role = default(EntityRef<role>);
+>>>>>>> Eduardo
 			OnCreated();
 		}
 		
@@ -7684,6 +8043,7 @@ namespace WA_CombugasCC.Core
 			}
 		}
 		
+<<<<<<< HEAD
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="usuarios_asigna_ruta_user", Storage="_asigna_ruta_user", ThisKey="id_usuario", OtherKey="id_usuario")]
 		public EntitySet<asigna_ruta_user> asigna_ruta_user
 		{
@@ -7871,10 +8231,33 @@ namespace WA_CombugasCC.Core
 					this._id_zona = value;
 					this.SendPropertyChanged("id_zona");
 					this.Onid_zonaChanged();
+=======
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_rol", DbType="Int")]
+		public System.Nullable<int> id_rol
+		{
+			get
+			{
+				return this._id_rol;
+			}
+			set
+			{
+				if ((this._id_rol != value))
+				{
+					if (this._role.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.Onid_rolChanging(value);
+					this.SendPropertyChanging();
+					this._id_rol = value;
+					this.SendPropertyChanged("id_rol");
+					this.Onid_rolChanged();
+>>>>>>> Eduardo
 				}
 			}
 		}
 		
+<<<<<<< HEAD
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_descripcion", DbType="VarChar(200) NOT NULL", CanBeNull=false)]
 		public string descripcion
 		{
@@ -7911,6 +8294,24 @@ namespace WA_CombugasCC.Core
 					this._estado = value;
 					this.SendPropertyChanged("estado");
 					this.OnestadoChanged();
+=======
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_horaultimoacceso", DbType="DateTime")]
+		public System.Nullable<System.DateTime> horaultimoacceso
+		{
+			get
+			{
+				return this._horaultimoacceso;
+			}
+			set
+			{
+				if ((this._horaultimoacceso != value))
+				{
+					this.OnhoraultimoaccesoChanging(value);
+					this.SendPropertyChanging();
+					this._horaultimoacceso = value;
+					this.SendPropertyChanged("horaultimoacceso");
+					this.OnhoraultimoaccesoChanged();
+>>>>>>> Eduardo
 				}
 			}
 		}
@@ -7954,6 +8355,7 @@ namespace WA_CombugasCC.Core
 			}
 		}
 		
+<<<<<<< HEAD
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="zonas_direcciones", Storage="_direcciones", ThisKey="id_zona", OtherKey="id_zona")]
 		public EntitySet<direcciones> direcciones
 		{
@@ -8003,6 +8405,39 @@ namespace WA_CombugasCC.Core
 			set
 			{
 				this._rutas.Assign(value);
+=======
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="role_usuario", Storage="_role", ThisKey="id_rol", OtherKey="id_rol", IsForeignKey=true)]
+		public role role
+		{
+			get
+			{
+				return this._role.Entity;
+			}
+			set
+			{
+				role previousValue = this._role.Entity;
+				if (((previousValue != value) 
+							|| (this._role.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._role.Entity = null;
+						previousValue.usuarios.Remove(this);
+					}
+					this._role.Entity = value;
+					if ((value != null))
+					{
+						value.usuarios.Add(this);
+						this._id_rol = value.id_rol;
+					}
+					else
+					{
+						this._id_rol = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("role");
+				}
+>>>>>>> Eduardo
 			}
 		}
 		
@@ -8097,6 +8532,7 @@ namespace WA_CombugasCC.Core
 			this.SendPropertyChanging();
 			entity.zonas = null;
 		}
+<<<<<<< HEAD
 		
 		private void attach_rutas(rutas entity)
 		{
@@ -8109,6 +8545,8 @@ namespace WA_CombugasCC.Core
 			this.SendPropertyChanging();
 			entity.zonas = null;
 		}
+=======
+>>>>>>> Eduardo
 	}
 }
 #pragma warning restore 1591

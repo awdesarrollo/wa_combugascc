@@ -95,9 +95,17 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD
     <Content Include="CallCenter\Arterias.aspx" />
     <Content Include="CallCenter\Ciudades.aspx" />
     <Content Include="CallCenter\Colonias.aspx" />
+=======
+    <Content Include="Admin\Default.aspx" />
+    <Content Include="Admin\Modulos.aspx" />
+    <Content Include="Admin\Permisos.aspx" />
+    <Content Include="Admin\Roles.aspx" />
+    <Content Include="Admin\Usuarios.aspx" />
+>>>>>>> Eduardo
     <Content Include="CallCenter\Default.aspx" />
     <Content Include="CallCenter\Estados.aspx" />
     <Content Include="CallCenter\Zonas.aspx" />
@@ -111,6 +119,7 @@
       <LastGenOutput>ContextCombugas.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Admin\Admin.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -125,12 +134,56 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD
     <Compile Include="CallCenter\Arterias.aspx.cs">
       <DependentUpon>Arterias.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="CallCenter\Arterias.aspx.designer.cs">
       <DependentUpon>Arterias.aspx</DependentUpon>
+=======
+    <Compile Include="Admin\Admin.Master.cs">
+      <DependentUpon>Admin.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Admin.Master.designer.cs">
+      <DependentUpon>Admin.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Modulos.aspx.cs">
+      <DependentUpon>Modulos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Modulos.aspx.designer.cs">
+      <DependentUpon>Modulos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Permisos.aspx.cs">
+      <DependentUpon>Permisos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Permisos.aspx.designer.cs">
+      <DependentUpon>Permisos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Roles.aspx.cs">
+      <DependentUpon>Roles.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Roles.aspx.designer.cs">
+      <DependentUpon>Roles.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Usuarios.aspx.cs">
+      <DependentUpon>Usuarios.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Usuarios.aspx.designer.cs">
+      <DependentUpon>Usuarios.aspx</DependentUpon>
+>>>>>>> Eduardo
     </Compile>
     <Compile Include="CallCenter\CallCenter.Master.cs">
       <DependentUpon>CallCenter.Master</DependentUpon>
@@ -179,7 +232,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ContextCombugas.dbml</DependentUpon>
     </Compile>
-    <Compile Include="Core\ControlUsuarios.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
