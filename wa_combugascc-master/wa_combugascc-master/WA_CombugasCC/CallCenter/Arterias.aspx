@@ -106,8 +106,8 @@
                                                         <th style="text-align: center; color:white;" >Ciudad</th>
                                                         <th style="text-align: center; color:white;" >Estado</th>
                                                         <th style="text-align: center; color:white;" >Zona</th>
-                                                        <th style="text-align: center; color:white;" >¿Activo?</th>
-                                                        <th style="text-align: center; color:white;" >Editar</th>
+                                                        <th style="text-align: center; color:white; width:40px;" >¿Activo?</th>
+                                                        <th style="text-align: center; color:white; width:40px;" >Editar</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody id="tableart">
