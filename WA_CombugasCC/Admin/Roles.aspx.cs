@@ -169,13 +169,28 @@ namespace WA_CombugasCC.Admin
             try
             {
                 ContextCombugasDataContext context = new ContextCombugasDataContext();
-                role rol = context.roles.Where(x => x.id_rol == idRol).SingleOrDefault();
-                rol.descripcion = nombre;
-                context.SubmitChanges();
 
-                Response.Result = true;
-                Response.Message = "Éxito";
-                Response.Data = null;
+                var entityExist = context.roles.Where(x => x.descripcion == nombre && x.id_rol != idRol).SingleOrDefault();
+
+                if (entityExist != null) // Duplicidad
+                {
+                    Response.Result = false;
+                    Response.Message = "Ya se tiene un rol registrado con este nombre. ";
+                    Response.Data = null;
+                }
+                else
+                {
+                    role rol = context.roles.Where(x => x.id_rol == idRol).SingleOrDefault();
+                    rol.descripcion = nombre;
+                    context.SubmitChanges();
+
+                    Response.Result = true;
+                    Response.Message = "Éxito";
+                    Response.Data = null;
+                }
+
+
+                
             }
             catch (Exception ex)
             {

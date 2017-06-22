@@ -23,6 +23,7 @@
                                             </div>
                                         </div>
                                         <div class="portlet-body">
+                                            <input type="hidden" id="hdidusuario" value="0" />
                                           <div class="row">
                                               <div class="col-md-3">
                                                   <label>Usuario</label>
@@ -149,6 +150,152 @@
                 }
             });
         }
+
+        cargarRoles();
+
+        function cargarRoles() {
+            $.ajax({
+                type: "POST",
+                url: "Roles.aspx/CargarRoles",
+                data: '{ }',
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                async: false,
+                success: function (response) {
+                    var datos = JSON.parse(response.d.Data);
+
+                    var options = "<option value='-1'>Seleccione un Rol</option>";
+                    for (var i = 0; i < datos.length; i++) {
+                        options += "<option value='" + datos[i].idRol + "'>" + datos[i].nombreRol + "</option>";
+                    }
+                    $("#cbRoles").html(options);
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            });
+        }
+
+        function editarUsuario(idusuario) {
+            $("#hdidusuario").val(idusuario);
+            $.ajax({
+                type: "POST",
+                url: "Usuarios.aspx/ObtieneUsuarioId",
+                data: JSON.stringify({ idusuario: idusuario }),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                //async: false,
+                success: function (response) {
+                    if (response.d.Result) {
+                        var datos = JSON.parse(response.d.Data);
+                        $("#txtUsuario").val($.trim(datos.usuario));
+                        $("#txtPassword").val($.trim(datos.password));
+                        $("#txtNombre").val($.trim(datos.nombre));
+                        $("#cbRoles").val(datos.idrol);
+
+                        if (datos.estatus) {
+                            $('#ckActivo').iCheck('check');
+                        } else {
+                            $('#ckActivo').iCheck('uncheck');
+                        }
+
+                        $("#txtUsuario").focus();
+
+                        $("#btnGuardar").hide("fast");
+                        $("#btnEditar").show("show");
+
+                    } else {
+                        toastr.error(response.d.Message, "Problema al agregar");
+                    }
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            });
+        }
+
+        function limpiar() {
+            $("#hdidusuario").val(0);
+            $("#txtUsuario").val("");
+            $("#txtPassword").val("");
+            $("#txtNombre").val("");
+            $("#cbRoles").val(-1);
+            $('#ckActivo').iCheck('check');
+
+            $("#btnGuardar").show("fast");
+            $("#btnEditar").hide("fast");
+            cargaUsuarios();
+        }
+
+        $("#btnLimpiar").click(function () {
+            limpiar();
+        });
+
+        $("#btnEditar").click(function () {
+            if($.trim($("#txtUsuario").val()) == "" || $.trim($("#txtPassword").val()) == "" || $.trim($("#txtNombre").val()) == "" || 
+                $("#cbRoles").val() == -1 ) {
+                toastr.error("Todos los datos del usuario son requeridos, verifique por favor.", "Datos requeridos");
+            } else {
+                var usuario = $("#txtUsuario").val();
+                var password = $("#txtPassword").val();
+                var nombre = $("#txtNombre").val();
+                var estatus = ($('#ckActivo').parent('[class*="icheckbox"]').hasClass("checked") ? true : false);
+                var idrol = $("#cbRoles").val();
+
+                $.ajax({
+                    type: "POST",
+                    url: "Usuarios.aspx/EditaUsuarios",
+                    data: JSON.stringify({ usuario: usuario, password: password, nombre: nombre, estatus: estatus, idrol: idrol, idusuario: $("#hdidusuario").val() }),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    async: false,
+                    success: function (response) {
+                        if (response.d.Result) {
+                            toastr.success("El Usuario ha sido editado correctamente", "Éxito");
+                            limpiar();
+                        } else {
+                            toastr.error(response.d.Message, "Problema al agregar");
+                        }
+                    },
+                    error: function (error) {
+                        console.log(error);
+                    }
+                });
+            }
+        });
+
+        $("#btnGuardar").click(function () {
+            if ($.trim($("#txtUsuario").val()) == "" || $.trim($("#txtPassword").val()) == "" || $.trim($("#txtNombre").val()) == "" ||
+                   $("#cbRoles").val() == -1) {
+                toastr.error("Todos los datos del usuario son requeridos, verifique por favor.", "Datos requeridos");
+            } else {
+                var usuario = $("#txtUsuario").val();
+                var password = $("#txtPassword").val();
+                var nombre = $("#txtNombre").val();
+                var estatus = ($('#ckActivo').parent('[class*="icheckbox"]').hasClass("checked") ? true : false);
+                var idrol = $("#cbRoles").val();
+
+                $.ajax({
+                    type: "POST",
+                    url: "Usuarios.aspx/AgregaUsuarios",
+                    data: JSON.stringify({ usuario: usuario, password: password, nombre: nombre, estatus: estatus, idrol: idrol }),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    async: false,
+                    success: function (response) {
+                        if (response.d.Result) {
+                            toastr.success("El Usuario ha sido agregado correctamente", "Éxito");
+                            limpiar();
+                        } else {
+                            toastr.error(response.d.Message, "Problema al agregar");
+                        }
+                    },
+                    error: function (error) {
+                        console.log(error);
+                    }
+                });
+            }
+        });
 
     </script>
 
