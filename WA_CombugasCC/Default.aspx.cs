@@ -5,10 +5,16 @@ using System.Web;
 using System.Web.SessionState;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+<<<<<<< HEAD
 using System.Data;
 using System.Web.Services;
 using System.Web.Script.Services;
 using WA_CombugasCC.Core;
+=======
+using System.Web.Services;
+using System.Data;
+using System.Web.Script.Services;
+>>>>>>> master
 
 
 namespace WA_CombugasCC 
@@ -79,4 +85,30 @@ namespace WA_CombugasCC
         #endregion
 
     }
+
+    public class ajaxResponse
+    {
+        public bool Result { get; set; }
+        public string Message { get; set; }
+        public string Content { get; set; }
+        public DataSet ds { get; set; }
+    }
+
+
+
+
+    #region WebMethod
+
+    [WebMethod(EnableSession = true)]
+    [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+    public static ajaxResponse Login()
+    {
+        ajaxResponse Response = new ajaxResponse();
+
+
+        return Response;
+    }
+
+    #endregion
+
 }

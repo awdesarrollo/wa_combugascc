@@ -37,12 +37,20 @@ C:\Users\AWS-PC2\Documents\GitHub\wa_combugascc\WA_CombugasCC\bin\roslyn\Microso
 C:\Users\AWS-PC2\Documents\GitHub\wa_combugascc\WA_CombugasCC\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
 C:\Users\AWS-PC2\Documents\GitHub\wa_combugascc\WA_CombugasCC\bin\roslyn\Microsoft.CodeAnalysis.dll
 C:\Users\AWS-PC2\Documents\GitHub\wa_combugascc\WA_CombugasCC\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+<<<<<<< HEAD
 C:\Users\AWS-PC2\Documents\GitHub\wa_combugascc\WA_CombugasCC\bin\roslyn\Microsoft.CSharp.Core.targets
 C:\Users\AWS-PC2\Documents\GitHub\wa_combugascc\WA_CombugasCC\bin\roslyn\Microsoft.VisualBasic.Core.targets
+=======
+>>>>>>> master
 C:\Users\AWS-PC2\Documents\GitHub\wa_combugascc\WA_CombugasCC\bin\roslyn\System.Collections.Immutable.dll
 C:\Users\AWS-PC2\Documents\GitHub\wa_combugascc\WA_CombugasCC\bin\roslyn\System.Reflection.Metadata.dll
 C:\Users\AWS-PC2\Documents\GitHub\wa_combugascc\WA_CombugasCC\bin\roslyn\vbc.exe
 C:\Users\AWS-PC2\Documents\GitHub\wa_combugascc\WA_CombugasCC\bin\roslyn\VBCSCompiler.exe
+<<<<<<< HEAD
+=======
+C:\Users\AWS-PC2\Documents\GitHub\wa_combugascc\WA_CombugasCC\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\AWS-PC2\Documents\GitHub\wa_combugascc\WA_CombugasCC\bin\roslyn\Microsoft.VisualBasic.Core.targets
+>>>>>>> master
 C:\Users\AWS-PC2\Documents\GitHub\wa_combugascc\WA_CombugasCC\bin\roslyn\VBCSCompiler.exe.config
 C:\Users\AWS-PC2\Documents\GitHub\wa_combugascc\WA_CombugasCC\bin\WA_CombugasCC.dll.config
 C:\Users\AWS-PC2\Documents\GitHub\wa_combugascc\WA_CombugasCC\bin\WA_CombugasCC.dll
@@ -61,6 +69,12 @@ C:\Users\AWS-PC2\Documents\GitHub\wa_combugascc\WA_CombugasCC\bin\Microsoft.AI.W
 C:\Users\AWS-PC2\Documents\GitHub\wa_combugascc\WA_CombugasCC\bin\Microsoft.AI.WindowsServer.xml
 C:\Users\AWS-PC2\Documents\GitHub\wa_combugascc\WA_CombugasCC\bin\Microsoft.ApplicationInsights.xml
 C:\Users\AWS-PC2\Documents\GitHub\wa_combugascc\WA_CombugasCC\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+<<<<<<< HEAD
 C:\Users\AWS-PC2\Documents\GitHub\wa_combugascc\WA_CombugasCC\obj\Debug\WA_CombugasCC.dll
 C:\Users\AWS-PC2\Documents\GitHub\wa_combugascc\WA_CombugasCC\obj\Debug\WA_CombugasCC.pdb
 C:\Users\AWS-PC2\Documents\GitHub\wa_combugascc\WA_CombugasCC\obj\Debug\WA_CombugasCC.csprojResolveAssemblyReference.cache
+=======
+C:\Users\AWS-PC2\Documents\GitHub\wa_combugascc\WA_CombugasCC\obj\Debug\WA_CombugasCC.csprojResolveAssemblyReference.cache
+C:\Users\AWS-PC2\Documents\GitHub\wa_combugascc\WA_CombugasCC\obj\Debug\WA_CombugasCC.dll
+C:\Users\AWS-PC2\Documents\GitHub\wa_combugascc\WA_CombugasCC\obj\Debug\WA_CombugasCC.pdb
+>>>>>>> master
