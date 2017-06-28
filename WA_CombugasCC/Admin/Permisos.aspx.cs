@@ -8,14 +8,15 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using WA_CombugasCC.Core;
 
-namespace WA_CombugasCC.CallCenter
+namespace WA_CombugasCC.Admin
 {
-    public partial class Default : System.Web.UI.Page
+    public partial class Permisos : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
 
         }
+
         #region Enumerables
         public class ajaxResponse
         {
@@ -24,13 +25,13 @@ namespace WA_CombugasCC.CallCenter
             public string Data { get; set; }
         }
 
-        public class menuClass
+        public class permisosClass
         {
             public int idmodulo { get; set; }
             public string titulo { get; set; }
             public string url { get; set; }
             public int idpadre { get; set; }
-            public menuClass(int idmodulo, string titulo, string url, int idpadre)
+            public permisosClass(int idmodulo, string titulo, string url, int idpadre, string descripcion)
             {
                 this.idmodulo = idmodulo;
                 this.titulo = titulo;
@@ -39,12 +40,12 @@ namespace WA_CombugasCC.CallCenter
             }
 
         }
-        #endregion
+        #endregion
 
-        #region WebMethods
+        #region WebMethods
 
-        [WebMethod(EnableSession = true)]
-        public static ajaxResponse CargaMenuPadre()
+        [WebMethod(EnableSession = true)]
+        public static ajaxResponse ObtenerModulosRol(int idRol)
         {
             ajaxResponse Response = new ajaxResponse();
             try
@@ -52,17 +53,17 @@ namespace WA_CombugasCC.CallCenter
                 ContextCombugasDataContext context = new ContextCombugasDataContext();
                 var objModulos = (from modulos in context.modulos
                                   join permisos in context.permisos on modulos.id_modulo equals permisos.id_modulo
-                                  where permisos.id_rol == ((usuarios)HttpContext.Current.Session["sesionUsuario"]).id_rol
-                                  && modulos.id_modulo_padre == 0 && modulos.isactive == true
+                                  where permisos.id_rol == idRol
+                                  && modulos.isactive == true
                                   select modulos).ToList();
 
-                List<menuClass> menu = new List<menuClass>();
+                List<permisosClass> asignacion = new List<permisosClass>();
                 foreach (var grupo in objModulos)
                 {
-                    menu.Add(new menuClass(grupo.id_modulo, grupo.titulo, grupo.url_modulo, grupo.id_modulo_padre));
+                    asignacion.Add(new permisosClass(grupo.id_modulo, grupo.titulo, grupo.url_modulo, grupo.id_modulo_padre, grupo.descripcion));
                 }
                 var jsonSerialiser = new JavaScriptSerializer();
-                var jsonModulos = jsonSerialiser.Serialize(menu);
+                var jsonModulos = jsonSerialiser.Serialize(asignacion);
 
                 if (jsonModulos != null)
                 {
@@ -73,7 +74,7 @@ namespace WA_CombugasCC.CallCenter
                 else
                 {
                     Response.Result = false;
-                    Response.Message = "El Rol de usuario no cuenta con modulos visibles, verifique por favor.";
+                    Response.Message = "Sin permisos asignados";
                     Response.Data = null;
                 }
             }
@@ -88,48 +89,53 @@ namespace WA_CombugasCC.CallCenter
         }
 
         [WebMethod(EnableSession = true)]
-        public static ajaxResponse CargaMenuHijo(int idmodulo)
+        public static ajaxResponse AsignacionPermisos(int idRol, List<int> modulos)
         {
             ajaxResponse Response = new ajaxResponse();
             try
             {
                 ContextCombugasDataContext context = new ContextCombugasDataContext();
-                var objModulos = (from modulos in context.modulos
-                                  join permisos in context.permisos on modulos.id_modulo equals permisos.id_modulo
-                                  where permisos.id_rol == ((usuarios)HttpContext.Current.Session["sesionUsuario"]).id_rol
-                                  && modulos.id_modulo_padre == idmodulo && modulos.isactive == true
-                                  select modulos).ToList();
+                // Se eliminar permisos existentes
+                var permisos =(from asignacion in context.permisos
+                                where asignacion.id_rol == idRol
+                                select asignacion).ToList();
+                foreach (var permiso in permisos)
+                {
+                    context.permisos.DeleteOnSubmit(permiso);
+                    context.SubmitChanges();
+                }
 
-                List<menuClass> menu = new List<menuClass>();
-                foreach (var grupo in objModulos)
-                {
-                    menu.Add(new menuClass(grupo.id_modulo, grupo.titulo, grupo.url_modulo, grupo.id_modulo_padre));
-                }
-                var jsonSerialiser = new JavaScriptSerializer();
-                var jsonModulos = jsonSerialiser.Serialize(menu);
 
-                if (jsonModulos != null)
+                // Nueva Asignacion
+                foreach (var a in modulos)
                 {
-                    Response.Result = true;
-                    Response.Message = "";
-                    Response.Data = jsonModulos;
+                    permisos p = new permisos();
+                    p.id_rol = idRol;
+                    p.id_modulo = a;
+                    p.status = true;
+                    p.observacion = "";
+
+                    context.permisos.InsertOnSubmit(p);
+                    context.SubmitChanges();
                 }
-                else
-                {
-                    Response.Result = false;
-                    Response.Message = "El Rol de usuario no cuenta con modulos visibles, verifique por favor.";
-                    Response.Data = null;
-                }
+
+
+                Response.Result = true;
+                Response.Message = "Asignacion Exitosa";
+                Response.Data = null;
+
+
             }
             catch (Exception ex)
             {
                 Response.Result = false;
-                Response.Message = "Ha ocurrido un error al cargar. " + ex.Message;
+                Response.Message = "Ha ocurrido un problema. " + ex.Message;
                 Response.Data = null;
             }
 
             return Response;
         }
+
         #endregion
     }
 }

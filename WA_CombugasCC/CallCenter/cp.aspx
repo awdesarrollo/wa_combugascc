@@ -1,6 +1,8 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/CallCenter/CallCenter.Master" AutoEventWireup="true" CodeBehind="Ciudades.aspx.cs" Inherits="WA_CombugasCC.CallCenter.Ciudades" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/CallCenter/CallCenter.Master" AutoEventWireup="true" CodeBehind="cp.aspx.cs" Inherits="WA_CombugasCC.CallCenter.cp" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-   <style>
+
+
+    <style>
 
 .sa {
     height: 300px !important;
@@ -15,7 +17,7 @@
         <div class="page-head">
             <div class="container">
                 <div class="page-title">
-                    <h1>Ciudades</h1>
+                    <h1>Código postal.</h1>
                 </div>
             </div>
         </div>
@@ -31,17 +33,19 @@
                             <i class="fa fa-circle"></i>
                     </li>
                     <li>
-                        <span>Ciudades</span>
+                        <span>Código postal</span>
                     </li>
                 </ul>
                 <div class="page-content-inner" style="min-height: 400px;">
                     <div class="row">
-                         
-                        <div class="col-md-9 col-sm-12">
-                            <div class="portlet light ">       
-                               <div class="portlet-title">
+                        
+                   
+                                <div class="col-md-9 col-sm-12">
+                                    <div class="row">
+                                    <div class="portlet light ">
+                                        <div class="portlet-title">
                                             <div class="caption caption-md">
-                                                Lista de Ciudades
+                                                Lista de Códigos postales
                                             </div>
                                         </div>
                                         <div class="portlet-body">
@@ -49,36 +53,36 @@
                                                 <thead>
                                                     <tr>
                                                         <th class="all" hidden>ID</th>
-                                                        <th class="all">Nombre</th>
+                                                        <th class="all">Codigo</th>
                                                         <th class="all" style="text-align: center; " >Estado</th>
                                                         <th class="all" style="text-align: center;" >Zona</th>
                                                         <th class="all" style="text-align: center; " >Estatus</th>
                                                         <th class="all" style="text-align: center;" >Modificar</th>
-                                                       
-                                                        
                                                     </tr>
                                                 </thead>
-                                                <tbody id="tableciud">
-                                                    
+                                                <tbody>
                                                 </tbody>
-                                            </table>     
+                                            </table>
                                         </div>
                                     </div>
-                                    </div>
+                                </div>
+                            </div>
+
+
                         <div class="col-md-3 col-sm-12">
-                            <div class="portlet light "> 
+                            <div class="portlet light ">  
                                 <div class="portlet-title">
                                             <div class="caption caption-md">
-                                                Agregar una ciudad.
+                                                Agregar un código postal.
                                             </div>
-                                        </div>          
-                                <div class="portlet-body">
+                                        </div>     
+                                 <div class="portlet-body">
                                     <div class="row">
                                   
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">           
                                         
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                            <label style="margin-top: 5px;">Nombre de la ciudad.</label>
+                                            <label style="margin-top: 5px;">Código postal.</label>
                                         </div>
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top:5px;margin-bottom:10px;">
                                             <input id="nombreEstado" class="form-control" type="text"/>
@@ -96,7 +100,7 @@
                                         </div>
                                         <div class=" col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top:5px;margin-bottom:10px;">
                                             <select class="js-example-basic-single form-control col-md-12 col-sm-12 col-xs-12" id="ZNSELEC4">
-                                                 <option value="-1">Primero: selecciona una zona.</option>
+                                                 <option value="-1"></option>
                                             </select>
                                         </div>
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -104,38 +108,33 @@
                                         </div>
                                     </div>
                                  
-                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top:10px;">
-                                        
-                                        <div id="alertaCont" class="col-lg-8 col-md-8 col-sm-12 col-xs-12 alert alert-danger alert-dismissable" style="display:none;">
-                                            <center><strong id="mensajs">Campos faltantes, verifique por favor.</strong></center>
-                                        </div>
-                                      
-                                    </div>
+                                  
                                 
                                     </div>
                                 </div>
                             </div>
                         </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                  
                            
                 </div>
             </div>
-   
-
-     <div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" id="mdAgrega">
+        </div>
+    </div>
+    <a href="javascript:;" class="page-quick-sidebar-toggler">
+                
+    </a>
+</div>
+<div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" id="mdAgrega">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span></button>
-        <h4 class="modal-title" >Modificar ciudad</h4>
+        <h4 class="modal-title" >Modificar código</h4>
       </div>
       <div class="modal-body" >
           <div class="row">
         <div class="col-md-12 col-sm-12 col-xs-12" >
-            <label class="col-md-2 col-sm-2 col-xs-12" >Ciudad<span >* :</span></label>
+            <label class="col-md-2 col-sm-2 col-xs-12" >Código<span >* :</span></label>
             <div class="col-md-10 col-sm-10 col-xs-12">
               <input type="text" id="txtZona" required class="form-control col-md-7 col-xs-12 " value="">
             </div>
@@ -180,13 +179,10 @@
 </div>
 
 
-
-
-
     <script type="text/javascript">
         var inicio = true;
-        var GBLIDZONA = -1;
-        var GBLIDEST = -1;
+        var GBLIDZONA = 1;
+        var GBLIDEST = 1;
         var GBLIDCD = -1;
         $(document).ready(function () {
 
@@ -200,7 +196,7 @@
             $("#tab tbody").html("");
             $.ajax({
                 type: "POST",
-                url: "Ciudades.aspx/CargarDatos",
+                url: "cp.aspx/CargarDatos",
                 data: "{}",
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
@@ -263,14 +259,13 @@
 
 
         }
-        
         function llenarZona() {
             $('#ZNSELEC').html('"<option value="-1"></option>"');
             $('#ZNSELEC2').html('"<option value="-1"></option>"');
-            
+
             $('#ZNSELEC option:contains("")').attr('selected', 'selected');
             $('#ZNSELEC2 option:contains("")').attr('selected', 'selected');
-            
+
 
 
             $.ajax({
@@ -355,51 +350,6 @@
             });
             $('#ZNSELEC4 option:contains("")').attr('selected', 'selected');
         }
-        function Guardar() {
-            //Nombre id_estado id_zona 
-            //Nombre
-            var res = $.trim($("#nombreEstado").val());
-            var Nombre = res.toUpperCase();
-            // id_zona
-            var ZNS = $("#ZNSELEC").val();
-            //id_estado
-            var EDO = $("#ZNSELEC4").val();
-            
-            if (Nombre == "" || ZNS <= 0 || EDO <= 0) {
-                toastr.error("Campos faltantes.", "Advertencia");
-            } else {
-                document.getElementById('alertaCont').style.display = 'none';
-                $.ajax({
-                    type: "POST",
-                    url: "Ciudades.aspx/GuardaCD",
-                    data: '{ Nombre:"' + Nombre + '", Zona:' + ZNS + ',Edo:'+EDO+' }',
-                    contentType: "application/json; charset=utf-8",
-                    dataType: "json",
-                    success: function (response) {
-                        if (response.d.Result) {
-                            document.getElementById('alertaCont').style.display = 'none';
-                            $("#nombreEstado").val('');
-
-                            llenarZona();
-                            llenarEdo();
-                            actualizaTabla();
-                            toastr.success("La ciudad ha sido agregada correctamente", "Éxito");
-                        } else {
-                            toastr.error("No es posible agregar esta ciudad.", "Advertencia");
-
-                            llenarZona();
-                            llenarEdo();
-                            actualizaTabla();
-
-                        }
-                    },
-                    error: function (error) {
-                        console.log("ERROR: " + error);
-                    }
-                });
-
-            }
-        }
         $("select[id=ZNSELEC]").change(function () {
             var VALOR = $('#ZNSELEC').val();
             $('#ZNSELEC4').html('"<option value="-1"></option>"');
@@ -407,7 +357,8 @@
 
 
             if (VALOR == '-1') {
-               
+                llenarZona();
+                llenarEdo();
 
             } else {
                 $.ajax({
@@ -447,13 +398,61 @@
             }
 
         });
+        function Guardar() {
+            //Nombre id_estado id_zona 
+            //Nombre
+            var res = $.trim($("#nombreEstado").val());
+            var Nombre = res.toUpperCase();
+            // id_zona
+            var ZNS = $("#ZNSELEC").val();
+            //id_estado
+            var EDO = $("#ZNSELEC4").val();
 
+            if (Nombre == "" || ZNS <= 0 || EDO <= 0) {
+                toastr.error("Campos faltantes.", "Advertencia");
+        } else if(ZNS<=0){
+            ZNS = 1;
+        } else if (EDO <= 0) {
+            EDO = 1;
+        } else {
+                
+                $.ajax({
+                    type: "POST",
+                    url: "cp.aspx/GuardaCP",
+                    data: '{ Nombre:"' + Nombre + '", Zona:' + ZNS + ',Edo:' + EDO + ' }',
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (response) {
+                        if (response.d.Result) {
+                            
+                            $("#nombreEstado").val('');
+
+                            llenarZona();
+                            llenarEdo();
+                            actualizaTabla();
+                            toastr.success("El código postal ha sido agregado correctamente", "Éxito");
+                        } else {
+                            toastr.error("No es posible agregar este código postal.", "Advertencia");
+
+                            llenarZona();
+                            llenarEdo();
+                            actualizaTabla();
+
+                        }
+                    },
+                    error: function (error) {
+                        console.log("ERROR: " + error);
+                    }
+                });
+
+            }
+        }
         function carga(idcd) {
             GBLIDCD = idcd;
 
             $.ajax({
                 type: "POST",
-                url: "Ciudades.aspx/Unacd",
+                url: "cp.aspx/Uncp",
                 data: '{ Id:"' + idcd + '" }',
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
@@ -535,7 +534,6 @@
             }
 
         });
-
         function actualizar() {
 
             var res = $.trim($("#txtZona").val());
@@ -551,14 +549,14 @@
                 activo = false;
             }
 
-            if (GBLIDEST<0||Nombre=="") {
+            if (GBLIDEST < 0 || Nombre == "") {
                 toastr.error("Campos Faltantes.", "Advertencia");
             } else {
                 //Hubo cambios
                 $.ajax({
                     type: "POST",
-                    url: "Ciudades.aspx/UnacdAct",
-                    data: '{ Id:' + GBLIDCD + ',idZ:' + GBLIDZONA + ',idE:'+GBLIDEST+',Nombre:"' + Nombre + '",stado:' + activo + ' }',
+                    url: "cp.aspx/UnacdAct",
+                    data: '{ Id:' + GBLIDCD + ',idZ:' + GBLIDZONA + ',idE:' + GBLIDEST + ',Nombre:"' + Nombre + '",stado:' + activo + ' }',
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
                     success: function (response) {
@@ -567,7 +565,7 @@
                             llenarZona();
                             actualizaTabla();
                             $('#mdAgrega').modal('hide');
-                            toastr.success("La ciudad ha sido actualizada correctamente", "Éxito");
+                            toastr.success("El código postal ha sido actualizado correctamente", "Éxito");
                         }
                     },
                     error: function (error) {
@@ -577,12 +575,6 @@
             }
         }
     </script>
-
-
-
-
-
-
 
 
 

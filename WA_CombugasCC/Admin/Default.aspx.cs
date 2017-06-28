@@ -8,14 +8,15 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using WA_CombugasCC.Core;
 
-namespace WA_CombugasCC.CallCenter
+namespace WA_CombugasCC.Admin
 {
     public partial class Default : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+           
         }
+
         #region Enumerables
         public class ajaxResponse
         {
@@ -39,11 +40,11 @@ namespace WA_CombugasCC.CallCenter
             }
 
         }
-        #endregion
+        #endregion
 
-        #region WebMethods
+        #region WebMethods
 
-        [WebMethod(EnableSession = true)]
+        [WebMethod(EnableSession = true)]
         public static ajaxResponse CargaMenuPadre()
         {
             ajaxResponse Response = new ajaxResponse();
@@ -51,10 +52,10 @@ namespace WA_CombugasCC.CallCenter
             {
                 ContextCombugasDataContext context = new ContextCombugasDataContext();
                 var objModulos = (from modulos in context.modulos
-                                  join permisos in context.permisos on modulos.id_modulo equals permisos.id_modulo
-                                  where permisos.id_rol == ((usuarios)HttpContext.Current.Session["sesionUsuario"]).id_rol
-                                  && modulos.id_modulo_padre == 0 && modulos.isactive == true
-                                  select modulos).ToList();
+                              join permisos in context.permisos on modulos.id_modulo equals permisos.id_modulo
+                              where permisos.id_rol == ((usuarios)HttpContext.Current.Session["sesionUsuario"]).id_rol 
+                              && modulos.id_modulo_padre == 0 && modulos.isactive == true
+                              select modulos).ToList();
 
                 List<menuClass> menu = new List<menuClass>();
                 foreach (var grupo in objModulos)
@@ -65,7 +66,7 @@ namespace WA_CombugasCC.CallCenter
                 var jsonModulos = jsonSerialiser.Serialize(menu);
 
                 if (jsonModulos != null)
-                {
+                { 
                     Response.Result = true;
                     Response.Message = "";
                     Response.Data = jsonModulos;
@@ -130,6 +131,9 @@ namespace WA_CombugasCC.CallCenter
 
             return Response;
         }
+
         #endregion
+
+
     }
 }

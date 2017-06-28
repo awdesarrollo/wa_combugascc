@@ -36,15 +36,48 @@
                 </ul>
                 <div class="page-content-inner" style="min-height: 400px;">
                     <div class="row">
-                        <div class="col-md-4 col-sm-12">
+                       
+                        <div class="col-md-9 col-sm-12">
                             <div class="portlet light ">       
+                                 <div class="portlet-title">
+                                            <div class="caption caption-md">
+                                                Lista de Estados
+                                            </div>
+                                        </div>
+                                        <div class="portlet-body">
+                                            <table class="table table-striped table-bordered table-hover dt-responsive" width="100%" id="tab" cellspacing="0" width="100%">
+                                                <thead>
+                                                    <tr>
+                                                         <th class="all" hidden>ID</th>
+                                                        <th class="all">Nombre</th>
+                                                         <th class="all" style="text-align: center; " >Zona</th>
+                                                        <th class="all" style="text-align: center; " >Estatus</th>
+                                                        <th class="all" style="text-align: center;" >Modificar</th>
+                                                        
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="tableesta">
+                                                    
+                                                </tbody>
+                                            </table>     
+                                        </div>
+                                    </div>
+                                    </div>
+
+
+
+                         <div class="col-md-3 col-sm-12">
+                            <div class="portlet light ">   
+                                <div class="portlet-title">
+                                            <div class="caption caption-md">
+                                                Agregar un estado nuevo.
+                                            </div>
+                                        </div>      
                                 <div class="portlet-body">
                                     <div class="row">
                                  
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">           
-                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                            <center><h3 >Agregar un estado nuevo.</h3></center>
-                                        </div>
+                                        
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                             <label style="margin-top: 10px;">Nombre del estado.</label>
                                         </div>
@@ -77,32 +110,11 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-8 col-sm-12">
-                            <div class="portlet light ">       
-                                <div class="portlet-body">
-                                    <div class="row">
-                                   <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">      
-                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                            <center><h3 >Listado de estados.</h3></center>
-                                        </div>
-                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">   
-                                            <table class="table table-hover table-bordered "  id="tab">
-                                                <thead style="background:#e7505a;">
-                                                    <tr>
-                                                        <th hidden>ID</th>
-                                                        <th  style="color:white;">Nombre</th>
-                                                        <th style="text-align: center; color:white; width:40px;" >Zona</th>
-                                                        <th style="text-align: center; color:white;width:40px;" >¿Activo?</th>
-                                                        <th style="text-align: center; color:white;width:40px;" >Editar</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody id="tableesta">
-                                                    
-                                                </tbody>
-                                            </table>     
-                                        </div>
-                                    </div>
-                                    </div>
+
+
+
+
+
                                 </div>
                             </div>
                         </div>
@@ -123,7 +135,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span></button>
-        <h4 class="modal-title" >Editar estado</h4>
+        <h4 class="modal-title" >Modificar estado</h4>
       </div>
       <div class="modal-body" >
           <div class="row">
@@ -147,7 +159,7 @@
             <label class=" col-md-2 col-sm-2 col-xs-12" >Activo<span>*:</span>
             </label>
             <div class=" col-md-10 col-sm-10 col-xs-12">
-                   <input id="checkss" name="checkss" type="checkbox" style="opacity: 1;" >
+                   <input id="checkss" name="checkss" type="checkbox" class="icheck" >
             </div>
             </div> 
                </div>
@@ -163,7 +175,6 @@
     </div>
   </div>
 </div>
-     <script src="../assets/global/plugins/jquery.min.js" type="text/javascript"></script>
     <script type="text/javascript">
         var inicio = true;
         var GBLIDZONA = -1;
@@ -235,18 +246,36 @@
                         var parsedTest = JSON.parse(response.d.Data);
 
                         var metodo = "";
-                        for (var i = 0; i < parsedTest.length; i++) {
+                        for (var i = 1; i < parsedTest.length; i++) {
                             if (parsedTest[i]['estado']) {
-                                metodo = '<span class="label label-success">SI</span>';
+                                metodo = '<span class="label label-success">Activo</span>';
                             } else {
-                                metodo = '<span class="label label-danger">NO</span>';//zona
+                                metodo = '<span class="label label-danger">Inactivo</span>';//zona
                             }
                             $('#tab tbody').append('<tr>' + '<td hidden>' + parsedTest[i]['idz'] + '</td><td>' + parsedTest[i]['nombre'] + '</td><td style="text-align: center;">' + parsedTest[i]['zona'] + '</td><td style="text-align: center;">' + metodo + '</td><td style="text-align: center;"><button type="button" class="btn btn-default btn-xs" onclick="carga(' + parsedTest[i]['idz'] + ')"><i class="fa fa-pencil"></i></button></td></tr>');
 
                         }
                         $("#tab").trigger("update").trigger("appendCache");
                         $("#tab").dataTable({
-                            'language': { 'url': '//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json' }
+                            'language': { 'url': '//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json' },
+                            buttons: [
+                                { extend: 'print', className: 'btn dark btn-outline' },
+                                { extend: 'pdf', className: 'btn green btn-outline' },
+                                { extend: 'csv', className: 'btn purple btn-outline ' }
+                            ],
+                            responsive: {
+                                details: {
+                                }
+                            },
+                            "order": [
+                                [0, 'asc']
+                            ],
+                            "lengthMenu": [
+                                [5, 10, 50, 100, -1],
+                                [5, 10, 50, 100, "Todos"]
+                            ],
+                            "pageLength": 10,
+                            "dom": "<'row' <'col-md-12'B>><'row'<'col-md-6 col-sm-12'l><'col-md-6 col-sm-12'f>r><'table-scrollable't><'row'<'col-md-5 col-sm-12'i><'col-md-7 col-sm-12'p>>",
                         });
                         inicio = false;
                     } else {
@@ -269,7 +298,7 @@
             var ZNS = $("#ZNSELEC").val();
             var Nombre = res.toUpperCase();
             if (Nombre == ""||ZNS<=0) {
-                document.getElementById('alertaCont').style.display = 'block';
+                toastr.error("Ingrese un nombre de zona.", "Advertencia");
             } else {
                 document.getElementById('alertaCont').style.display = 'none';
                 $.ajax({
@@ -284,9 +313,9 @@
                            
                             llenarSelect();
                             actualizaTabla();
+                            toastr.success("El estado ha sido agregado correctamente", "Éxito");
                         } else {
-                            $("#mensajs").html(response.d.Message);
-                            document.getElementById('alertaCont').style.display = 'block';
+                            toastr.error("No es posible agregar este estado.", "Advertencia");
                            
                             llenarSelect();
                             actualizaTabla();
@@ -322,9 +351,9 @@
                             var zn = parsedTest[i]['zona'];
                             $('#ZNSELEC2 option:contains("' + zn + '")').attr('selected', 'selected');
                             if (parsedTest[i]['estado']) {
-                                $("#checkss").prop("checked", true);
+                                $("#checkss").iCheck('check');
                             } else {
-                                $("#checkss").prop("checked", false);
+                                $("#checkss").iCheck('uncheck');
                             }
 
                         }
@@ -354,10 +383,8 @@
             }
             //var textoDIrigir = $('#ZNSELEC2 option:selected').text();
 
-            if (GBLIDZONA == -1) {
-
-            } else if (Nombre =="") {
-
+            if (Nombre == "" || GBLIDZONA < 0) {
+                toastr.error("Ingrese un nombre de zona.", "Advertencia");
             } else {
                 $.ajax({
                     type: "POST",
@@ -370,6 +397,7 @@
                             llenarSelect();
                             actualizaTabla();
                             $('#mdAgrega').modal('hide');
+                            toastr.success("El estado ha sido actualizado correctamente", "Éxito");
                         }
                     },
                     error: function (error) {

@@ -31,6 +31,8 @@ namespace WA_CombugasCC.CallCenter
             public string std { get; set; }
             public bool estado { get; set; }
             public int stdid { get; set; }
+            public string asentamiento { get; set; }
+            public string CP { get; set; }
             public int cdsid { get; set; }
 
             public ColonClass(int idz, string nombre, string cd, string std, string zona, bool estado,int cdsid,int stdid)
@@ -43,6 +45,20 @@ namespace WA_CombugasCC.CallCenter
                 this.cd = cd;
                 this.cdsid = cdsid;
                 this.stdid = stdid;
+
+            }
+            public ColonClass(int idz, string nombre, string cd, string std, string zona, bool estado, int cdsid, int stdid,string asentamiento,string CP)
+            {
+                this.idz = idz;
+                this.nombre = nombre;
+                this.zona = zona;
+                this.std = std;
+                this.estado = estado;
+                this.cd = cd;
+                this.cdsid = cdsid;
+                this.stdid = stdid;
+                this.CP = CP;
+                this.asentamiento = asentamiento;
 
             }
 
@@ -62,6 +78,21 @@ namespace WA_CombugasCC.CallCenter
             }
 
         }
+        public class CodigoClass
+        {
+            public int idz { get; set; }
+            public string nombre { get; set; }
+            public bool? estado { get; set; }
+
+            public CodigoClass(int idz, string nombre, bool? estado)
+            {
+                this.idz = idz;
+                this.nombre = nombre;
+                this.estado = estado;
+
+            }
+
+        }
         [WebMethod]
         public static ajaxResponse CargarDatos()//tabla
         {
@@ -70,13 +101,136 @@ namespace WA_CombugasCC.CallCenter
             {
                 ContextCombugasDataContext context = new ContextCombugasDataContext();
                 var agrupacion = from col in context.colonias join cd in context.ciudades on col.id_ciudad equals cd.id_ciudad
-                                 join std in context.estados on cd.id_estado equals std.id_estado join zn in context.zonas on
-                                 std.id_zona equals zn.id_zona where zn.estado==true & std.status==true &cd.status==true select new { col.id_colonia, col.descripcion, cd=cd.descripcion, std=std.descripcion,
-                                 zona=zn.descripcion,col.status};
+                                 join std in context.estados on col.id_estado equals std.id_estado join zn in context.zonas on
+                                 col.id_zona equals zn.id_zona
+                                 join AS in context.tipo_asentamiento on col.id_tipo equals AS.id_tipo
+                                 where zn.estado==true & std.status==true &cd.status==true select new { col.id_colonia, col.descripcion, cd=cd.descripcion, std=std.descripcion,
+                                 zona=zn.descripcion,col.status,Col=AS.descripcion};
                 List<ColonClass> lista = new List<ColonClass>();
                 foreach (var grupo in agrupacion)
                 {
-                    lista.Add(new ColonClass(grupo.id_colonia, grupo.descripcion, grupo.cd, grupo.std, grupo.zona, grupo.status,0,0));
+                    lista.Add(new ColonClass(grupo.id_colonia, grupo.Col + " " + grupo.descripcion, grupo.cd, grupo.std, grupo.zona, grupo.status,0,0));
+                }
+                var jsonSerialiser = new JavaScriptSerializer();
+                var json = jsonSerialiser.Serialize(lista);
+                Response.Result = true;
+                Response.Message = "Bien";
+                Response.Data = json;
+            }
+            catch (Exception ex)
+            {
+                Response.Result = false;
+                Response.Message = "Ha ocurrido un error al agregar estado. " + ex.Message;
+                Response.Data = null;
+            }
+            return Response;
+        }//end
+        [WebMethod]
+        public static ajaxResponse CargarDatos2(int id,int tipo)//tabla filtro
+        {
+            ajaxResponse Response = new ajaxResponse();
+            try
+            {
+                ContextCombugasDataContext context = new ContextCombugasDataContext();
+                var agrupacion= from col in context.colonias
+                                join cd in context.ciudades on col.id_ciudad equals cd.id_ciudad
+                                join std in context.estados on cd.id_estado equals std.id_estado
+                                join zn in context.zonas on
+                                std.id_zona equals zn.id_zona
+                                join AS in context.tipo_asentamiento on col.id_tipo equals AS.id_tipo
+                                where zn.estado == true & std.status == true & cd.status == true
+                                select new
+                                {
+                                    col.id_colonia,
+                                    col.descripcion,
+                                    cd = cd.descripcion,
+                                    std = std.descripcion,
+                                    zona = zn.descripcion,
+                                    col.status,
+                                    Col = AS.descripcion
+                                };
+                if (tipo==1)
+                {
+                    agrupacion = from col in context.colonias
+                                     join cd in context.ciudades on col.id_ciudad equals cd.id_ciudad
+                                     join std in context.estados on col.id_estado equals std.id_estado
+                                     join zn in context.zonas on col.id_zona equals zn.id_zona
+                                 join AS in context.tipo_asentamiento on col.id_tipo equals AS.id_tipo
+                                 where zn.estado == true & std.status == true & cd.status == true & zn.id_zona==id
+                                     select new
+                                     {
+                                         col.id_colonia,
+                                         col.descripcion,
+                                         cd = cd.descripcion,
+                                         std = std.descripcion,
+                                         zona = zn.descripcion,
+                                         col.status,
+                                         Col = AS.descripcion
+                                     };
+                }
+                else if (tipo == 2)
+                {
+                    agrupacion = from col in context.colonias
+                                 join cd in context.ciudades on col.id_ciudad equals cd.id_ciudad
+                                 join std in context.estados on col.id_estado equals std.id_estado
+                                 join zn in context.zonas on col.id_zona equals zn.id_zona
+                                 join AS in context.tipo_asentamiento on col.id_tipo equals AS.id_tipo
+                                 where zn.estado == true & std.status == true & cd.status == true & std.id_estado == id
+                                 select new
+                                 {
+                                     col.id_colonia,
+                                     col.descripcion,
+                                     cd = cd.descripcion,
+                                     std = std.descripcion,
+                                     zona = zn.descripcion,
+                                     col.status,
+                                     Col = AS.descripcion
+                                 };
+                }
+                else if (tipo == 3)
+                {
+                    agrupacion = from col in context.colonias
+                                 join cd in context.ciudades on col.id_ciudad equals cd.id_ciudad
+                                 join std in context.estados on col.id_estado equals std.id_estado
+                                 join zn in context.zonas on col.id_zona equals zn.id_zona
+                                 join AS in context.tipo_asentamiento on col.id_tipo equals AS.id_tipo
+                                 where zn.estado == true & std.status == true & cd.status == true & cd.id_ciudad == id
+                                 select new
+                                 {
+                                     col.id_colonia,
+                                     col.descripcion,
+                                     cd = cd.descripcion,
+                                     std = std.descripcion,
+                                     zona = zn.descripcion,
+                                     col.status,
+                                     Col = AS.descripcion
+                                 };
+                }
+                else if (tipo == 4)
+                {
+                    agrupacion = from col in context.colonias
+                                 join cd in context.ciudades on col.id_ciudad equals cd.id_ciudad
+                                 join std in context.estados on col.id_estado equals std.id_estado
+                                 join zn in context.zonas on col.id_zona equals zn.id_zona
+                                 join cp in context.cp on col.id_cp equals cp.id_cp
+                                 join AS in context.tipo_asentamiento on col.id_tipo equals AS.id_tipo
+                                 where zn.estado == true & std.status == true & cd.status == true & cp.id_cp == id
+                                 select new
+                                 {
+                                     col.id_colonia,
+                                     col.descripcion,
+                                     cd = cd.descripcion,
+                                     std = std.descripcion,
+                                     zona = zn.descripcion,
+                                     col.status,
+                                     Col = AS.descripcion
+                                 };
+                }
+
+                List<ColonClass> lista = new List<ColonClass>();
+                foreach (var grupo in agrupacion)
+                {
+                    lista.Add(new ColonClass(grupo.id_colonia, grupo.Col + " " + grupo.descripcion, grupo.cd, grupo.std, grupo.zona, grupo.status, 0, 0));
                 }
                 var jsonSerialiser = new JavaScriptSerializer();
                 var json = jsonSerialiser.Serialize(lista);
@@ -121,7 +275,61 @@ namespace WA_CombugasCC.CallCenter
             return Response;
         }//end
         [WebMethod]
-        public static ajaxResponse GuardaCol(string Nombre, int Zona, int Edo, int Cd)
+        public static ajaxResponse CargarDatosCP()//combosCP
+        {
+            ajaxResponse Response = new ajaxResponse();
+            try
+            {
+                ContextCombugasDataContext context = new ContextCombugasDataContext();
+                var agrupacion = from p in context.cp where p.status == true select p;
+                List<CodigoClass> lista = new List<CodigoClass>();
+                foreach (var grupo in agrupacion)
+                {
+                    lista.Add(new CodigoClass(grupo.id_cp, grupo.descripcion, grupo.status));
+                }
+                var jsonSerialiser = new JavaScriptSerializer();
+                var json = jsonSerialiser.Serialize(lista);
+                Response.Result = true;
+                Response.Message = "Bien";
+                Response.Data = json;
+            }
+            catch (Exception ex)
+            {
+                Response.Result = false;
+                Response.Message = "Ha ocurrido un error al agregar estado. " + ex.Message;
+                Response.Data = null;
+            }
+            return Response;
+        }//end
+        [WebMethod]
+        public static ajaxResponse CargarDatosAs()//combosCP
+        {
+            ajaxResponse Response = new ajaxResponse();
+            try
+            {
+                ContextCombugasDataContext context = new ContextCombugasDataContext();
+                var agrupacion = from p in context.tipo_asentamiento where p.status == true select p;
+                List<CodigoClass> lista = new List<CodigoClass>();
+                foreach (var grupo in agrupacion)
+                {
+                    lista.Add(new CodigoClass(grupo.id_tipo, grupo.descripcion, grupo.status));
+                }
+                var jsonSerialiser = new JavaScriptSerializer();
+                var json = jsonSerialiser.Serialize(lista);
+                Response.Result = true;
+                Response.Message = "Bien";
+                Response.Data = json;
+            }
+            catch (Exception ex)
+            {
+                Response.Result = false;
+                Response.Message = "Ha ocurrido un error al agregar estado. " + ex.Message;
+                Response.Data = null;
+            }
+            return Response;
+        }//end
+        [WebMethod]
+        public static ajaxResponse GuardaCol(string Nombre, int Zona, int Edo, int Cd,int CP,int AS)
         {
             ajaxResponse Response = new ajaxResponse();
             colonias objEst = new colonias();
@@ -133,6 +341,8 @@ namespace WA_CombugasCC.CallCenter
                 objEst.status = true;
                 objEst.id_estado = Edo;
                 objEst.id_ciudad = Cd;
+                objEst.id_cp = CP;
+                objEst.id_tipo = AS;
                 context.colonias.InsertOnSubmit(objEst);
                 context.SubmitChanges();
                 Response.Result = true;
@@ -156,8 +366,10 @@ namespace WA_CombugasCC.CallCenter
                 ContextCombugasDataContext context = new ContextCombugasDataContext();
                 var agrupacion = from col in context.colonias
                                  join p in context.ciudades on col.id_ciudad equals p.id_ciudad
-                                 join est in context.estados on p.id_estado equals est.id_estado
-                                 join zn in context.zonas on est.id_zona equals zn.id_zona
+                                 join est in context.estados on col.id_estado equals est.id_estado
+                                 join zn in context.zonas on col.id_zona equals zn.id_zona
+                                 join AS in context.tipo_asentamiento on col.id_tipo equals AS.id_tipo
+                                 join CP in context.cp on col.id_cp equals CP.id_cp
                                  where col.id_colonia == Id
                                  select new {
                                      col.id_colonia,
@@ -165,6 +377,8 @@ namespace WA_CombugasCC.CallCenter
                                      cd = p.descripcion,
                                      std = est.descripcion,
                                      zona = zn.descripcion,
+                                     ase=AS.descripcion,
+                                     cpp=CP.descripcion,
                                      col.status,
                                      col.id_ciudad,
                                      col.id_estado
@@ -173,7 +387,7 @@ namespace WA_CombugasCC.CallCenter
                 List<ColonClass> lista = new List<ColonClass>();
                 foreach (var grupo in agrupacion)
                 {
-                    lista.Add(new ColonClass(grupo.id_colonia, grupo.descripcion, grupo.cd, grupo.std, grupo.zona, grupo.status,grupo.id_ciudad,grupo.id_estado));
+                    lista.Add(new ColonClass(grupo.id_colonia, grupo.descripcion, grupo.cd, grupo.std, grupo.zona, grupo.status,grupo.id_ciudad,grupo.id_estado,grupo.ase,grupo.cpp));
                 }
                 var jsonSerialiser = new JavaScriptSerializer();
                 var json = jsonSerialiser.Serialize(lista);
@@ -190,7 +404,7 @@ namespace WA_CombugasCC.CallCenter
             return Response;
         }//end
         [WebMethod]
-        public static ajaxResponse UnacolAct(int Id, int idZ, int idE,int idC, string Nombre, bool stado)//Actualizar Ciudad
+        public static ajaxResponse UnacolAct(int Id, int idZ, int idE,int idC, string Nombre, bool stado,int TA, int CP)//Actualizar Ciudad
         {
             ajaxResponse Response = new ajaxResponse();
             colonias objZona = new colonias();
@@ -206,6 +420,8 @@ namespace WA_CombugasCC.CallCenter
                     objZona.id_zona = idZ;
                     objZona.id_estado = idE;
                     objZona.id_ciudad = idC;
+                    objZona.id_tipo = TA;
+                    objZona.id_cp = CP;
                     objZona.descripcion = Nombre;
                     objZona.status = stado;
                     context.SubmitChanges();

@@ -1,6 +1,8 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/CallCenter/CallCenter.Master" AutoEventWireup="true" CodeBehind="Zonas.aspx.cs" Inherits="WA_CombugasCC.CallCenter.Zonas" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/CallCenter/CallCenter.Master" AutoEventWireup="true" CodeBehind="asentamientos.aspx.cs" Inherits="WA_CombugasCC.CallCenter.asentamientos" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-       <style>
+
+
+    <style>
 
 .sa {
     height: 300px !important;
@@ -15,7 +17,7 @@
         <div class="page-head">
             <div class="container">
                 <div class="page-title">
-                    <h1>Zonas.</h1>
+                    <h1>Tipo de asentamiento.</h1>
                 </div>
             </div>
         </div>
@@ -31,7 +33,7 @@
                             <i class="fa fa-circle"></i>
                     </li>
                     <li>
-                        <span>Zonas</span>
+                        <span>Tipo de asentamiento</span>
                     </li>
                 </ul>
                 <div class="page-content-inner" style="min-height: 400px;">
@@ -43,7 +45,7 @@
                                     <div class="portlet light ">
                                         <div class="portlet-title">
                                             <div class="caption caption-md">
-                                                Lista de Zonas
+                                                Lista de Tipos de asentamiento
                                             </div>
                                         </div>
                                         <div class="portlet-body">
@@ -69,7 +71,7 @@
                             <div class="portlet light ">  
                                 <div class="portlet-title">
                                             <div class="caption caption-md">
-                                                Agregar una zona nueva.
+                                                Agregar un asentamiento.
                                             </div>
                                         </div>     
                                 <div class="portlet-body">
@@ -78,7 +80,7 @@
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">           
                                        
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                            <label style="margin-top: 5px;">Nombre de la zona.</label>
+                                            <label style="margin-top: 5px;">Nombre del asentamiento.</label>
                                         </div>
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                             <input id="nombrezona" class="form-control" type="text"/>
@@ -89,14 +91,7 @@
                                        
                                     </div>
                                   
-                                        
-                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top:10px;">
-                                        
-                                        <div id="alertaCont" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 alert alert-danger alert-dismissable" style="display:none;">
-                                            <center><strong id="mensajs">Agregar un nombre.</strong></center>
-                                        </div>
-                                       
-                                    </div>
+                                  
                                 
                                     </div>
                                         
@@ -113,26 +108,27 @@
                 
     </a>
 </div>
+    </div>
 <div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" id="mdAgrega">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span></button>
-        <h4 class="modal-title" >Modificar zona</h4>
+        <h4 class="modal-title" >Modificar asentamiento</h4>
       </div>
       <div class="modal-body" >
           <div class="row">
         <div class="col-md-12 col-sm-12 col-xs-12" >
-            <label class="col-md-2 col-sm-2 col-xs-12" >Zona<span >* :</span></label>
-            <div class="col-md-10 col-sm-10 col-xs-12">
+            <label class="col-md-3 col-sm-3 col-xs-12" >Asentamiento<span >* :</span></label>
+            <div class="col-md-9 col-sm-9 col-xs-12">
               <input type="text" id="txtZona" required class="form-control col-md-7 col-xs-12 " value="">
             </div>
           </div> 
           
           <div class="col-md-12 col-sm-12 col-xs-12" style="margin-top:15px;">
-            <label class=" col-md-2 col-sm-2 col-xs-12" >Activo<span>*:</span>
+            <label class=" col-md-3 col-sm-3 col-xs-12" >Activo<span>*:</span>
             </label>
-            <div class=" col-md-10 col-sm-10 col-xs-12">
+            <div class=" col-md-9 col-sm-9 col-xs-12">
                    <input id="checkss" name="checkss" type="checkbox"  class="icheck" >
             </div>
             </div> 
@@ -150,8 +146,8 @@
   </div>
 </div>
 
-    
-    <script type="text/javascript">
+
+ <script type="text/javascript">
         var inicio = true;
         var GBLIDZONA = -1;
         $(document).ready(function () {
@@ -166,17 +162,13 @@
             var CategoriasProductos;
             $.ajax({
                 type: "POST",
-                url: "Zonas.aspx/CargarDatos",
+                url: "asentamientos.aspx/CargarDatos",
                 data: "{}",
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 success: function (response) { 
                     if (response.d.Result) {
-                        
-                        
-
-                        var parsedTest = JSON.parse(response.d.Data);
-                
+                        var parsedTest = JSON.parse(response.d.Data);          
                         var metodo="";
                         for (var i = 1; i < parsedTest.length; i++) {
                             if(parsedTest[i]['estado']){
@@ -227,13 +219,13 @@
             var  res= $.trim($("#nombrezona").val());
             var Nombre = res.toUpperCase();
             if (Nombre == "") {
-                toastr.error("Ingrese un nombre de zona.", "Advertencia");
+                toastr.error("Ingrese un nombre del asentamiento.", "Advertencia");
                
             } else {
-                document.getElementById('alertaCont').style.display = 'none';
+                
                 $.ajax({
                     type: "POST",
-                    url: "Zonas.aspx/Guardazona",
+                    url: "asentamientos.aspx/Guarda",
                     data: '{ Nombre:"' + Nombre + '" }',
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
@@ -241,9 +233,9 @@
                         if (response.d.Result) {
                             $("#nombrezona").val('');
                             actualizaTabla();
-                            toastr.success("La zona ha sido agregada correctamente", "Éxito");
+                            toastr.success("El asentamiento ha sido agregado correctamente", "Éxito");
                         } else {
-                            toastr.error("No es posible agregar esta zona.", "Advertencia");
+                            toastr.error("No es posible agregar.", "Advertencia");
                             
                             actualizaTabla();
                             
@@ -261,7 +253,7 @@
            
             $.ajax({
                 type: "POST",
-                url: "Zonas.aspx/Unazona",
+                url: "asentamientos.aspx/Un",
                 data: '{ Id:"' + idzona + '" }',
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
@@ -281,19 +273,6 @@
                     }
                     $('#mdAgrega').modal('show');
                   
-
-
-
-
-
-
-
-
-
-
-
-
-
                    
                 },
                 error: function (error) {
@@ -310,21 +289,21 @@
                 var marcado = $("#checkss").prop("checked") ? true : false;
 
                 if (Nombre == "") {
-                    toastr.error("Ingrese un nombre de zona.", "Advertencia");
+                    toastr.error("Ingrese un nombre del asentamiento.", "Advertencia");
 
                 } else {
 
 
                     $.ajax({
                         type: "POST",
-                        url: "Zonas.aspx/UnazonaAct",
+                        url: "asentamientos.aspx/UnazonaAct",
                         data: '{ Id:"' + GBLIDZONA + '",Nombre:"' + Nombre + '",stado:"' + marcado + '" }',
                         contentType: "application/json; charset=utf-8",
                         dataType: "json",
                         success: function (response) {
                             actualizaTabla();
                             $('#mdAgrega').modal('hide');
-                            toastr.success("La zona ha sido actualizada correctamente", "Éxito");
+                            toastr.success("El asentamiento ha sido actualizada correctamente", "Éxito");
                         },
                         error: function (error) {
                             console.log("ERROR: " + error);
@@ -335,5 +314,5 @@
             }
         }
 </script>
-</asp:Content>
 
+</asp:Content>
