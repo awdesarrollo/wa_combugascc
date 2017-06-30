@@ -30,6 +30,9 @@ namespace WA_CombugasCC.Core
 		
     #region Definiciones de métodos de extensibilidad
     partial void OnCreated();
+    partial void InsertBitacora(Bitacora instance);
+    partial void UpdateBitacora(Bitacora instance);
+    partial void DeleteBitacora(Bitacora instance);
     partial void Insertcalles(calles instance);
     partial void Updatecalles(calles instance);
     partial void Deletecalles(calles instance);
@@ -66,6 +69,18 @@ namespace WA_CombugasCC.Core
     partial void Insertzonas(zonas instance);
     partial void Updatezonas(zonas instance);
     partial void Deletezonas(zonas instance);
+    partial void Insertservicio(servicio instance);
+    partial void Updateservicio(servicio instance);
+    partial void Deleteservicio(servicio instance);
+    partial void InsertservicioUnidad(servicioUnidad instance);
+    partial void UpdateservicioUnidad(servicioUnidad instance);
+    partial void DeleteservicioUnidad(servicioUnidad instance);
+    partial void Inserttruck(truck instance);
+    partial void Updatetruck(truck instance);
+    partial void Deletetruck(truck instance);
+    partial void Insertoperador(operador instance);
+    partial void Updateoperador(operador instance);
+    partial void Deleteoperador(operador instance);
     #endregion
 		
 		public ContextCombugasDataContext() : 
@@ -96,6 +111,14 @@ namespace WA_CombugasCC.Core
 				base(connection, mappingSource)
 		{
 			OnCreated();
+		}
+		
+		public System.Data.Linq.Table<Bitacora> Bitacora
+		{
+			get
+			{
+				return this.GetTable<Bitacora>();
+			}
 		}
 		
 		public System.Data.Linq.Table<calles> calles
@@ -191,6 +214,244 @@ namespace WA_CombugasCC.Core
 			get
 			{
 				return this.GetTable<zonas>();
+			}
+		}
+		
+		public System.Data.Linq.Table<servicio> servicio
+		{
+			get
+			{
+				return this.GetTable<servicio>();
+			}
+		}
+		
+		public System.Data.Linq.Table<servicioUnidad> servicioUnidad
+		{
+			get
+			{
+				return this.GetTable<servicioUnidad>();
+			}
+		}
+		
+		public System.Data.Linq.Table<truck> truck
+		{
+			get
+			{
+				return this.GetTable<truck>();
+			}
+		}
+		
+		public System.Data.Linq.Table<operador> operador
+		{
+			get
+			{
+				return this.GetTable<operador>();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Bitacora")]
+	public partial class Bitacora : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _id_bitacora;
+		
+		private System.DateTime _fechahora;
+		
+		private int _id_usuario;
+		
+		private string _funcion;
+		
+		private string _detalle;
+		
+		private string _entidad;
+		
+		private string _modulo;
+		
+    #region Definiciones de métodos de extensibilidad
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void Onid_bitacoraChanging(int value);
+    partial void Onid_bitacoraChanged();
+    partial void OnfechahoraChanging(System.DateTime value);
+    partial void OnfechahoraChanged();
+    partial void Onid_usuarioChanging(int value);
+    partial void Onid_usuarioChanged();
+    partial void OnfuncionChanging(string value);
+    partial void OnfuncionChanged();
+    partial void OndetalleChanging(string value);
+    partial void OndetalleChanged();
+    partial void OnentidadChanging(string value);
+    partial void OnentidadChanged();
+    partial void OnmoduloChanging(string value);
+    partial void OnmoduloChanged();
+    #endregion
+		
+		public Bitacora()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_bitacora", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int id_bitacora
+		{
+			get
+			{
+				return this._id_bitacora;
+			}
+			set
+			{
+				if ((this._id_bitacora != value))
+				{
+					this.Onid_bitacoraChanging(value);
+					this.SendPropertyChanging();
+					this._id_bitacora = value;
+					this.SendPropertyChanged("id_bitacora");
+					this.Onid_bitacoraChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_fechahora", DbType="DateTime NOT NULL")]
+		public System.DateTime fechahora
+		{
+			get
+			{
+				return this._fechahora;
+			}
+			set
+			{
+				if ((this._fechahora != value))
+				{
+					this.OnfechahoraChanging(value);
+					this.SendPropertyChanging();
+					this._fechahora = value;
+					this.SendPropertyChanged("fechahora");
+					this.OnfechahoraChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_usuario", DbType="Int NOT NULL")]
+		public int id_usuario
+		{
+			get
+			{
+				return this._id_usuario;
+			}
+			set
+			{
+				if ((this._id_usuario != value))
+				{
+					this.Onid_usuarioChanging(value);
+					this.SendPropertyChanging();
+					this._id_usuario = value;
+					this.SendPropertyChanged("id_usuario");
+					this.Onid_usuarioChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_funcion", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
+		public string funcion
+		{
+			get
+			{
+				return this._funcion;
+			}
+			set
+			{
+				if ((this._funcion != value))
+				{
+					this.OnfuncionChanging(value);
+					this.SendPropertyChanging();
+					this._funcion = value;
+					this.SendPropertyChanged("funcion");
+					this.OnfuncionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_detalle", DbType="NVarChar(500) NOT NULL", CanBeNull=false)]
+		public string detalle
+		{
+			get
+			{
+				return this._detalle;
+			}
+			set
+			{
+				if ((this._detalle != value))
+				{
+					this.OndetalleChanging(value);
+					this.SendPropertyChanging();
+					this._detalle = value;
+					this.SendPropertyChanged("detalle");
+					this.OndetalleChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_entidad", DbType="VarChar(500)")]
+		public string entidad
+		{
+			get
+			{
+				return this._entidad;
+			}
+			set
+			{
+				if ((this._entidad != value))
+				{
+					this.OnentidadChanging(value);
+					this.SendPropertyChanging();
+					this._entidad = value;
+					this.SendPropertyChanged("entidad");
+					this.OnentidadChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_modulo", DbType="VarChar(200)")]
+		public string modulo
+		{
+			get
+			{
+				return this._modulo;
+			}
+			set
+			{
+				if ((this._modulo != value))
+				{
+					this.OnmoduloChanging(value);
+					this.SendPropertyChanging();
+					this._modulo = value;
+					this.SendPropertyChanged("modulo");
+					this.OnmoduloChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
 	}
@@ -1962,6 +2223,8 @@ namespace WA_CombugasCC.Core
 		
 		private string _descripcion;
 		
+		private int _orden;
+		
 		private EntitySet<permisos> _permisos;
 		
     #region Definiciones de métodos de extensibilidad
@@ -1980,6 +2243,8 @@ namespace WA_CombugasCC.Core
     partial void Onid_modulo_padreChanged();
     partial void OndescripcionChanging(string value);
     partial void OndescripcionChanged();
+    partial void OnordenChanging(int value);
+    partial void OnordenChanged();
     #endregion
 		
 		public modulos()
@@ -2104,6 +2369,26 @@ namespace WA_CombugasCC.Core
 					this._descripcion = value;
 					this.SendPropertyChanged("descripcion");
 					this.OndescripcionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_orden", DbType="Int NOT NULL")]
+		public int orden
+		{
+			get
+			{
+				return this._orden;
+			}
+			set
+			{
+				if ((this._orden != value))
+				{
+					this.OnordenChanging(value);
+					this.SendPropertyChanging();
+					this._orden = value;
+					this.SendPropertyChanged("orden");
+					this.OnordenChanged();
 				}
 			}
 		}
@@ -3426,6 +3711,824 @@ namespace WA_CombugasCC.Core
 		{
 			this.SendPropertyChanging();
 			entity.zonas = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.servicio")]
+	public partial class servicio : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _id_servicio;
+		
+		private string _descripcion;
+		
+		private System.Nullable<System.DateTime> _alta;
+		
+		private System.Nullable<bool> _status;
+		
+		private EntitySet<servicioUnidad> _servicioUnidad;
+		
+    #region Definiciones de métodos de extensibilidad
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void Onid_servicioChanging(int value);
+    partial void Onid_servicioChanged();
+    partial void OndescripcionChanging(string value);
+    partial void OndescripcionChanged();
+    partial void OnaltaChanging(System.Nullable<System.DateTime> value);
+    partial void OnaltaChanged();
+    partial void OnstatusChanging(System.Nullable<bool> value);
+    partial void OnstatusChanged();
+    #endregion
+		
+		public servicio()
+		{
+			this._servicioUnidad = new EntitySet<servicioUnidad>(new Action<servicioUnidad>(this.attach_servicioUnidad), new Action<servicioUnidad>(this.detach_servicioUnidad));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_servicio", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int id_servicio
+		{
+			get
+			{
+				return this._id_servicio;
+			}
+			set
+			{
+				if ((this._id_servicio != value))
+				{
+					this.Onid_servicioChanging(value);
+					this.SendPropertyChanging();
+					this._id_servicio = value;
+					this.SendPropertyChanged("id_servicio");
+					this.Onid_servicioChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_descripcion", DbType="VarChar(300)")]
+		public string descripcion
+		{
+			get
+			{
+				return this._descripcion;
+			}
+			set
+			{
+				if ((this._descripcion != value))
+				{
+					this.OndescripcionChanging(value);
+					this.SendPropertyChanging();
+					this._descripcion = value;
+					this.SendPropertyChanged("descripcion");
+					this.OndescripcionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_alta", DbType="Date")]
+		public System.Nullable<System.DateTime> alta
+		{
+			get
+			{
+				return this._alta;
+			}
+			set
+			{
+				if ((this._alta != value))
+				{
+					this.OnaltaChanging(value);
+					this.SendPropertyChanging();
+					this._alta = value;
+					this.SendPropertyChanged("alta");
+					this.OnaltaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_status", DbType="Bit")]
+		public System.Nullable<bool> status
+		{
+			get
+			{
+				return this._status;
+			}
+			set
+			{
+				if ((this._status != value))
+				{
+					this.OnstatusChanging(value);
+					this.SendPropertyChanging();
+					this._status = value;
+					this.SendPropertyChanged("status");
+					this.OnstatusChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="servicio_servicioUnidad", Storage="_servicioUnidad", ThisKey="id_servicio", OtherKey="id_servicio")]
+		public EntitySet<servicioUnidad> servicioUnidad
+		{
+			get
+			{
+				return this._servicioUnidad;
+			}
+			set
+			{
+				this._servicioUnidad.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_servicioUnidad(servicioUnidad entity)
+		{
+			this.SendPropertyChanging();
+			entity.servicio = this;
+		}
+		
+		private void detach_servicioUnidad(servicioUnidad entity)
+		{
+			this.SendPropertyChanging();
+			entity.servicio = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.servicioUnidad")]
+	public partial class servicioUnidad : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _id;
+		
+		private int _id_unidad;
+		
+		private int _id_servicio;
+		
+		private System.Nullable<System.DateTime> _alta;
+		
+		private System.Nullable<bool> _status;
+		
+		private EntityRef<servicio> _servicio;
+		
+		private EntityRef<truck> _truck;
+		
+    #region Definiciones de métodos de extensibilidad
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidChanging(int value);
+    partial void OnidChanged();
+    partial void Onid_unidadChanging(int value);
+    partial void Onid_unidadChanged();
+    partial void Onid_servicioChanging(int value);
+    partial void Onid_servicioChanged();
+    partial void OnaltaChanging(System.Nullable<System.DateTime> value);
+    partial void OnaltaChanged();
+    partial void OnstatusChanging(System.Nullable<bool> value);
+    partial void OnstatusChanged();
+    #endregion
+		
+		public servicioUnidad()
+		{
+			this._servicio = default(EntityRef<servicio>);
+			this._truck = default(EntityRef<truck>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this.OnidChanging(value);
+					this.SendPropertyChanging();
+					this._id = value;
+					this.SendPropertyChanged("id");
+					this.OnidChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_unidad", DbType="Int NOT NULL")]
+		public int id_unidad
+		{
+			get
+			{
+				return this._id_unidad;
+			}
+			set
+			{
+				if ((this._id_unidad != value))
+				{
+					if (this._truck.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.Onid_unidadChanging(value);
+					this.SendPropertyChanging();
+					this._id_unidad = value;
+					this.SendPropertyChanged("id_unidad");
+					this.Onid_unidadChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_servicio", DbType="Int NOT NULL")]
+		public int id_servicio
+		{
+			get
+			{
+				return this._id_servicio;
+			}
+			set
+			{
+				if ((this._id_servicio != value))
+				{
+					if (this._servicio.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.Onid_servicioChanging(value);
+					this.SendPropertyChanging();
+					this._id_servicio = value;
+					this.SendPropertyChanged("id_servicio");
+					this.Onid_servicioChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_alta", DbType="Date")]
+		public System.Nullable<System.DateTime> alta
+		{
+			get
+			{
+				return this._alta;
+			}
+			set
+			{
+				if ((this._alta != value))
+				{
+					this.OnaltaChanging(value);
+					this.SendPropertyChanging();
+					this._alta = value;
+					this.SendPropertyChanged("alta");
+					this.OnaltaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_status", DbType="Bit")]
+		public System.Nullable<bool> status
+		{
+			get
+			{
+				return this._status;
+			}
+			set
+			{
+				if ((this._status != value))
+				{
+					this.OnstatusChanging(value);
+					this.SendPropertyChanging();
+					this._status = value;
+					this.SendPropertyChanged("status");
+					this.OnstatusChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="servicio_servicioUnidad", Storage="_servicio", ThisKey="id_servicio", OtherKey="id_servicio", IsForeignKey=true)]
+		public servicio servicio
+		{
+			get
+			{
+				return this._servicio.Entity;
+			}
+			set
+			{
+				servicio previousValue = this._servicio.Entity;
+				if (((previousValue != value) 
+							|| (this._servicio.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._servicio.Entity = null;
+						previousValue.servicioUnidad.Remove(this);
+					}
+					this._servicio.Entity = value;
+					if ((value != null))
+					{
+						value.servicioUnidad.Add(this);
+						this._id_servicio = value.id_servicio;
+					}
+					else
+					{
+						this._id_servicio = default(int);
+					}
+					this.SendPropertyChanged("servicio");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="truck_servicioUnidad", Storage="_truck", ThisKey="id_unidad", OtherKey="id_truck", IsForeignKey=true)]
+		public truck truck
+		{
+			get
+			{
+				return this._truck.Entity;
+			}
+			set
+			{
+				truck previousValue = this._truck.Entity;
+				if (((previousValue != value) 
+							|| (this._truck.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._truck.Entity = null;
+						previousValue.servicioUnidad.Remove(this);
+					}
+					this._truck.Entity = value;
+					if ((value != null))
+					{
+						value.servicioUnidad.Add(this);
+						this._id_unidad = value.id_truck;
+					}
+					else
+					{
+						this._id_unidad = default(int);
+					}
+					this.SendPropertyChanged("truck");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.truck")]
+	public partial class truck : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _id_truck;
+		
+		private string _numero;
+		
+		private string _marca;
+		
+		private string _modelo;
+		
+		private System.Nullable<int> _anio;
+		
+		private string _no_placa;
+		
+		private string _no_serie;
+		
+		private System.Nullable<System.DateTime> _alta;
+		
+		private System.Nullable<bool> _status;
+		
+		private EntitySet<servicioUnidad> _servicioUnidad;
+		
+    #region Definiciones de métodos de extensibilidad
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void Onid_truckChanging(int value);
+    partial void Onid_truckChanged();
+    partial void OnnumeroChanging(string value);
+    partial void OnnumeroChanged();
+    partial void OnmarcaChanging(string value);
+    partial void OnmarcaChanged();
+    partial void OnmodeloChanging(string value);
+    partial void OnmodeloChanged();
+    partial void OnanioChanging(System.Nullable<int> value);
+    partial void OnanioChanged();
+    partial void Onno_placaChanging(string value);
+    partial void Onno_placaChanged();
+    partial void Onno_serieChanging(string value);
+    partial void Onno_serieChanged();
+    partial void OnaltaChanging(System.Nullable<System.DateTime> value);
+    partial void OnaltaChanged();
+    partial void OnstatusChanging(System.Nullable<bool> value);
+    partial void OnstatusChanged();
+    #endregion
+		
+		public truck()
+		{
+			this._servicioUnidad = new EntitySet<servicioUnidad>(new Action<servicioUnidad>(this.attach_servicioUnidad), new Action<servicioUnidad>(this.detach_servicioUnidad));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_truck", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int id_truck
+		{
+			get
+			{
+				return this._id_truck;
+			}
+			set
+			{
+				if ((this._id_truck != value))
+				{
+					this.Onid_truckChanging(value);
+					this.SendPropertyChanging();
+					this._id_truck = value;
+					this.SendPropertyChanged("id_truck");
+					this.Onid_truckChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_numero", DbType="VarChar(5) NOT NULL", CanBeNull=false)]
+		public string numero
+		{
+			get
+			{
+				return this._numero;
+			}
+			set
+			{
+				if ((this._numero != value))
+				{
+					this.OnnumeroChanging(value);
+					this.SendPropertyChanging();
+					this._numero = value;
+					this.SendPropertyChanged("numero");
+					this.OnnumeroChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_marca", DbType="VarChar(300)")]
+		public string marca
+		{
+			get
+			{
+				return this._marca;
+			}
+			set
+			{
+				if ((this._marca != value))
+				{
+					this.OnmarcaChanging(value);
+					this.SendPropertyChanging();
+					this._marca = value;
+					this.SendPropertyChanged("marca");
+					this.OnmarcaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_modelo", DbType="VarChar(300)")]
+		public string modelo
+		{
+			get
+			{
+				return this._modelo;
+			}
+			set
+			{
+				if ((this._modelo != value))
+				{
+					this.OnmodeloChanging(value);
+					this.SendPropertyChanging();
+					this._modelo = value;
+					this.SendPropertyChanged("modelo");
+					this.OnmodeloChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_anio", DbType="Int")]
+		public System.Nullable<int> anio
+		{
+			get
+			{
+				return this._anio;
+			}
+			set
+			{
+				if ((this._anio != value))
+				{
+					this.OnanioChanging(value);
+					this.SendPropertyChanging();
+					this._anio = value;
+					this.SendPropertyChanged("anio");
+					this.OnanioChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_no_placa", DbType="VarChar(50)")]
+		public string no_placa
+		{
+			get
+			{
+				return this._no_placa;
+			}
+			set
+			{
+				if ((this._no_placa != value))
+				{
+					this.Onno_placaChanging(value);
+					this.SendPropertyChanging();
+					this._no_placa = value;
+					this.SendPropertyChanged("no_placa");
+					this.Onno_placaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_no_serie", DbType="VarChar(50)")]
+		public string no_serie
+		{
+			get
+			{
+				return this._no_serie;
+			}
+			set
+			{
+				if ((this._no_serie != value))
+				{
+					this.Onno_serieChanging(value);
+					this.SendPropertyChanging();
+					this._no_serie = value;
+					this.SendPropertyChanged("no_serie");
+					this.Onno_serieChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_alta", DbType="Date")]
+		public System.Nullable<System.DateTime> alta
+		{
+			get
+			{
+				return this._alta;
+			}
+			set
+			{
+				if ((this._alta != value))
+				{
+					this.OnaltaChanging(value);
+					this.SendPropertyChanging();
+					this._alta = value;
+					this.SendPropertyChanged("alta");
+					this.OnaltaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_status", DbType="Bit")]
+		public System.Nullable<bool> status
+		{
+			get
+			{
+				return this._status;
+			}
+			set
+			{
+				if ((this._status != value))
+				{
+					this.OnstatusChanging(value);
+					this.SendPropertyChanging();
+					this._status = value;
+					this.SendPropertyChanged("status");
+					this.OnstatusChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="truck_servicioUnidad", Storage="_servicioUnidad", ThisKey="id_truck", OtherKey="id_unidad")]
+		public EntitySet<servicioUnidad> servicioUnidad
+		{
+			get
+			{
+				return this._servicioUnidad;
+			}
+			set
+			{
+				this._servicioUnidad.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_servicioUnidad(servicioUnidad entity)
+		{
+			this.SendPropertyChanging();
+			entity.truck = this;
+		}
+		
+		private void detach_servicioUnidad(servicioUnidad entity)
+		{
+			this.SendPropertyChanging();
+			entity.truck = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.operador")]
+	public partial class operador : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _id_operador;
+		
+		private string _nombre;
+		
+		private System.Nullable<System.DateTime> _alta;
+		
+		private System.Nullable<bool> _status;
+		
+    #region Definiciones de métodos de extensibilidad
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void Onid_operadorChanging(int value);
+    partial void Onid_operadorChanged();
+    partial void OnnombreChanging(string value);
+    partial void OnnombreChanged();
+    partial void OnaltaChanging(System.Nullable<System.DateTime> value);
+    partial void OnaltaChanged();
+    partial void OnstatusChanging(System.Nullable<bool> value);
+    partial void OnstatusChanged();
+    #endregion
+		
+		public operador()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_operador", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int id_operador
+		{
+			get
+			{
+				return this._id_operador;
+			}
+			set
+			{
+				if ((this._id_operador != value))
+				{
+					this.Onid_operadorChanging(value);
+					this.SendPropertyChanging();
+					this._id_operador = value;
+					this.SendPropertyChanged("id_operador");
+					this.Onid_operadorChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_nombre", DbType="VarChar(300) NOT NULL", CanBeNull=false)]
+		public string nombre
+		{
+			get
+			{
+				return this._nombre;
+			}
+			set
+			{
+				if ((this._nombre != value))
+				{
+					this.OnnombreChanging(value);
+					this.SendPropertyChanging();
+					this._nombre = value;
+					this.SendPropertyChanged("nombre");
+					this.OnnombreChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_alta", DbType="Date")]
+		public System.Nullable<System.DateTime> alta
+		{
+			get
+			{
+				return this._alta;
+			}
+			set
+			{
+				if ((this._alta != value))
+				{
+					this.OnaltaChanging(value);
+					this.SendPropertyChanging();
+					this._alta = value;
+					this.SendPropertyChanged("alta");
+					this.OnaltaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_status", DbType="Bit")]
+		public System.Nullable<bool> status
+		{
+			get
+			{
+				return this._status;
+			}
+			set
+			{
+				if ((this._status != value))
+				{
+					this.OnstatusChanging(value);
+					this.SendPropertyChanging();
+					this._status = value;
+					this.SendPropertyChanged("status");
+					this.OnstatusChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
 		}
 	}
 }

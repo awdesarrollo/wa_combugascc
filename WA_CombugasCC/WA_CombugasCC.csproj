@@ -107,7 +107,10 @@
     <Content Include="CallCenter\cp.aspx" />
     <Content Include="CallCenter\Default.aspx" />
     <Content Include="CallCenter\Estados.aspx" />
+    <Content Include="CallCenter\Operadores.aspx" />
     <Content Include="CallCenter\tipocalle.aspx" />
+    <Content Include="CallCenter\TipoServicio.aspx" />
+    <Content Include="CallCenter\Unidades.aspx" />
     <Content Include="CallCenter\Zonas.aspx" />
     <Content Include="packages.config" />
     <Content Include="ApplicationInsights.config">
@@ -232,12 +235,33 @@
     <Compile Include="CallCenter\Estados.aspx.designer.cs">
       <DependentUpon>Estados.aspx</DependentUpon>
     </Compile>
+    <Compile Include="CallCenter\Operadores.aspx.cs">
+      <DependentUpon>Operadores.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CallCenter\Operadores.aspx.designer.cs">
+      <DependentUpon>Operadores.aspx</DependentUpon>
+    </Compile>
     <Compile Include="CallCenter\tipocalle.aspx.cs">
       <DependentUpon>tipocalle.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="CallCenter\tipocalle.aspx.designer.cs">
       <DependentUpon>tipocalle.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CallCenter\TipoServicio.aspx.cs">
+      <DependentUpon>TipoServicio.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CallCenter\TipoServicio.aspx.designer.cs">
+      <DependentUpon>TipoServicio.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CallCenter\Unidades.aspx.cs">
+      <DependentUpon>Unidades.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CallCenter\Unidades.aspx.designer.cs">
+      <DependentUpon>Unidades.aspx</DependentUpon>
     </Compile>
     <Compile Include="CallCenter\Zonas.aspx.cs">
       <DependentUpon>Zonas.aspx</DependentUpon>
@@ -246,6 +270,7 @@
     <Compile Include="CallCenter\Zonas.aspx.designer.cs">
       <DependentUpon>Zonas.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Core\ClassBicatora.cs" />
     <Compile Include="Core\ContextCombugas.cs">
       <DependentUpon>ContextCombugas.dbml</DependentUpon>
     </Compile>

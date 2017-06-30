@@ -1,5 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="combugasCC" Class="ContextCombugasDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
   <Connection Mode="WebSettings" ConnectionString="Data Source=softlag.sytes.net;Initial Catalog=combugasCC;User ID=sa" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="combugasCCConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Bitacora" Member="Bitacora">
+    <Type Name="Bitacora">
+      <Column Name="id_bitacora" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="fechahora" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="id_usuario" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="funcion" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="detalle" Type="System.String" DbType="NVarChar(500) NOT NULL" CanBeNull="false" />
+      <Column Name="entidad" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="modulo" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+    </Type>
+  </Table>
   <Table Name="dbo.calles" Member="calles">
     <Type Name="calles">
       <Column Name="id_calle" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -81,6 +92,7 @@
       <Column Name="isactive" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="id_modulo_padre" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="descripcion" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="orden" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Association Name="modulos_permisos" Member="permisos" ThisKey="id_modulo" OtherKey="id_modulo" Type="permisos" />
     </Type>
   </Table>
@@ -146,6 +158,48 @@
       <Association Name="zonas_colonias" Member="colonias" ThisKey="id_zona" OtherKey="id_zona" Type="colonias" />
       <Association Name="zonas_cp" Member="cp" ThisKey="id_zona" OtherKey="id_zona" Type="cp" />
       <Association Name="zonas_estados" Member="estados" ThisKey="id_zona" OtherKey="id_zona" Type="estados" />
+    </Type>
+  </Table>
+  <Table Name="dbo.servicio" Member="servicio">
+    <Type Name="servicio">
+      <Column Name="id_servicio" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="descripcion" Type="System.String" DbType="VarChar(300)" CanBeNull="true" />
+      <Column Name="alta" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="status" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="servicio_servicioUnidad" Member="servicioUnidad" ThisKey="id_servicio" OtherKey="id_servicio" Type="servicioUnidad" />
+    </Type>
+  </Table>
+  <Table Name="dbo.servicioUnidad" Member="servicioUnidad">
+    <Type Name="servicioUnidad">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="id_unidad" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="id_servicio" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="alta" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="status" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="servicio_servicioUnidad" Member="servicio" ThisKey="id_servicio" OtherKey="id_servicio" Type="servicio" IsForeignKey="true" />
+      <Association Name="truck_servicioUnidad" Member="truck" ThisKey="id_unidad" OtherKey="id_truck" Type="truck" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.truck" Member="truck">
+    <Type Name="truck">
+      <Column Name="id_truck" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="numero" Type="System.String" DbType="VarChar(5) NOT NULL" CanBeNull="false" />
+      <Column Name="marca" Type="System.String" DbType="VarChar(300)" CanBeNull="true" />
+      <Column Name="modelo" Type="System.String" DbType="VarChar(300)" CanBeNull="true" />
+      <Column Name="anio" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="no_placa" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="no_serie" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="alta" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="status" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="truck_servicioUnidad" Member="servicioUnidad" ThisKey="id_truck" OtherKey="id_unidad" Type="servicioUnidad" />
+    </Type>
+  </Table>
+  <Table Name="dbo.operador" Member="operador">
+    <Type Name="operador">
+      <Column Name="id_operador" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="nombre" Type="System.String" DbType="VarChar(300) NOT NULL" CanBeNull="false" />
+      <Column Name="alta" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="status" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
     </Type>
   </Table>
 </Database>

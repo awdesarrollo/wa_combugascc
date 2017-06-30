@@ -52,8 +52,21 @@ namespace WA_CombugasCC.CallCenter
                 objZona.estado = true;
                 context.zonas.InsertOnSubmit(objZona);
                 context.SubmitChanges();
-           
-                        Response.Result = true;
+                zonaClass zona = new zonaClass(objZona.id_zona, Nombre, true);
+                var jsonSerialiser = new JavaScriptSerializer();
+                var json = jsonSerialiser.Serialize(zona);
+
+                // Alimentamos Bitacora
+                Bitacora b = new Bitacora();
+                b.fechahora = DateTime.Now;
+                b.id_usuario = ((usuarios)HttpContext.Current.Session["sesionUsuario"]).id_usuario;
+                b.modulo = "Zonas.aspx";
+                b.funcion = "Guardar zona";
+                b.entidad = json;
+                b.detalle = ((usuarios)HttpContext.Current.Session["sesionUsuario"]).username + " - Usuario agrego zona: "+Nombre;
+                ClassBicatora.insertBitacora(b);
+
+                Response.Result = true;
                         Response.Message = "Se agrego zona correctamente.";
                        
             }
@@ -138,6 +151,18 @@ namespace WA_CombugasCC.CallCenter
                     objZona.descripcion = Nombre;
                     objZona.estado = stado;
                     context.SubmitChanges();
+                    zonaClass zona = new zonaClass(Id, Nombre, stado);
+                    var jsonSerialiser = new JavaScriptSerializer();
+                    var json = jsonSerialiser.Serialize(zona);
+                    // Alimentamos Bitacora
+                    Bitacora b = new Bitacora();
+                    b.fechahora = DateTime.Now;
+                    b.id_usuario = ((usuarios)HttpContext.Current.Session["sesionUsuario"]).id_usuario;
+                    b.modulo = "Zonas.aspx";
+                    b.funcion = "Actualizo zona";
+                    b.entidad = json;
+                    b.detalle = ((usuarios)HttpContext.Current.Session["sesionUsuario"]).username + " - Usuario actualizo zona: " + Nombre;
+                    ClassBicatora.insertBitacora(b);
                 }
 
             }

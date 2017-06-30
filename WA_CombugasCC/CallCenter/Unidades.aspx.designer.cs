@@ -7,9 +7,9 @@
 // </generado automáticamente>
 //------------------------------------------------------------------------------
 
-namespace WA_CombugasCC.Admin {
+namespace WA_CombugasCC.CallCenter {
     
     
-    public partial class Modulos {
+    public partial class Unidades {
     }
 }

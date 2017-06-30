@@ -41,6 +41,15 @@ namespace WA_CombugasCC.CallCenter
                 this.stdid = stdid;
                 this.zonaid = zonaid;
             }
+            public CiudadClass(int idz, string nombre, string std, string zona, bool estado)
+            {
+                this.idz = idz;
+                this.nombre = nombre;
+                this.zona = zona;
+                this.std = std;
+                this.estado = estado;
+             
+            }
 
         }
         public class EstadoClass
@@ -193,6 +202,18 @@ namespace WA_CombugasCC.CallCenter
                 objEst.id_estado = Edo;
                 context.ciudades.InsertOnSubmit(objEst);
                 context.SubmitChanges();
+                CiudadClass c = new CiudadClass(objEst.id_ciudad, Nombre, Edo + "", Zona + "", true);
+                var jsonSerialiser = new JavaScriptSerializer();
+                var json = jsonSerialiser.Serialize(c);
+                // Alimentamos Bitacora
+                Bitacora b = new Bitacora();
+                b.fechahora = DateTime.Now;
+                b.id_usuario = ((usuarios)HttpContext.Current.Session["sesionUsuario"]).id_usuario;
+                b.modulo = "Ciudades.aspx";
+                b.funcion = "Agrego ciudad";
+                b.entidad = json;
+                b.detalle = ((usuarios)HttpContext.Current.Session["sesionUsuario"]).username + " - Usuario agrego ciudad: " + Nombre;
+                ClassBicatora.insertBitacora(b);
                 Response.Result = true;
                 Response.Message = "Se agrego estado correctamente.";
                 Response.Data = null;
@@ -224,6 +245,18 @@ namespace WA_CombugasCC.CallCenter
                     objZona.descripcion = Nombre;
                     objZona.status = stado;
                     context.SubmitChanges();
+                    CiudadClass c = new CiudadClass(Id, Nombre, idE + "", idZ + "", stado);
+                    var jsonSerialiser = new JavaScriptSerializer();
+                    var json = jsonSerialiser.Serialize(c);
+                    // Alimentamos Bitacora
+                    Bitacora b = new Bitacora();
+                    b.fechahora = DateTime.Now;
+                    b.id_usuario = ((usuarios)HttpContext.Current.Session["sesionUsuario"]).id_usuario;
+                    b.modulo = "Ciudades.aspx";
+                    b.funcion = "Actualizo ciudad";
+                    b.entidad = json;
+                    b.detalle = ((usuarios)HttpContext.Current.Session["sesionUsuario"]).username + " - Usuario actualizo ciudad: " + Nombre;
+                    ClassBicatora.insertBitacora(b);
                 }
 
             }

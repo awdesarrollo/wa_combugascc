@@ -48,6 +48,18 @@ namespace WA_CombugasCC.CallCenter
                 objZona.status = true;
                 context.tipo_asentamiento.InsertOnSubmit(objZona);
                 context.SubmitChanges();
+                zonaClass zona = new zonaClass(objZona.id_tipo, Nombre, true);
+                var jsonSerialiser = new JavaScriptSerializer();
+                var json = jsonSerialiser.Serialize(zona);
+                // Alimentamos Bitacora
+                Bitacora b = new Bitacora();
+                b.fechahora = DateTime.Now;
+                b.id_usuario = ((usuarios)HttpContext.Current.Session["sesionUsuario"]).id_usuario;
+                b.modulo = "asentamientos.aspx";
+                b.funcion = "Agrego asentamiento";
+                b.entidad = json;
+                b.detalle = ((usuarios)HttpContext.Current.Session["sesionUsuario"]).username + " - Usuario agrego asentamiento: " + Nombre;
+                ClassBicatora.insertBitacora(b);
 
                 Response.Result = true;
                 Response.Message = "Se agrego zona correctamente.";
@@ -134,6 +146,18 @@ namespace WA_CombugasCC.CallCenter
                     objZona.descripcion = Nombre;
                     objZona.status = stado;
                     context.SubmitChanges();
+                    zonaClass zona = new zonaClass(Id, Nombre, stado);
+                    var jsonSerialiser = new JavaScriptSerializer();
+                    var json = jsonSerialiser.Serialize(zona);
+                    // Alimentamos Bitacora
+                    Bitacora b = new Bitacora();
+                    b.fechahora = DateTime.Now;
+                    b.id_usuario = ((usuarios)HttpContext.Current.Session["sesionUsuario"]).id_usuario;
+                    b.modulo = "asentamientos.aspx";
+                    b.funcion = "Actualizo asentamiento";
+                    b.entidad = json;
+                    b.detalle = ((usuarios)HttpContext.Current.Session["sesionUsuario"]).username + " - Usuario actualizo asentamiento: " + Nombre;
+                    ClassBicatora.insertBitacora(b);
                 }
 
             }

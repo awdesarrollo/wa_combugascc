@@ -333,6 +333,18 @@ namespace WA_CombugasCC.CallCenter
                 objEst.id_tipo = Tp;
                 context.calles.InsertOnSubmit(objEst);
                 context.SubmitChanges();
+                ArtClass calle = new ArtClass(objEst.id_calle, Nombre, Col + "", Cd + "", Edo + "", Zona + "", true, 0, 0, 0, Tp+"");
+                var jsonSerialiser = new JavaScriptSerializer();
+                var json = jsonSerialiser.Serialize(calle);
+                // Alimentamos Bitacora
+                Bitacora b = new Bitacora();
+                b.fechahora = DateTime.Now;
+                b.id_usuario = ((usuarios)HttpContext.Current.Session["sesionUsuario"]).id_usuario;
+                b.modulo = "Arterias.aspx";
+                b.funcion = "Agrego calle";
+                b.entidad = json;
+                b.detalle = ((usuarios)HttpContext.Current.Session["sesionUsuario"]).username + " - Usuario agrego calle: " + Nombre;
+                ClassBicatora.insertBitacora(b);
                 Response.Result = true;
                 Response.Message = "Se agrego estado correctamente.";
                 Response.Data = null;
@@ -415,6 +427,18 @@ namespace WA_CombugasCC.CallCenter
                     objZona.descripcion = Nombre;
                     objZona.status = stado;
                     context.SubmitChanges();
+                    ArtClass calle = new ArtClass(Id, Nombre, idCo + "", idC + "", idE + "", idZ + "", stado, 0, 0, 0, tipo + "");
+                    var jsonSerialiser = new JavaScriptSerializer();
+                    var json = jsonSerialiser.Serialize(calle);
+                    // Alimentamos Bitacora
+                    Bitacora b = new Bitacora();
+                    b.fechahora = DateTime.Now;
+                    b.id_usuario = ((usuarios)HttpContext.Current.Session["sesionUsuario"]).id_usuario;
+                    b.modulo = "Arterias.aspx";
+                    b.funcion = "Actualizo calle";
+                    b.entidad = json;
+                    b.detalle = ((usuarios)HttpContext.Current.Session["sesionUsuario"]).username + " - Usuario actualizo calle: " + Nombre;
+                    ClassBicatora.insertBitacora(b);
                 }
 
             }

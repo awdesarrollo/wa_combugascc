@@ -345,6 +345,18 @@ namespace WA_CombugasCC.CallCenter
                 objEst.id_tipo = AS;
                 context.colonias.InsertOnSubmit(objEst);
                 context.SubmitChanges();
+                ColonClass co = new ColonClass(objEst.id_colonia, Nombre, Cd + "", Edo + "", Zona + "", true, Cd, Edo);
+                var jsonSerialiser = new JavaScriptSerializer();
+                var json = jsonSerialiser.Serialize(co);
+                // Alimentamos Bitacora
+                Bitacora b = new Bitacora();
+                b.fechahora = DateTime.Now;
+                b.id_usuario = ((usuarios)HttpContext.Current.Session["sesionUsuario"]).id_usuario;
+                b.modulo = "Colonias.aspx";
+                b.funcion = "Agrego colonia";
+                b.entidad = json;
+                b.detalle = ((usuarios)HttpContext.Current.Session["sesionUsuario"]).username + " - Usuario agrego colonia: " + Nombre;
+                ClassBicatora.insertBitacora(b);
                 Response.Result = true;
                 Response.Message = "Se agrego estado correctamente.";
                 Response.Data = null;
@@ -425,6 +437,18 @@ namespace WA_CombugasCC.CallCenter
                     objZona.descripcion = Nombre;
                     objZona.status = stado;
                     context.SubmitChanges();
+                    ColonClass co = new ColonClass(Id, Nombre, idC + "", idE + "", idZ + "", stado, idC, idE);
+                    var jsonSerialiser = new JavaScriptSerializer();
+                    var json = jsonSerialiser.Serialize(co);
+                    // Alimentamos Bitacora
+                    Bitacora b = new Bitacora();
+                    b.fechahora = DateTime.Now;
+                    b.id_usuario = ((usuarios)HttpContext.Current.Session["sesionUsuario"]).id_usuario;
+                    b.modulo = "Colonias.aspx";
+                    b.funcion = "Actualizo colonia";
+                    b.entidad = json;
+                    b.detalle = ((usuarios)HttpContext.Current.Session["sesionUsuario"]).username + " - Usuario actualizo colonia: " + Nombre;
+                    ClassBicatora.insertBitacora(b);
                 }
 
             }
