@@ -122,12 +122,7 @@
                            
                 </div>
             </div>
-        </div>
-    </div>
-    <a href="javascript:;" class="page-quick-sidebar-toggler">
-                
-    </a>
-</div>
+    
 
 
     <div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" id="mdAgrega">

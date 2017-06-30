@@ -10,7 +10,7 @@ using WA_CombugasCC.Core;
 
 namespace WA_CombugasCC.CallCenter
 {
-    public partial class TipoServicio : System.Web.UI.Page
+    public partial class Productos : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -23,20 +23,24 @@ namespace WA_CombugasCC.CallCenter
             public string Data { get; set; }
 
         }
-
-
-        public class OperadorClass
+   
+        public class ProducClass
         {
             public int id { get; set; }
             public string nombre { get; set; }
-            public DateTime? fecha { get; set; }
+            public int id_Ser { get; set; }
+            public string nombre_Ser { get; set; }
+            public decimal? precio { get; set; }
             public bool? estado { get; set; }
-            public OperadorClass(int idz, string nombre, DateTime? fecha, bool? estado)
+
+            public ProducClass(int id,string nombre,int id_Ser, string nombre_Ser,decimal? precio,bool? estado)
             {
-                this.id = idz;
+                this.id = id;
                 this.nombre = nombre;
+                this.id_Ser = id_Ser;
+                this.nombre_Ser = nombre_Ser;
                 this.estado = estado;
-                this.fecha = fecha;
+                this.precio = precio;
             }
 
         }
@@ -50,11 +54,14 @@ namespace WA_CombugasCC.CallCenter
             try
             {
                 ContextCombugasDataContext context = new ContextCombugasDataContext();
-                var agrupacion = from p in context.servicio where p.status==true select p;
-                List<OperadorClass> lista = new List<OperadorClass>();
+                var agrupacion = from p in context.producto
+                                 join s in context.servicio on p.id_servicio equals s.id_servicio
+                                 select new { p.id_producto,p.descripcion,s.id_servicio,servicio=s.descripcion,
+                                 p.precio,p.status};
+                List<ProducClass> lista = new List<ProducClass>();
                 foreach (var grupo in agrupacion)
                 {
-                    lista.Add(new OperadorClass(grupo.id_servicio, grupo.descripcion, grupo.alta, grupo.status));
+                    lista.Add(new ProducClass(grupo.id_producto, grupo.descripcion,grupo.id_servicio,grupo.servicio, grupo.precio, grupo.status));
                 }
                 var jsonSerialiser = new JavaScriptSerializer();
                 var json = jsonSerialiser.Serialize(lista);
@@ -80,11 +87,22 @@ namespace WA_CombugasCC.CallCenter
             try
             {
                 ContextCombugasDataContext context = new ContextCombugasDataContext();
-                var agrupacion = from p in context.servicio where p.id_servicio == Id select p;
-                List<OperadorClass> lista = new List<OperadorClass>();
+                var agrupacion = from p in context.producto
+                                 join s in context.servicio on p.id_servicio equals s.id_servicio
+                                 where p.id_producto == Id
+                                 select new
+                                 {
+                                     p.id_producto,
+                                     p.descripcion,
+                                     s.id_servicio,
+                                     servicio = s.descripcion,
+                                     p.precio,
+                                     p.status
+                                 };
+                List<ProducClass> lista = new List<ProducClass>();
                 foreach (var grupo in agrupacion)
                 {
-                    lista.Add(new OperadorClass(grupo.id_servicio, grupo.descripcion, grupo.alta, grupo.status));
+                    lista.Add(new ProducClass(grupo.id_producto, grupo.descripcion, grupo.id_servicio, grupo.servicio, grupo.precio, grupo.status));
                 }
                 var jsonSerialiser = new JavaScriptSerializer();
                 var json = jsonSerialiser.Serialize(lista);
@@ -104,19 +122,21 @@ namespace WA_CombugasCC.CallCenter
 
         //GUARDAR OPERADOR
         [WebMethod]
-        public static ajaxResponse Guardar(string Nombre, bool Activo)
+        public static ajaxResponse Guardar(string Nombre,decimal Precio,int ISer, bool Activo)
         {
             ajaxResponse Response = new ajaxResponse();
-            servicio objZona = new servicio();
+            producto obj = new producto();
             try
             {
                 ContextCombugasDataContext context = new ContextCombugasDataContext();
-                objZona.descripcion = Nombre;
-                objZona.status = Activo;
-                objZona.alta = DateTime.Now;
-                context.servicio.InsertOnSubmit(objZona);
+                obj.descripcion = Nombre;
+                obj.precio = Precio;
+                obj.id_servicio = ISer;
+                obj.status = Activo;
+                obj.alta = DateTime.Now;
+                context.producto.InsertOnSubmit(obj);
                 context.SubmitChanges();
-                OperadorClass zona = new OperadorClass(objZona.id_servicio, Nombre, DateTime.Now, Activo);
+                ProducClass zona = new ProducClass(obj.id_producto, Nombre, ISer, "", Precio,Activo);
                 var jsonSerialiser = new JavaScriptSerializer();
                 var json = jsonSerialiser.Serialize(zona);
 
@@ -124,10 +144,10 @@ namespace WA_CombugasCC.CallCenter
                 Bitacora b = new Bitacora();
                 b.fechahora = DateTime.Now;
                 b.id_usuario = ((usuarios)HttpContext.Current.Session["sesionUsuario"]).id_usuario;
-                b.modulo = "TipoServicio.aspx";
-                b.funcion = "Agregar Servicio";
+                b.modulo = "Productos.aspx";
+                b.funcion = "Agregar Producto";
                 b.entidad = json;
-                b.detalle = ((usuarios)HttpContext.Current.Session["sesionUsuario"]).username + " - Usuario agrego servicio: " + Nombre;
+                b.detalle = ((usuarios)HttpContext.Current.Session["sesionUsuario"]).username + " - Usuario agrego producto: " + Nombre;
                 ClassBicatora.insertBitacora(b);
 
                 Response.Result = true;
@@ -146,33 +166,35 @@ namespace WA_CombugasCC.CallCenter
 
         //ACTUALIZAR OPERADOR
         [WebMethod]
-        public static ajaxResponse Actualizar(int Id, string Nombre, bool Activo)
+        public static ajaxResponse Actualizar(int Id, string Nombre, decimal Precio, int ISer, bool Activo)
         {
             ajaxResponse Response = new ajaxResponse();
-            servicio objZona = new servicio();
+            producto obj = new producto();
             try
             {
                 ContextCombugasDataContext context = new ContextCombugasDataContext();
-                objZona = context.servicio.Where(x => x.id_servicio == Id).SingleOrDefault();
-                if (objZona != null)
+                obj = context.producto.Where(x => x.id_producto == Id).SingleOrDefault();
+                if (obj != null)
                 {
                     Response.Result = true;
                     Response.Message = "Actualizacion Correcta";
                     Response.Data = null;
-                    objZona.descripcion = Nombre;
-                    objZona.status = Activo;
+                    obj.descripcion = Nombre;
+                    obj.precio = Precio;
+                    obj.id_servicio = ISer;
+                    obj.status = Activo;
                     context.SubmitChanges();
-                    OperadorClass zona = new OperadorClass(Id, Nombre, objZona.alta, Activo);
+                    ProducClass zona = new ProducClass(obj.id_producto, Nombre, ISer, "", Precio, Activo);
                     var jsonSerialiser = new JavaScriptSerializer();
                     var json = jsonSerialiser.Serialize(zona);
                     // Alimentamos Bitacora
                     Bitacora b = new Bitacora();
                     b.fechahora = DateTime.Now;
                     b.id_usuario = ((usuarios)HttpContext.Current.Session["sesionUsuario"]).id_usuario;
-                    b.modulo = "TipoServicio.aspx";
-                    b.funcion = "Actualizo servicio";
+                    b.modulo = "Productos.aspx";
+                    b.funcion = "Actualizo producto";
                     b.entidad = json;
-                    b.detalle = ((usuarios)HttpContext.Current.Session["sesionUsuario"]).username + " - Usuario actualizo servicio: " + Nombre;
+                    b.detalle = ((usuarios)HttpContext.Current.Session["sesionUsuario"]).username + " - Usuario actualizo producto: " + Nombre;
                     ClassBicatora.insertBitacora(b);
                 }
 
@@ -185,9 +207,6 @@ namespace WA_CombugasCC.CallCenter
             }
             return Response;
         }
-
-
-
 
     }
 }

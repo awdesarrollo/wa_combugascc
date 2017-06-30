@@ -81,6 +81,9 @@ namespace WA_CombugasCC.Core
     partial void Insertoperador(operador instance);
     partial void Updateoperador(operador instance);
     partial void Deleteoperador(operador instance);
+    partial void Insertproducto(producto instance);
+    partial void Updateproducto(producto instance);
+    partial void Deleteproducto(producto instance);
     #endregion
 		
 		public ContextCombugasDataContext() : 
@@ -246,6 +249,14 @@ namespace WA_CombugasCC.Core
 			get
 			{
 				return this.GetTable<operador>();
+			}
+		}
+		
+		public System.Data.Linq.Table<producto> producto
+		{
+			get
+			{
+				return this.GetTable<producto>();
 			}
 		}
 	}
@@ -3730,6 +3741,8 @@ namespace WA_CombugasCC.Core
 		
 		private EntitySet<servicioUnidad> _servicioUnidad;
 		
+		private EntitySet<producto> _producto;
+		
     #region Definiciones de métodos de extensibilidad
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -3747,6 +3760,7 @@ namespace WA_CombugasCC.Core
 		public servicio()
 		{
 			this._servicioUnidad = new EntitySet<servicioUnidad>(new Action<servicioUnidad>(this.attach_servicioUnidad), new Action<servicioUnidad>(this.detach_servicioUnidad));
+			this._producto = new EntitySet<producto>(new Action<producto>(this.attach_producto), new Action<producto>(this.detach_producto));
 			OnCreated();
 		}
 		
@@ -3843,6 +3857,19 @@ namespace WA_CombugasCC.Core
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="servicio_producto", Storage="_producto", ThisKey="id_servicio", OtherKey="id_servicio")]
+		public EntitySet<producto> producto
+		{
+			get
+			{
+				return this._producto;
+			}
+			set
+			{
+				this._producto.Assign(value);
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -3870,6 +3897,18 @@ namespace WA_CombugasCC.Core
 		}
 		
 		private void detach_servicioUnidad(servicioUnidad entity)
+		{
+			this.SendPropertyChanging();
+			entity.servicio = null;
+		}
+		
+		private void attach_producto(producto entity)
+		{
+			this.SendPropertyChanging();
+			entity.servicio = this;
+		}
+		
+		private void detach_producto(producto entity)
 		{
 			this.SendPropertyChanging();
 			entity.servicio = null;
@@ -4507,6 +4546,229 @@ namespace WA_CombugasCC.Core
 					this._status = value;
 					this.SendPropertyChanged("status");
 					this.OnstatusChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.producto")]
+	public partial class producto : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _id_producto;
+		
+		private System.Nullable<int> _id_servicio;
+		
+		private string _descripcion;
+		
+		private System.Nullable<decimal> _precio;
+		
+		private System.Nullable<System.DateTime> _alta;
+		
+		private System.Nullable<bool> _status;
+		
+		private EntityRef<servicio> _servicio;
+		
+    #region Definiciones de métodos de extensibilidad
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void Onid_productoChanging(int value);
+    partial void Onid_productoChanged();
+    partial void Onid_servicioChanging(System.Nullable<int> value);
+    partial void Onid_servicioChanged();
+    partial void OndescripcionChanging(string value);
+    partial void OndescripcionChanged();
+    partial void OnprecioChanging(System.Nullable<decimal> value);
+    partial void OnprecioChanged();
+    partial void OnaltaChanging(System.Nullable<System.DateTime> value);
+    partial void OnaltaChanged();
+    partial void OnstatusChanging(System.Nullable<bool> value);
+    partial void OnstatusChanged();
+    #endregion
+		
+		public producto()
+		{
+			this._servicio = default(EntityRef<servicio>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_producto", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int id_producto
+		{
+			get
+			{
+				return this._id_producto;
+			}
+			set
+			{
+				if ((this._id_producto != value))
+				{
+					this.Onid_productoChanging(value);
+					this.SendPropertyChanging();
+					this._id_producto = value;
+					this.SendPropertyChanged("id_producto");
+					this.Onid_productoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_servicio", DbType="Int")]
+		public System.Nullable<int> id_servicio
+		{
+			get
+			{
+				return this._id_servicio;
+			}
+			set
+			{
+				if ((this._id_servicio != value))
+				{
+					if (this._servicio.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.Onid_servicioChanging(value);
+					this.SendPropertyChanging();
+					this._id_servicio = value;
+					this.SendPropertyChanged("id_servicio");
+					this.Onid_servicioChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_descripcion", DbType="VarChar(300)")]
+		public string descripcion
+		{
+			get
+			{
+				return this._descripcion;
+			}
+			set
+			{
+				if ((this._descripcion != value))
+				{
+					this.OndescripcionChanging(value);
+					this.SendPropertyChanging();
+					this._descripcion = value;
+					this.SendPropertyChanged("descripcion");
+					this.OndescripcionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_precio", DbType="Decimal(20,2)")]
+		public System.Nullable<decimal> precio
+		{
+			get
+			{
+				return this._precio;
+			}
+			set
+			{
+				if ((this._precio != value))
+				{
+					this.OnprecioChanging(value);
+					this.SendPropertyChanging();
+					this._precio = value;
+					this.SendPropertyChanged("precio");
+					this.OnprecioChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_alta", DbType="Date")]
+		public System.Nullable<System.DateTime> alta
+		{
+			get
+			{
+				return this._alta;
+			}
+			set
+			{
+				if ((this._alta != value))
+				{
+					this.OnaltaChanging(value);
+					this.SendPropertyChanging();
+					this._alta = value;
+					this.SendPropertyChanged("alta");
+					this.OnaltaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_status", DbType="Bit")]
+		public System.Nullable<bool> status
+		{
+			get
+			{
+				return this._status;
+			}
+			set
+			{
+				if ((this._status != value))
+				{
+					this.OnstatusChanging(value);
+					this.SendPropertyChanging();
+					this._status = value;
+					this.SendPropertyChanged("status");
+					this.OnstatusChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="servicio_producto", Storage="_servicio", ThisKey="id_servicio", OtherKey="id_servicio", IsForeignKey=true)]
+		public servicio servicio
+		{
+			get
+			{
+				return this._servicio.Entity;
+			}
+			set
+			{
+				servicio previousValue = this._servicio.Entity;
+				if (((previousValue != value) 
+							|| (this._servicio.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._servicio.Entity = null;
+						previousValue.producto.Remove(this);
+					}
+					this._servicio.Entity = value;
+					if ((value != null))
+					{
+						value.producto.Add(this);
+						this._id_servicio = value.id_servicio;
+					}
+					else
+					{
+						this._id_servicio = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("servicio");
 				}
 			}
 		}

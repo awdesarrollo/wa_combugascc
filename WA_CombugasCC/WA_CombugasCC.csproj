@@ -108,6 +108,7 @@
     <Content Include="CallCenter\Default.aspx" />
     <Content Include="CallCenter\Estados.aspx" />
     <Content Include="CallCenter\Operadores.aspx" />
+    <Content Include="CallCenter\Productos.aspx" />
     <Content Include="CallCenter\tipocalle.aspx" />
     <Content Include="CallCenter\TipoServicio.aspx" />
     <Content Include="CallCenter\Unidades.aspx" />
@@ -241,6 +242,13 @@
     </Compile>
     <Compile Include="CallCenter\Operadores.aspx.designer.cs">
       <DependentUpon>Operadores.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CallCenter\Productos.aspx.cs">
+      <DependentUpon>Productos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CallCenter\Productos.aspx.designer.cs">
+      <DependentUpon>Productos.aspx</DependentUpon>
     </Compile>
     <Compile Include="CallCenter\tipocalle.aspx.cs">
       <DependentUpon>tipocalle.aspx</DependentUpon>

@@ -167,6 +167,7 @@
       <Column Name="alta" Type="System.DateTime" DbType="Date" CanBeNull="true" />
       <Column Name="status" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Association Name="servicio_servicioUnidad" Member="servicioUnidad" ThisKey="id_servicio" OtherKey="id_servicio" Type="servicioUnidad" />
+      <Association Name="servicio_producto" Member="producto" ThisKey="id_servicio" OtherKey="id_servicio" Type="producto" />
     </Type>
   </Table>
   <Table Name="dbo.servicioUnidad" Member="servicioUnidad">
@@ -200,6 +201,17 @@
       <Column Name="nombre" Type="System.String" DbType="VarChar(300) NOT NULL" CanBeNull="false" />
       <Column Name="alta" Type="System.DateTime" DbType="Date" CanBeNull="true" />
       <Column Name="status" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.producto" Member="producto">
+    <Type Name="producto">
+      <Column Name="id_producto" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="id_servicio" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="descripcion" Type="System.String" DbType="VarChar(300)" CanBeNull="true" />
+      <Column Name="precio" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="alta" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="status" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="servicio_producto" Member="servicio" ThisKey="id_servicio" OtherKey="id_servicio" Type="servicio" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>
