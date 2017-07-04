@@ -50,7 +50,7 @@ namespace WA_CombugasCC.CallCenter
             try
             {
                 ContextCombugasDataContext context = new ContextCombugasDataContext();
-                var agrupacion = from p in context.servicio where p.status==true select p;
+                var agrupacion = from p in context.servicio select p;
                 List<OperadorClass> lista = new List<OperadorClass>();
                 foreach (var grupo in agrupacion)
                 {

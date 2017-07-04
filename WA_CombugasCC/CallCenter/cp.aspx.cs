@@ -54,7 +54,8 @@ namespace WA_CombugasCC.CallCenter
             try
             {
                 ContextCombugasDataContext context = new ContextCombugasDataContext();
-                var agrupacion = from p in context.cp join z in context.zonas on p.id_zona equals z.id_zona join e in context.estados on p.id_estado equals e.id_estado  select new { p.id_cp, p.descripcion, Est = e.descripcion, zona = z.descripcion, p.status };
+                var agrupacion = from p in context.cp join z in context.zonas on p.id_zona equals z.id_zona join e in context.estados on
+                                 p.id_estado equals e.id_estado  select new { p.id_cp, p.descripcion, Est = e.descripcion, zona = z.descripcion, p.status };
                 List<cpclass> lista = new List<cpclass>();
                 foreach (var grupo in agrupacion)
                 {

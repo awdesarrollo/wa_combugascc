@@ -129,6 +129,7 @@ namespace WA_CombugasCC.CallCenter
             }
             return Response;
         }
+
         [WebMethod]
         public static ajaxResponse UnazonaAct(int Id, string Nombre, bool stado)
         {

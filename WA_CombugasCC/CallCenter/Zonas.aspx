@@ -15,7 +15,7 @@
         <div class="page-head">
             <div class="container">
                 <div class="page-title">
-                    <h1>Zonas.</h1>
+                    <h1>Zonas</h1>
                 </div>
             </div>
         </div>
@@ -69,7 +69,7 @@
                             <div class="portlet light ">  
                                 <div class="portlet-title">
                                             <div class="caption caption-md">
-                                                Agregar una zona nueva.
+                                                <center>Agregar una zona nueva</center>
                                             </div>
                                         </div>     
                                 <div class="portlet-body">
@@ -78,7 +78,7 @@
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">           
                                        
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                            <label style="margin-top: 5px;">Nombre de la zona.</label>
+                                            <label style="margin-top: 5px;">Nombre de la zona</label>
                                         </div>
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                             <input id="nombrezona" class="form-control" type="text"/>
@@ -93,7 +93,7 @@
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top:10px;">
                                         
                                         <div id="alertaCont" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 alert alert-danger alert-dismissable" style="display:none;">
-                                            <center><strong id="mensajs">Agregar un nombre.</strong></center>
+                                            <center><strong id="mensajs">Agregar un nombre</strong></center>
                                         </div>
                                        
                                     </div>
@@ -123,14 +123,14 @@
       <div class="modal-body" >
           <div class="row">
         <div class="col-md-12 col-sm-12 col-xs-12" >
-            <label class="col-md-2 col-sm-2 col-xs-12" >Zona<span >* :</span></label>
+            <label class="col-md-2 col-sm-2 col-xs-12" >Zona<span >:</span></label>
             <div class="col-md-10 col-sm-10 col-xs-12">
               <input type="text" id="txtZona" required class="form-control col-md-7 col-xs-12 " value="">
             </div>
           </div> 
           
           <div class="col-md-12 col-sm-12 col-xs-12" style="margin-top:15px;">
-            <label class=" col-md-2 col-sm-2 col-xs-12" >Activo<span>*:</span>
+            <label class=" col-md-2 col-sm-2 col-xs-12" >Activo<span>:</span>
             </label>
             <div class=" col-md-10 col-sm-10 col-xs-12">
                    <input id="checkss" name="checkss" type="checkbox"  class="icheck" >

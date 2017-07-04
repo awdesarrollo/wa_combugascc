@@ -38,33 +38,33 @@
                                             <div class="col-md-8 col-sm-12">
                                                 <div class="row">
                                               <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
-                                                <center><label style="margin-top: 5px;">Número.</label></center>
+                                                <center><label style="margin-top: 5px;">Número</label></center>
                                                   <input id="numero" class="form-control "  value="0" type="number" />
                                               </div>
                                               <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                                                <center><label style="margin-top: 5px;">Marca.</label></center>
+                                                <center><label style="margin-top: 5px;">Marca</label></center>
                                                   <input id="marca" class="form-control" type="text"/>
                                               </div>
                                               <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                                                <center><label style="margin-top: 5px;">Modelo.</label></center>
+                                                <center><label style="margin-top: 5px;">Modelo</label></center>
                                                    <input id="modelo" class="form-control" type="text"/>
                                               </div>
                                               <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
-                                                <center><label style="margin-top: 5px;">Año.</label></center>
+                                                <center><label style="margin-top: 5px;">Año</label></center>
                                                    <input id="anio" class="form-control " type="number" value="2010"/>
                                               </div>
                                           </div>
                                                 <div class="row" style="margin-top: 20px;">
                                               <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                                                <center><label style="margin-top: 5px;">Número de placas.</label></center>
+                                                <center><label style="margin-top: 5px;">Número de placas</label></center>
                                                   <input id="numeroplacas" class="form-control" type="text"/>
                                               </div>
                                               <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                                                <center><label style="margin-top: 5px;">Número de serie.</label></center>
+                                                <center><label style="margin-top: 5px;">Número de serie</label></center>
                                                    <input id="numeroserie" class="form-control" type="text"/>
                                               </div>
                                               <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                                                <center><label style="margin-top: 5px;">Activo.</label></center>
+                                                <center><label style="margin-top: 5px;">Activo</label></center>
                                                 <center><input id="checkss" name="checkss" type="checkbox"  class="icheck" style="margin-top:5px;"></center>
                                               </div>
                                           </div>
@@ -72,7 +72,7 @@
                                             <div class="col-md-4 col-sm-12">
                                                 <div class="row">
                                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                        <center><h3 style="margin-top: 1px;">Servicios por unidad.</h3></center>
+                                                        <center><h3 style="margin-top: 1px;">Servicios por unidad</h3></center>
                                                      </div>
                                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="GridServicios">
                                                         
@@ -82,7 +82,7 @@
                                           <div class="row" style="margin-top: 20px;">
                                               <div class="col-md-12" style="margin-top: 20px;">
                                                     <button id="btnguardar" class="btn red pull-right" type="button" style="margin-top:15px !important;display: block;" onclick="Guardar();">Guardar</button>&nbsp;
-                                                    <button class="btn red pull-right" id="btnEditar" type="button" style="margin-top:15px !important; display: none;">Editar</button>&nbsp;
+                                                    <button class="btn red pull-right" id="btnEditar" type="button" style="margin-top:15px !important; display: none;">Modificar</button>&nbsp;
                                                     <button id="btnLim" class="btn btn-default pull-right" type="button" style="margin-top:15px !important; margin-right:15px;" onclick="Limpiar();">Limpiar</button>&nbsp;
                                                 </div>
                                           </div>

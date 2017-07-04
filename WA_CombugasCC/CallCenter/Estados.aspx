@@ -15,7 +15,7 @@
         <div class="page-head">
             <div class="container">
                 <div class="page-title">
-                    <h1>Estados.</h1>
+                    <h1>Estados</h1>
                 </div>
             </div>
         </div>
@@ -70,7 +70,7 @@
                             <div class="portlet light ">   
                                 <div class="portlet-title">
                                             <div class="caption caption-md">
-                                                Agregar un estado nuevo.
+                                                <center>Agregar un estado nuevo</center>
                                             </div>
                                         </div>      
                                 <div class="portlet-body">
@@ -79,13 +79,13 @@
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">           
                                         
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                            <label style="margin-top: 10px;">Nombre del estado.</label>
+                                            <label style="margin-top: 10px;">Nombre del estado</label>
                                         </div>
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-bottom:5px;">
                                             <input id="nombreEstado" class="form-control" type="text"/>
                                         </div>
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                            <label>Selecciona una zona.</label>
+                                            <label>Selecciona una zona</label>
                                         </div>
                                         <div class=" col-lg-12 col-md-12 col-sm-12 col-xs-12" >
                                             <select class="js-example-basic-single form-control col-md-12 col-sm-12 col-xs-12" id="ZNSELEC">
@@ -135,13 +135,13 @@
       <div class="modal-body" >
           <div class="row">
         <div class="col-md-12 col-sm-12 col-xs-12" >
-            <label class="col-md-2 col-sm-2 col-xs-12" >Estado<span >* :</span></label>
+            <label class="col-md-2 col-sm-2 col-xs-12" >Estado<span >:</span></label>
             <div class="col-md-10 col-sm-10 col-xs-12">
               <input type="text" id="txtZona" required class="form-control col-md-7 col-xs-12 " value="">
             </div>
           </div> 
               <div class="col-md-12 col-sm-12 col-xs-12" style="margin-top:15px;">
-            <label class=" col-md-2 col-sm-2 col-xs-12" >Zona<span>*:</span>
+            <label class=" col-md-2 col-sm-2 col-xs-12" >Zona<span>:</span>
             </label>
             <div class=" col-md-10 col-sm-10 col-xs-12">
                    <select class="js-example-basic-single form-control col-md-12 col-sm-12 col-xs-12" id="ZNSELEC2">
@@ -151,7 +151,7 @@
             </div> 
           
           <div class="col-md-12 col-sm-12 col-xs-12" style="margin-top:15px;">
-            <label class=" col-md-2 col-sm-2 col-xs-12" >Activo<span>*:</span>
+            <label class=" col-md-2 col-sm-2 col-xs-12" >Activo<span>:</span>
             </label>
             <div class=" col-md-10 col-sm-10 col-xs-12">
                    <input id="checkss" name="checkss" type="checkbox" class="icheck" >

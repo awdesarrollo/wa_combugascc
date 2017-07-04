@@ -21,7 +21,7 @@
         <div class="page-head">
             <div class="container">
                 <div class="page-title">
-                    <h1>Tipo de calles.</h1>
+                    <h1>Tipo de calles</h1>
                 </div>
             </div>
         </div>
@@ -75,7 +75,7 @@
                             <div class="portlet light ">  
                                 <div class="portlet-title">
                                             <div class="caption caption-md">
-                                                Agregar tipo de calle.
+                                                Agregar tipo de calle
                                             </div>
                                         </div>     
                                 <div class="portlet-body">
@@ -84,7 +84,7 @@
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">           
                                        
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                            <label style="margin-top: 5px;">Nombre tipo de calle  .</label>
+                                            <label style="margin-top: 5px;">Nombre tipo de calle</label>
                                         </div>
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                             <input id="nombrezona" class="form-control" type="text"/>
@@ -123,14 +123,14 @@
       <div class="modal-body" >
           <div class="row">
         <div class="col-md-12 col-sm-12 col-xs-12" >
-            <label class="col-md-3 col-sm-3 col-xs-12" >tipo de calle<span >* :</span></label>
+            <label class="col-md-3 col-sm-3 col-xs-12" >tipo de calle<span >:</span></label>
             <div class="col-md-9 col-sm-9 col-xs-12">
               <input type="text" id="txtZona" required class="form-control col-md-7 col-xs-12 " value="">
             </div>
           </div> 
           
           <div class="col-md-12 col-sm-12 col-xs-12" style="margin-top:15px;">
-            <label class=" col-md-3 col-sm-3 col-xs-12" >Activo<span>*:</span>
+            <label class=" col-md-3 col-sm-3 col-xs-12" >Activo<span>:</span>
             </label>
             <div class=" col-md-9 col-sm-9 col-xs-12">
                    <input id="checkss" name="checkss" type="checkbox"  class="icheck" >

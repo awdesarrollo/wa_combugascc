@@ -15,7 +15,7 @@
         <div class="page-head">
             <div class="container">
                 <div class="page-title">
-                    <h1>Servicios.</h1>
+                    <h1>Servicios</h1>
                 </div>
             </div>
         </div>
@@ -64,23 +64,23 @@
                             <div class="portlet light ">  
                                 <div class="portlet-title">
                                     <div class="caption caption-md">
-                                        Agregar un servicio.
+                                        Agregar un servicio
                                     </div>
                                 </div>     
                                 <div class="portlet-body">
                                     <div class="row">         
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                            <center><label style="margin-top: 5px;">Nombre del servicio.</label></center>
+                                            <center><label style="margin-top: 5px;">Nombre del servicio</label></center>
                                             <input id="nombrezona" class="form-control" type="text"/>
                                         </div>
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                            <center><label style="margin-top: 5px;">Activo.</label></center>
+                                            <center><label style="margin-top: 5px;">Activo</label></center>
                                              <center><input id="checkss" name="checkss" type="checkbox"  class="icheck" ></center>
                                         </div>
                                          
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                             <button id="btnguardar" class="btn red pull-right" type="button" style="margin-top:15px !important;display: block;" onclick="Guardar();">Guardar</button>
-                                            <button class="btn red pull-right" id="btnEditar" type="button" style="margin-top:15px !important; display: none;">Editar</button>
+                                            <button class="btn red pull-right" id="btnEditar" type="button" style="margin-top:15px !important; display: none;">Modificar</button>
                                             <button id="btnLim" class="btn btn-default pull-left" type="button" style="margin-top:15px !important;" onclick="Limpiar();">Limpiar</button>
                                         </div>                                    
                                     </div>   

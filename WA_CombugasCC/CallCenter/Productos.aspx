@@ -1,12 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/CallCenter/CallCenter.Master" AutoEventWireup="true" CodeBehind="Productos.aspx.cs" Inherits="WA_CombugasCC.CallCenter.Productos" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-
-
-
-
-
-
-
     <style>
     .sa {
         height: 300px !important;
@@ -21,7 +14,7 @@
         <div class="page-head">
             <div class="container">
                 <div class="page-title">
-                    <h1>Productos.</h1>
+                    <h1>Productos</h1>
                 </div>
             </div>
         </div>
@@ -71,32 +64,33 @@
                             <div class="portlet light ">   
                                 <div class="portlet-title">
                                     <div class="caption caption-md">
-                                        Agregar un producto.
+                                        Agregar un producto
                                     </div>
                                 </div>      
                                 <div class="portlet-body">
                                     <div class="row">              
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                            <label style="margin-top: 10px;">Nombre del producto.</label>
-                                            <input id="Nombre" class="form-control" type="text"/>
-                                        </div>
-                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                            <label style="margin-top: 10px;">Precio del producto ($).</label>
-                                            <input id="Precio" class="form-control" type="text" onChange="validarSiNumero(this.value);"/>
-                                        </div>
-                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                            <label>Selecciona una servicio.</label>
+                                            <label>Selecciona un servicio</label>
                                             <select class="js-example-basic-single form-control col-md-12 col-sm-12 col-xs-12" id="ZNSELEC">
                                                     <option value="-1"></option>
                                             </select>
                                         </div>
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                <center><label style="margin-top: 5px;">Activo.</label></center>
+                                            <label style="margin-top: 10px;">Nombre del producto</label>
+                                            <input id="Nombre" class="form-control" type="text"/>
+                                        </div>
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <label style="margin-top: 10px;">Precio del producto ($)</label>
+                                            <input id="Precio" class="form-control" type="text" onChange="validarSiNumero(this.value);"/>
+                                        </div>
+                                        
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                <center><label style="margin-top: 5px;">Activo</label></center>
                                                 <center><input id="checkss" name="checkss" type="checkbox"  class="icheck" style="margin-top:5px;"></center>
                                               </div>
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                             <button id="btnguardar" class="btn red pull-right" type="button" style="margin-top:15px !important;display: block;" onclick="Guardar();">Guardar</button>
-                                            <button class="btn red pull-right" id="btnEditar" type="button" style="margin-top:15px !important; display: none;">Editar</button>
+                                            <button class="btn red pull-right" id="btnEditar" type="button" style="margin-top:15px !important; display: none;">Modificar</button>
                                             <button id="btnLim" class="btn btn-default pull-left" type="button" style="margin-top:15px !important;" onclick="Limpiar();">Limpiar</button>
                                         </div>
                                     </div>
