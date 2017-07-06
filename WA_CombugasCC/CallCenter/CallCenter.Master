@@ -13,7 +13,7 @@
         <link href="../assets/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
         <%--<link href="../assets/global/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css" />--%>
         <link href="../assets/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-        <%--<link href="../assets/global/plugins/uniform/css/uniform.default.css" rel="stylesheet" type="text/css" />--%>
+        
         <%--<link href="../assets/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet" type="text/css" />--%>
         <%--<link href="../assets/global/plugins/bootstrap-daterangepicker/daterangepicker.min.css" rel="stylesheet" type="text/css" />--%>
         <%--<link href="../assets/global/plugins/morris/morris.css" rel="stylesheet" type="text/css" />--%>
@@ -29,6 +29,7 @@
         <link href="../assets/global/plugins/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
         <link href="../assets/global/plugins/select2/css/select2-bootstrap.min.css" rel="stylesheet" type="text/css" />
         
+        <link href="../assets/global/plugins/dropzone/dropzone.min.css" rel="stylesheet" type="text/css" />
 
                 <!--[if lt IE 9]>
                 <script src="../assets/global/plugins/respond.min.js"></script>
@@ -57,6 +58,7 @@
         <script src="../assets/global/plugins/bootstrap-toastr/toastr.min.js" type="text/javascript"></script>
         <script src="../assets/pages/scripts/ui-toastr.min.js" type="text/javascript"></script>
 
+        <script src="../assets/global/plugins/dropzone/dropzone.min.js" type="text/javascript"></script>
 
         <link rel="shortcut icon" href="../favicon.png" /> 
 
@@ -64,6 +66,7 @@
          
        </head>
     <body class="page-container-bg-solid page-boxed" onload="mueveReloj()">
+        <input type="hidden" id="sesIdUser" value="<%Response.Write(((WA_CombugasCC.Core.usuarios)Session["sesionUsuario"]).id_usuario);%>" />
         <div class="page-header">
             <div class="page-header-top">
                 <div class="container">
@@ -96,8 +99,8 @@
                                         </a>
                                     </li>
                                     <li class="divider"> </li>
-                                    <li>
-                                        <a href="#">
+                                   <li>
+                                        <a href="#" onclick="cerrarSesion();">
                                             <i class="icon-key"></i> Cerrar Sesión </a>
                                     </li>
                                 </ul>
@@ -121,38 +124,7 @@
                                 </a>
                                
                             </li>
-                            <li class="menu-dropdown classic-menu-dropdown">
-                                <a href="javascript:;"> Catalogos
-                                    <span class="arrow"></span>
-                                </a>
-                                <ul class="dropdown-menu pull-left">
-                                    <li class=" ">
-                                        <a href="Zonas.aspx" class="nav-link ">
-                                             Zonas
-                                        </a>
-                                    </li>
-                                    <li class=" ">
-                                        <a href="Estados.aspx" class="nav-link  ">
-                                             Estados 
-                                        </a>
-                                    </li>
-                                    <li class=" ">
-                                        <a href="Ciudades.aspx" class="nav-link  ">
-                                            Ciudades
-                                        </a>
-                                    </li>
-                                    <li class=" ">
-                                        <a href="Colonias.aspx" class="nav-link  ">
-                                            Colonias
-                                        </a>
-                                    </li>
-                                    <li class=" ">
-                                        <a href="Arterias.aspx" class="nav-link  ">
-                                            Arterias
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
+                        
                            
                         </ul>
                     </div>
@@ -205,6 +177,69 @@
 
                 setTimeout("mueveReloj()", 1000)
             }
+            function cerrarSesion() {
+                $.ajax({
+                    type: "POST",
+                    url: "Default.aspx/CerrarSesion",
+                    data: JSON.stringify({ idusuario: $("#sesIdUser").val() }),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    async: false,
+                    success: function (response) {
+                        if (response.d.Result) {
+                            window.location = "../Default.aspx";
+                        }
+                    },
+                    error: function (error) {
+                        console.log(error);
+                    }
+                });
+            }
+
+            EliminaExtras();
+            function EliminaExtras() {
+                $.ajax({
+                    type: "POST",
+                    url: "Default.aspx/Elimina",
+                    data: "",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    async: false,
+                    success: function (response) {
+                        
+                    },
+                    error: function (error) {
+                        console.log(error);
+                    }
+                });
+            }
+
+
+            validaInactividad();
+
+            function validaInactividad() {
+                $.ajax({
+                    type: "POST",
+                    url: "Default.aspx/ValidaSesion",
+                    data: JSON.stringify({ idusuario: $("#sesIdUser").val() }),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    async: false,
+                    success: function (response) {
+                        if (!response.d.Result) {
+                            window.location = "../Default.aspx";
+                        } else {
+                            $("#sesIdUser").val(response.d.Data);
+                        }
+                    },
+                    error: function (error) {
+                        console.log(error);
+                    }
+                });
+            }
+
+            setInterval(function () { validaInactividad(); }, 10000);
+
             cargaMenu();
 
             function cargaMenu() {

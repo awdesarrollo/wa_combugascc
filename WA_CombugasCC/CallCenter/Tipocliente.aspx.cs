@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Script.Serialization;
@@ -11,14 +10,12 @@ using WA_CombugasCC.Core;
 
 namespace WA_CombugasCC.CallCenter
 {
-    public partial class Operadores : System.Web.UI.Page
+    public partial class Tipocliente : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
 
         }
-
-
         public class ajaxResponse
         {
             public bool Result { get; set; }
@@ -28,38 +25,20 @@ namespace WA_CombugasCC.CallCenter
         }
 
 
-        public class OperadorClass
+        public class TipoClass
         {
             public int id { get; set; }
             public string nombre { get; set; }
-            public string usuario { get; set; }
-            public string dir { get; set; }
-            public string a1 { get; set; }
-            public string a2 { get; set; }
-            public string foto { get; set; }
-            public string contrasenia { get; set; }
             public DateTime? fecha { get; set; }
             public bool? estado { get; set; }
-            public OperadorClass(int idz, string nombre, DateTime? fecha,bool? estado)
+            public TipoClass(int idz, string nombre, DateTime? fecha, bool? estado)
             {
                 this.id = idz;
                 this.nombre = nombre;
                 this.estado = estado;
                 this.fecha = fecha;
             }
-            public OperadorClass(int idz, string nombre, DateTime? fecha, bool? estado,string usuario,string contrasenia, string a1, string a2,string foto,string dir)
-            {
-                this.id = idz;
-                this.nombre = nombre;
-                this.estado = estado;
-                this.fecha = fecha;
-                this.usuario = usuario;
-                this.contrasenia = contrasenia;
-                this.a1 = a1;
-                this.a2 = a2;
-                this.foto = foto;
-                this.dir = dir;
-            }
+            
 
         }
 
@@ -72,11 +51,11 @@ namespace WA_CombugasCC.CallCenter
             try
             {
                 ContextCombugasDataContext context = new ContextCombugasDataContext();
-                var agrupacion = from p in context.operador select p;
-                List<OperadorClass> lista = new List<OperadorClass>();
+                var agrupacion = from p in context.tipo_cliente select p;
+                List<TipoClass> lista = new List<TipoClass>();
                 foreach (var grupo in agrupacion)
                 {
-                    lista.Add(new OperadorClass(grupo.id_operador, grupo.nombre + " " + grupo.apellidoP + " " + grupo.apellidoM, grupo.alta, grupo.status));
+                    lista.Add(new TipoClass(grupo.id_tipo, grupo.descripcion, grupo.alta, grupo.status));
                 }
                 var jsonSerialiser = new JavaScriptSerializer();
                 var json = jsonSerialiser.Serialize(lista);
@@ -102,11 +81,11 @@ namespace WA_CombugasCC.CallCenter
             try
             {
                 ContextCombugasDataContext context = new ContextCombugasDataContext();
-                var agrupacion = from p in context.operador where p.id_operador == Id select p;
-                List<OperadorClass> lista = new List<OperadorClass>();
+                var agrupacion = from p in context.tipo_cliente where p.id_tipo == Id select p;
+                List<TipoClass> lista = new List<TipoClass>();
                 foreach (var grupo in agrupacion)
                 {
-                    lista.Add(new OperadorClass(grupo.id_operador, grupo.nombre, grupo.alta, grupo.status,grupo.username,grupo.pass,grupo.apellidoP,grupo.apellidoM,grupo.foto,grupo.direccion));
+                    lista.Add(new TipoClass(grupo.id_tipo, grupo.descripcion, grupo.alta, grupo.status));
                 }
                 var jsonSerialiser = new JavaScriptSerializer();
                 var json = jsonSerialiser.Serialize(lista);
@@ -126,34 +105,19 @@ namespace WA_CombugasCC.CallCenter
 
         //GUARDAR OPERADOR
         [WebMethod]
-        public static ajaxResponse Guardar(string Nombre,bool Activo, string Us, string Pass,string A1, string A2,string IDFOTO,string Dir)
+        public static ajaxResponse Guardar(string Nombre, bool Activo)
         {
             ajaxResponse Response = new ajaxResponse();
-            operador objZona = new operador();
+            tipo_cliente objZona = new tipo_cliente();
             try
             {
                 ContextCombugasDataContext context = new ContextCombugasDataContext();
-                objZona.nombre = Nombre;
-                objZona.apellidoP = A1;
-                objZona.apellidoM = A2;
+                objZona.descripcion = Nombre;
                 objZona.status = Activo;
-                objZona.pass = Pass;
-                objZona.direccion = Dir;
-                objZona.username = Us;
-                objZona.foto = IDFOTO;
-                objZona.alta= DateTime.Now;
-                context.operador.InsertOnSubmit(objZona);
+                objZona.alta = DateTime.Now;
+                context.tipo_cliente.InsertOnSubmit(objZona);
                 context.SubmitChanges();
-
-                fotografias foto = new fotografias();
-                foto = context.fotografias.Where(x => x.nombre == IDFOTO).SingleOrDefault();
-                if (foto != null)
-                {
-                    foto.confirmada = 1;
-                    foto.id_chofer = objZona.id_operador;
-                    context.SubmitChanges();
-                }
-                OperadorClass zona = new OperadorClass(objZona.id_operador, Nombre, DateTime.Now ,Activo);
+                TipoClass zona = new TipoClass(objZona.id_tipo, Nombre, DateTime.Now, Activo);
                 var jsonSerialiser = new JavaScriptSerializer();
                 var json = jsonSerialiser.Serialize(zona);
 
@@ -161,10 +125,10 @@ namespace WA_CombugasCC.CallCenter
                 Bitacora b = new Bitacora();
                 b.fechahora = DateTime.Now;
                 b.id_usuario = ((usuarios)HttpContext.Current.Session["sesionUsuario"]).id_usuario;
-                b.modulo = "Operadores.aspx";
-                b.funcion = "Agregar Operador";
+                b.modulo = "Tipocliente.aspx";
+                b.funcion = "Agregar Tipo de cliente";
                 b.entidad = json;
-                b.detalle = ((usuarios)HttpContext.Current.Session["sesionUsuario"]).username + " - Usuario agrego operador: " + Nombre;
+                b.detalle = ((usuarios)HttpContext.Current.Session["sesionUsuario"]).username + " - Usuario agrego tipo de cliente: " + Nombre;
                 ClassBicatora.insertBitacora(b);
 
                 Response.Result = true;
@@ -183,59 +147,34 @@ namespace WA_CombugasCC.CallCenter
 
         //ACTUALIZAR OPERADOR
         [WebMethod]
-        public static ajaxResponse Actualizar(int Id, string Nombre, bool Activo,string Us,string Pass, string A1, string A2, string IDFOTO, string Dir)
+        public static ajaxResponse Actualizar(int Id, string Nombre, bool Activo)
         {
             ajaxResponse Response = new ajaxResponse();
-            operador objZona = new operador();
+            tipo_cliente objZona = new tipo_cliente();
             try
             {
                 ContextCombugasDataContext context = new ContextCombugasDataContext();
-                objZona = context.operador.Where(x => x.id_operador == Id).SingleOrDefault();
+                objZona = context.tipo_cliente.Where(x => x.id_tipo == Id).SingleOrDefault();
                 if (objZona != null)
                 {
                     Response.Result = true;
                     Response.Message = "Actualizacion Correcta";
                     Response.Data = null;
-                    objZona.nombre = Nombre;
-                    objZona.apellidoP = A1;
-                    objZona.apellidoM = A2;
+                    objZona.descripcion = Nombre;
                     objZona.status = Activo;
-                    objZona.direccion = Dir;
-                    objZona.pass = Pass;
-                    objZona.foto = IDFOTO;
-                    objZona.username = Us;
-                    context.SubmitChanges();
-
-                    fotografias foto = new fotografias();
                     
-                    foto = context.fotografias.Where(x => x.id_chofer == Id & x.confirmada == 1 & x.nombre != IDFOTO).SingleOrDefault();
-
-                    if (foto != null)
-                    {
-                        foto.confirmada = 0;
-                        context.SubmitChanges();
-                    }
-                    foto = context.fotografias.Where(x => x.nombre == IDFOTO).SingleOrDefault();
-                    if (foto != null)
-                    {
-                        foto.confirmada = 1;
-                        foto.id_chofer = Id;
-                        context.SubmitChanges();
-                    }
-
-
-
-                    OperadorClass zona = new OperadorClass(Id, Nombre,objZona.alta, Activo);
+                    context.SubmitChanges();
+                    TipoClass zona = new TipoClass(Id, Nombre, objZona.alta, Activo);
                     var jsonSerialiser = new JavaScriptSerializer();
                     var json = jsonSerialiser.Serialize(zona);
                     // Alimentamos Bitacora
                     Bitacora b = new Bitacora();
                     b.fechahora = DateTime.Now;
                     b.id_usuario = ((usuarios)HttpContext.Current.Session["sesionUsuario"]).id_usuario;
-                    b.modulo = "Operadores.aspx";
-                    b.funcion = "Actualizo operador";
+                    b.modulo = "Tipocliente.aspx";
+                    b.funcion = "Actualizo tipo de cliente";
                     b.entidad = json;
-                    b.detalle = ((usuarios)HttpContext.Current.Session["sesionUsuario"]).username + " - Usuario actualizo operador: " + Nombre;
+                    b.detalle = ((usuarios)HttpContext.Current.Session["sesionUsuario"]).username + " - Usuario actualizo tipo de cliente: " + Nombre;
                     ClassBicatora.insertBitacora(b);
                 }
 
@@ -248,11 +187,6 @@ namespace WA_CombugasCC.CallCenter
             }
             return Response;
         }
-
-        
-
-
-
 
 
 

@@ -130,6 +130,90 @@ namespace WA_CombugasCC.CallCenter
 
             return Response;
         }
+
+        [WebMethod(EnableSession = true)]
+        public static ajaxResponse ValidaSesion(int idusuario)
+        {
+            ajaxResponse Response = new ajaxResponse();
+
+            if (HttpContext.Current.Session["sesionUsuario"] == null)
+            { // Cerrar Sesion
+                Response.Result = false;
+                Response.Message = "Sesion Inactiva";
+                Response.Data = null;
+                ContextCombugasDataContext context = new ContextCombugasDataContext();
+                usuarios objUsuario = context.usuarios.Where(x => x.id_usuario == idusuario).SingleOrDefault();
+                objUsuario.userisonline = false;
+
+                context.SubmitChanges();
+            }
+            else
+            { // Sesion Activa
+                Response.Result = true;
+                Response.Message = "Sesion Activa";
+                Response.Data = ((usuarios)HttpContext.Current.Session["sesionUsuario"]).id_usuario.ToString();
+            }
+
+
+            return Response;
+        }
+
+
+        [WebMethod(EnableSession = true)]
+        public static ajaxResponse CerrarSesion(int idusuario)
+        {
+            ajaxResponse Response = new ajaxResponse();
+
+            ContextCombugasDataContext context = new ContextCombugasDataContext();
+            usuarios objUsuario = context.usuarios.Where(x => x.id_usuario == idusuario).SingleOrDefault();
+            objUsuario.userisonline = false;
+            context.SubmitChanges();
+
+            Bitacora b = new Bitacora();
+            b.fechahora = DateTime.Now;
+            b.id_usuario = ((usuarios)HttpContext.Current.Session["sesionUsuario"]).id_usuario;
+            b.modulo = "Default.aspx";
+            b.funcion = "CerrarSesion";
+            b.detalle = ((usuarios)HttpContext.Current.Session["sesionUsuario"]).username + " - Usuario Cierra Sesion";
+            ClassBicatora.insertBitacora(b);
+
+            HttpContext.Current.Session["sesionUsuario"] = null;
+
+            Response.Result = true;
+            Response.Message = "Sesion Cerrada";
+            Response.Data = null;
+
+
+
+            return Response;
+        }
+        [WebMethod(EnableSession = true)]
+        public static ajaxResponse Elimina()
+        {
+            ajaxResponse Response = new ajaxResponse();
+            //ContextCombugasDataContext context = new ContextCombugasDataContext();
+
+            //List<fotografias> listpuntos = context.fotografias.Where(x => x.confirmada == 0).ToList();
+
+            //foreach (var foto in listpuntos) // Eliminamos puntos anteriores
+            //{
+            //    var file = foto.url;
+            //    if (System.IO.File.Exists(file))
+            //        System.IO.File.Delete(file);
+
+            //    context.fotografias.DeleteOnSubmit(foto);
+            //    context.SubmitChanges();
+            //}
+
+            Response.Result = true;
+            Response.Message = "Sesion Cerrada";
+            Response.Data = null;
+
+
+
+            return Response;
+        }
+
         #endregion
     }
 }

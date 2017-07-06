@@ -81,7 +81,7 @@
                                         </div>
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                             <label style="margin-top: 10px;">Precio del producto ($)</label>
-                                            <input id="Precio" class="form-control" type="text" onChange="validarSiNumero(this.value);"/>
+                                            <input id="Precio" class="form-control" type="text" />
                                         </div>
                                         
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">

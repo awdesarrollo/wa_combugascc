@@ -1,5 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="combugasCC" Class="ContextCombugasDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
   <Connection Mode="WebSettings" ConnectionString="Data Source=softlag.sytes.net;Initial Catalog=combugasCC;User ID=sa" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="combugasCCConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Asignaciones" Member="Asignaciones">
+    <Type Name="Asignaciones">
+      <Column Name="id_asignacion" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="fecha" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="id_ruta" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="id_operador" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="id_truck" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="id_usuario_crea" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="operador_Asignaciones" Member="operador" ThisKey="id_operador" OtherKey="id_operador" Type="operador" IsForeignKey="true" />
+      <Association Name="Rutas_Asignaciones" Member="Rutas" ThisKey="id_ruta" OtherKey="id_ruta" Type="Rutas" IsForeignKey="true" />
+      <Association Name="truck_Asignaciones" Member="truck" ThisKey="id_truck" OtherKey="id_truck" Type="truck" IsForeignKey="true" />
+      <Association Name="usuarios_Asignaciones" Member="usuarios" ThisKey="id_usuario_crea" OtherKey="id_usuario" Type="usuarios" IsForeignKey="true" />
+    </Type>
+  </Table>
   <Table Name="dbo.Bitacora" Member="Bitacora">
     <Type Name="Bitacora">
       <Column Name="id_bitacora" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -9,6 +23,7 @@
       <Column Name="detalle" Type="System.String" DbType="NVarChar(500) NOT NULL" CanBeNull="false" />
       <Column Name="entidad" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
       <Column Name="modulo" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Association Name="usuarios_Bitacora" Member="usuarios" ThisKey="id_usuario" OtherKey="id_usuario" Type="usuarios" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.calles" Member="calles">
@@ -21,6 +36,7 @@
       <Column Name="descripcion" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
       <Column Name="status" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Column Name="id_tipo" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="calles_Direccion" Member="Direccion" ThisKey="id_calle" OtherKey="id_calle" Type="Direccion" />
       <Association Name="ciudades_calles" Member="ciudades" ThisKey="id_ciudad" OtherKey="id_ciudad" Type="ciudades" IsForeignKey="true" />
       <Association Name="colonias_calles" Member="colonias" ThisKey="id_colonia" OtherKey="id_colonia" Type="colonias" IsForeignKey="true" />
       <Association Name="estados_calles" Member="estados" ThisKey="id_estado" OtherKey="id_estado" Type="estados" IsForeignKey="true" />
@@ -37,8 +53,51 @@
       <Column Name="status" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Association Name="ciudades_calles" Member="calles" ThisKey="id_ciudad" OtherKey="id_ciudad" Type="calles" />
       <Association Name="ciudades_colonias" Member="colonias" ThisKey="id_ciudad" OtherKey="id_ciudad" Type="colonias" />
+      <Association Name="ciudades_Direccion" Member="Direccion" ThisKey="id_ciudad" OtherKey="id_ciudad" Type="Direccion" />
+      <Association Name="ciudades_Rutas" Member="Rutas" ThisKey="id_ciudad" OtherKey="id_ciudad" Type="Rutas" />
       <Association Name="estados_ciudades" Member="estados" ThisKey="id_estado" OtherKey="id_estado" Type="estados" IsForeignKey="true" />
       <Association Name="zonas_ciudades" Member="zonas" ThisKey="id_zona" OtherKey="id_zona" Type="zonas" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Cliente" Member="Cliente">
+    <Type Name="Cliente">
+      <Column Name="id_cliente" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="id_tipo" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="nombre" Type="System.String" DbType="VarChar(300)" CanBeNull="true" />
+      <Column Name="apellidoP" Type="System.String" DbType="VarChar(300)" CanBeNull="true" />
+      <Column Name="apellidoM" Type="System.String" DbType="VarChar(300)" CanBeNull="true" />
+      <Column Name="username" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="pass" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="foto" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="ultimoacceso" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ultimopedido" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="alta" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="status" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="Cliente_Cliente_Direccion" Member="Cliente_Direccion" ThisKey="id_cliente" OtherKey="id_cliente" Type="Cliente_Direccion" />
+      <Association Name="Cliente_Cliente_Telefono" Member="Cliente_Telefono" ThisKey="id_cliente" OtherKey="id_cliente" Type="Cliente_Telefono" />
+      <Association Name="tipo_cliente_Cliente" Member="tipo_cliente" ThisKey="id_tipo" OtherKey="id_tipo" Type="tipo_cliente" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Cliente_Direccion" Member="Cliente_Direccion">
+    <Type Name="Cliente_Direccion">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="id_cliente" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="id_direccion" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="alta" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="status" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="Cliente_Cliente_Direccion" Member="Cliente" ThisKey="id_cliente" OtherKey="id_cliente" Type="Cliente" IsForeignKey="true" />
+      <Association Name="Direccion_Cliente_Direccion" Member="Direccion" ThisKey="id_direccion" OtherKey="id_direccion" Type="Direccion" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Cliente_Telefono" Member="Cliente_Telefono">
+    <Type Name="Cliente_Telefono">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="no_telefono" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="id_cliente" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="alta" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="status" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="Cliente_Cliente_Telefono" Member="Cliente" ThisKey="id_cliente" OtherKey="id_cliente" Type="Cliente" IsForeignKey="true" />
+      <Association Name="Telefono_Cliente_Telefono" Member="Telefono" ThisKey="no_telefono" OtherKey="id_telefono" Type="Telefono" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.colonias" Member="colonias">
@@ -52,6 +111,7 @@
       <Column Name="id_cp" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="id_tipo" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Association Name="colonias_calles" Member="calles" ThisKey="id_colonia" OtherKey="id_colonia" Type="calles" />
+      <Association Name="colonias_Direccion" Member="Direccion" ThisKey="id_colonia" OtherKey="id_colonia" Type="Direccion" />
       <Association Name="ciudades_colonias" Member="ciudades" ThisKey="id_ciudad" OtherKey="id_ciudad" Type="ciudades" IsForeignKey="true" />
       <Association Name="cp_colonias" Member="cp" ThisKey="id_cp" OtherKey="id_cp" Type="cp" IsForeignKey="true" />
       <Association Name="estados_colonias" Member="estados" ThisKey="id_estado" OtherKey="id_estado" Type="estados" IsForeignKey="true" />
@@ -67,8 +127,34 @@
       <Column Name="descripcion" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
       <Column Name="status" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Association Name="cp_colonias" Member="colonias" ThisKey="id_cp" OtherKey="id_cp" Type="colonias" />
+      <Association Name="cp_Direccion" Member="Direccion" ThisKey="id_cp" OtherKey="id_cp" Type="Direccion" />
       <Association Name="estados_cp" Member="estados" ThisKey="id_estado" OtherKey="id_estado" Type="estados" IsForeignKey="true" />
       <Association Name="zonas_cp" Member="zonas" ThisKey="id_zona" OtherKey="id_zona" Type="zonas" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Direccion" Member="Direccion">
+    <Type Name="Direccion">
+      <Column Name="id_direccion" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="id_calle" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="no_interior" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="no_exterior" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="id_colonia" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="id_ciudad" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="id_estado" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="id_zona" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="id_cp" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="entre_1" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="entre_2" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="referencias" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="alta" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="status" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="Direccion_Cliente_Direccion" Member="Cliente_Direccion" ThisKey="id_direccion" OtherKey="id_direccion" Type="Cliente_Direccion" />
+      <Association Name="calles_Direccion" Member="calles" ThisKey="id_calle" OtherKey="id_calle" Type="calles" IsForeignKey="true" />
+      <Association Name="ciudades_Direccion" Member="ciudades" ThisKey="id_ciudad" OtherKey="id_ciudad" Type="ciudades" IsForeignKey="true" />
+      <Association Name="colonias_Direccion" Member="colonias" ThisKey="id_colonia" OtherKey="id_colonia" Type="colonias" IsForeignKey="true" />
+      <Association Name="cp_Direccion" Member="cp" ThisKey="id_cp" OtherKey="id_cp" Type="cp" IsForeignKey="true" />
+      <Association Name="estados_Direccion" Member="estados" ThisKey="id_estado" OtherKey="id_estado" Type="estados" IsForeignKey="true" />
+      <Association Name="zonas_Direccion" Member="zonas" ThisKey="id_zona" OtherKey="id_zona" Type="zonas" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.estados" Member="estados">
@@ -81,7 +167,29 @@
       <Association Name="estados_ciudades" Member="ciudades" ThisKey="id_estado" OtherKey="id_estado" Type="ciudades" />
       <Association Name="estados_colonias" Member="colonias" ThisKey="id_estado" OtherKey="id_estado" Type="colonias" />
       <Association Name="estados_cp" Member="cp" ThisKey="id_estado" OtherKey="id_estado" Type="cp" />
+      <Association Name="estados_Direccion" Member="Direccion" ThisKey="id_estado" OtherKey="id_estado" Type="Direccion" />
       <Association Name="zonas_estados" Member="zonas" ThisKey="id_zona" OtherKey="id_zona" Type="zonas" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.fotografias" Member="fotografias">
+    <Type Name="fotografias">
+      <Column Name="id_fotografia" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="nombre" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="url" Type="System.String" DbType="VarChar(600)" CanBeNull="true" />
+      <Column Name="guardada" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="confirmada" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="alta" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="id_chofer" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="id_cliente" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.GeoRuta" Member="GeoRuta">
+    <Type Name="GeoRuta">
+      <Column Name="id_georuta" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="id_ruta" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="latitud" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="longitud" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Association Name="Rutas_GeoRuta" Member="Rutas" ThisKey="id_ruta" OtherKey="id_ruta" Type="Rutas" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.modulos" Member="modulos">
@@ -96,6 +204,21 @@
       <Association Name="modulos_permisos" Member="permisos" ThisKey="id_modulo" OtherKey="id_modulo" Type="permisos" />
     </Type>
   </Table>
+  <Table Name="dbo.operador" Member="operador">
+    <Type Name="operador">
+      <Column Name="id_operador" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="nombre" Type="System.String" DbType="VarChar(300) NOT NULL" CanBeNull="false" />
+      <Column Name="alta" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="status" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="username" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="pass" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="foto" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="direccion" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="apellidoP" Type="System.String" DbType="VarChar(300)" CanBeNull="true" />
+      <Column Name="apellidoM" Type="System.String" DbType="VarChar(300)" CanBeNull="true" />
+      <Association Name="operador_Asignaciones" Member="Asignaciones" ThisKey="id_operador" OtherKey="id_operador" Type="Asignaciones" />
+    </Type>
+  </Table>
   <Table Name="dbo.permisos" Member="permisos">
     <Type Name="permisos">
       <Column Name="id_rol_modulo" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -107,6 +230,17 @@
       <Association Name="roles_permisos" Member="roles" ThisKey="id_rol" OtherKey="id_rol" Type="roles" IsForeignKey="true" />
     </Type>
   </Table>
+  <Table Name="dbo.producto" Member="producto">
+    <Type Name="producto">
+      <Column Name="id_producto" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="id_servicio" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="descripcion" Type="System.String" DbType="VarChar(300)" CanBeNull="true" />
+      <Column Name="precio" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="alta" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="status" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="servicio_producto" Member="servicio" ThisKey="id_servicio" OtherKey="id_servicio" Type="servicio" IsForeignKey="true" />
+    </Type>
+  </Table>
   <Table Name="dbo.roles" Member="roles">
     <Type Name="roles">
       <Column Name="id_rol" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -114,6 +248,51 @@
       <Column Name="status" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Association Name="roles_permisos" Member="permisos" ThisKey="id_rol" OtherKey="id_rol" Type="permisos" />
       <Association Name="roles_usuarios" Member="usuarios" ThisKey="id_rol" OtherKey="id_rol" Type="usuarios" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Rutas" Member="Rutas">
+    <Type Name="Rutas">
+      <Column Name="id_ruta" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="id_ciudad" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="nombre" Type="System.String" DbType="VarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="estatus" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="clave_ruta" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="color" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Association Name="Rutas_Asignaciones" Member="Asignaciones" ThisKey="id_ruta" OtherKey="id_ruta" Type="Asignaciones" />
+      <Association Name="Rutas_GeoRuta" Member="GeoRuta" ThisKey="id_ruta" OtherKey="id_ruta" Type="GeoRuta" />
+      <Association Name="ciudades_Rutas" Member="ciudades" ThisKey="id_ciudad" OtherKey="id_ciudad" Type="ciudades" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.servicio" Member="servicio">
+    <Type Name="servicio">
+      <Column Name="id_servicio" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="descripcion" Type="System.String" DbType="VarChar(300)" CanBeNull="true" />
+      <Column Name="alta" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="status" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="servicio_producto" Member="producto" ThisKey="id_servicio" OtherKey="id_servicio" Type="producto" />
+      <Association Name="servicio_servicioUnidad" Member="servicioUnidad" ThisKey="id_servicio" OtherKey="id_servicio" Type="servicioUnidad" />
+    </Type>
+  </Table>
+  <Table Name="dbo.servicioUnidad" Member="servicioUnidad">
+    <Type Name="servicioUnidad">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="id_unidad" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="id_servicio" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="alta" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="status" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="servicio_servicioUnidad" Member="servicio" ThisKey="id_servicio" OtherKey="id_servicio" Type="servicio" IsForeignKey="true" />
+      <Association Name="truck_servicioUnidad" Member="truck" ThisKey="id_unidad" OtherKey="id_truck" Type="truck" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Telefono" Member="Telefono">
+    <Type Name="Telefono">
+      <Column Name="id_telefono" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="no_telefono" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="no_secuencia" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="alta" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="status" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="tipo_telefono" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Association Name="Telefono_Cliente_Telefono" Member="Cliente_Telefono" ThisKey="id_telefono" OtherKey="no_telefono" Type="Cliente_Telefono" />
     </Type>
   </Table>
   <Table Name="dbo.tipo_asentamiento" Member="tipo_asentamiento">
@@ -132,53 +311,13 @@
       <Association Name="tipo_calle_calles" Member="calles" ThisKey="id_tipo" OtherKey="id_tipo" Type="calles" />
     </Type>
   </Table>
-  <Table Name="dbo.usuarios" Member="usuarios">
-    <Type Name="usuarios">
-      <Column Name="id_usuario" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="nombre" Type="System.String" DbType="VarChar(300) NOT NULL" CanBeNull="false" />
-      <Column Name="username" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="passwords" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
-      <Column Name="isactive" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Column Name="userisonline" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Column Name="ultimoacceso" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="id_rol" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="horaultimoacceso" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="maxsesion" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="sesionactiva" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="roles_usuarios" Member="roles" ThisKey="id_rol" OtherKey="id_rol" Type="roles" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.zonas" Member="zonas">
-    <Type Name="zonas">
-      <Column Name="id_zona" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="descripcion" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
-      <Column Name="estado" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Association Name="zonas_calles" Member="calles" ThisKey="id_zona" OtherKey="id_zona" Type="calles" />
-      <Association Name="zonas_ciudades" Member="ciudades" ThisKey="id_zona" OtherKey="id_zona" Type="ciudades" />
-      <Association Name="zonas_colonias" Member="colonias" ThisKey="id_zona" OtherKey="id_zona" Type="colonias" />
-      <Association Name="zonas_cp" Member="cp" ThisKey="id_zona" OtherKey="id_zona" Type="cp" />
-      <Association Name="zonas_estados" Member="estados" ThisKey="id_zona" OtherKey="id_zona" Type="estados" />
-    </Type>
-  </Table>
-  <Table Name="dbo.servicio" Member="servicio">
-    <Type Name="servicio">
-      <Column Name="id_servicio" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="descripcion" Type="System.String" DbType="VarChar(300)" CanBeNull="true" />
+  <Table Name="dbo.tipo_cliente" Member="tipo_cliente">
+    <Type Name="tipo_cliente">
+      <Column Name="id_tipo" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="descripcion" Type="System.String" DbType="VarChar(300) NOT NULL" CanBeNull="false" />
       <Column Name="alta" Type="System.DateTime" DbType="Date" CanBeNull="true" />
       <Column Name="status" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Association Name="servicio_servicioUnidad" Member="servicioUnidad" ThisKey="id_servicio" OtherKey="id_servicio" Type="servicioUnidad" />
-      <Association Name="servicio_producto" Member="producto" ThisKey="id_servicio" OtherKey="id_servicio" Type="producto" />
-    </Type>
-  </Table>
-  <Table Name="dbo.servicioUnidad" Member="servicioUnidad">
-    <Type Name="servicioUnidad">
-      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="id_unidad" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="id_servicio" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="alta" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="status" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Association Name="servicio_servicioUnidad" Member="servicio" ThisKey="id_servicio" OtherKey="id_servicio" Type="servicio" IsForeignKey="true" />
-      <Association Name="truck_servicioUnidad" Member="truck" ThisKey="id_unidad" OtherKey="id_truck" Type="truck" IsForeignKey="true" />
+      <Association Name="tipo_cliente_Cliente" Member="Cliente" ThisKey="id_tipo" OtherKey="id_tipo" Type="Cliente" />
     </Type>
   </Table>
   <Table Name="dbo.truck" Member="truck">
@@ -192,26 +331,49 @@
       <Column Name="no_serie" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="alta" Type="System.DateTime" DbType="Date" CanBeNull="true" />
       <Column Name="status" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="truck_Asignaciones" Member="Asignaciones" ThisKey="id_truck" OtherKey="id_truck" Type="Asignaciones" />
       <Association Name="truck_servicioUnidad" Member="servicioUnidad" ThisKey="id_truck" OtherKey="id_unidad" Type="servicioUnidad" />
     </Type>
   </Table>
-  <Table Name="dbo.operador" Member="operador">
-    <Type Name="operador">
-      <Column Name="id_operador" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+  <Table Name="dbo.usuarios" Member="usuarios">
+    <Type Name="usuarios">
+      <Column Name="id_usuario" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="nombre" Type="System.String" DbType="VarChar(300) NOT NULL" CanBeNull="false" />
-      <Column Name="alta" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="status" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="username" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="passwords" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="isactive" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="userisonline" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="ultimoacceso" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="id_rol" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="horaultimoacceso" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="maxsesion" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="sesionactiva" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="usuarios_Asignaciones" Member="Asignaciones" ThisKey="id_usuario" OtherKey="id_usuario_crea" Type="Asignaciones" />
+      <Association Name="usuarios_Bitacora" Member="Bitacora" ThisKey="id_usuario" OtherKey="id_usuario" Type="Bitacora" />
+      <Association Name="roles_usuarios" Member="roles" ThisKey="id_rol" OtherKey="id_rol" Type="roles" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="dbo.producto" Member="producto">
-    <Type Name="producto">
-      <Column Name="id_producto" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="id_servicio" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="descripcion" Type="System.String" DbType="VarChar(300)" CanBeNull="true" />
-      <Column Name="precio" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+  <Table Name="dbo.zonas" Member="zonas">
+    <Type Name="zonas">
+      <Column Name="id_zona" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="descripcion" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="estado" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="zonas_calles" Member="calles" ThisKey="id_zona" OtherKey="id_zona" Type="calles" />
+      <Association Name="zonas_ciudades" Member="ciudades" ThisKey="id_zona" OtherKey="id_zona" Type="ciudades" />
+      <Association Name="zonas_colonias" Member="colonias" ThisKey="id_zona" OtherKey="id_zona" Type="colonias" />
+      <Association Name="zonas_cp" Member="cp" ThisKey="id_zona" OtherKey="id_zona" Type="cp" />
+      <Association Name="zonas_Direccion" Member="Direccion" ThisKey="id_zona" OtherKey="id_zona" Type="Direccion" />
+      <Association Name="zonas_estados" Member="estados" ThisKey="id_zona" OtherKey="id_zona" Type="estados" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Incidencias" Member="Incidencias">
+    <Type Name="Incidencias">
+      <Column Name="id_incidencia" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="descripcion" Type="System.String" DbType="VarChar(300) NOT NULL" CanBeNull="false" />
+      <Column Name="url" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="foto" Type="System.String" DbType="VarChar(300)" CanBeNull="true" />
       <Column Name="alta" Type="System.DateTime" DbType="Date" CanBeNull="true" />
       <Column Name="status" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Association Name="servicio_producto" Member="servicio" ThisKey="id_servicio" OtherKey="id_servicio" Type="servicio" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

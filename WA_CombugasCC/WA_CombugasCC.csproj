@@ -103,6 +103,7 @@
     <Content Include="CallCenter\Arterias.aspx" />
     <Content Include="CallCenter\asentamientos.aspx" />
     <Content Include="CallCenter\Ciudades.aspx" />
+    <Content Include="CallCenter\Clientes.aspx" />
     <Content Include="CallCenter\Colonias.aspx" />
     <Content Include="CallCenter\cp.aspx" />
     <Content Include="CallCenter\Default.aspx" />
@@ -110,6 +111,8 @@
     <Content Include="CallCenter\Operadores.aspx" />
     <Content Include="CallCenter\Productos.aspx" />
     <Content Include="CallCenter\tipocalle.aspx" />
+    <Content Include="CallCenter\Tipocliente.aspx" />
+    <Content Include="CallCenter\TipoIncidencia.aspx" />
     <Content Include="CallCenter\TipoServicio.aspx" />
     <Content Include="CallCenter\Unidades.aspx" />
     <Content Include="CallCenter\Zonas.aspx" />
@@ -124,6 +127,7 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Admin\Admin.Master" />
+    <Content Include="CallCenter\hn_FileUpload.ashx" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -135,7 +139,9 @@
     <Content Include="Default.aspx" />
     <Content Include="scripts\ai.0.22.9-build00167.js" />
     <Content Include="scripts\ai.0.22.9-build00167.min.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Admin\Admin.Master.cs">
@@ -208,6 +214,13 @@
     <Compile Include="CallCenter\Ciudades.aspx.designer.cs">
       <DependentUpon>Ciudades.aspx</DependentUpon>
     </Compile>
+    <Compile Include="CallCenter\Clientes.aspx.cs">
+      <DependentUpon>Clientes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CallCenter\Clientes.aspx.designer.cs">
+      <DependentUpon>Clientes.aspx</DependentUpon>
+    </Compile>
     <Compile Include="CallCenter\Colonias.aspx.cs">
       <DependentUpon>Colonias.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -236,6 +249,9 @@
     <Compile Include="CallCenter\Estados.aspx.designer.cs">
       <DependentUpon>Estados.aspx</DependentUpon>
     </Compile>
+    <Compile Include="CallCenter\hn_FileUpload.ashx.cs">
+      <DependentUpon>hn_FileUpload.ashx</DependentUpon>
+    </Compile>
     <Compile Include="CallCenter\Operadores.aspx.cs">
       <DependentUpon>Operadores.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -256,6 +272,20 @@
     </Compile>
     <Compile Include="CallCenter\tipocalle.aspx.designer.cs">
       <DependentUpon>tipocalle.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CallCenter\Tipocliente.aspx.cs">
+      <DependentUpon>Tipocliente.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CallCenter\Tipocliente.aspx.designer.cs">
+      <DependentUpon>Tipocliente.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CallCenter\TipoIncidencia.aspx.cs">
+      <DependentUpon>TipoIncidencia.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CallCenter\TipoIncidencia.aspx.designer.cs">
+      <DependentUpon>TipoIncidencia.aspx</DependentUpon>
     </Compile>
     <Compile Include="CallCenter\TipoServicio.aspx.cs">
       <DependentUpon>TipoServicio.aspx</DependentUpon>
@@ -299,6 +329,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="assets\" />
+    <Folder Include="Images\choferes\" />
+    <Folder Include="Images\incidencias\" />
+    <Folder Include="Images\users\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />

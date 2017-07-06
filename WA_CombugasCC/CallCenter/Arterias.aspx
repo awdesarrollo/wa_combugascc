@@ -656,6 +656,7 @@
         llenaCd();
        
         var VALOR = $('#codigoFil').val();
+        alert(VALOR);
         if (VALOR == '-1') {
         } else {
             if (!inicio) $("#tab").dataTable().fnDestroy();
