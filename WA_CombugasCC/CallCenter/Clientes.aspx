@@ -55,15 +55,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
                                                 <div class="row" style="margin-top: 20px;">
                                                       <h4 style="margin-top: 5px;">Dirección del cliente</h4>
                                                 </div>
@@ -151,25 +142,11 @@
                                                         <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
                                                             <button id="btnVerificar" class="btn red " type="button" style="display: block;" onclick="b1();">Verificar</button>
                                                        </div>
+                                                        <div id="addmore">
+
+                                                       </div>
                                                     </div>
                                                 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
                                             </div>
@@ -212,23 +189,143 @@
       <div class="modal-body" >
             <div class="row">
                 <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                    <button class="btn red col-md-12 col-sm-12 col-xs-12" >Zona</button>
+                    <button type="button" class="btn red col-md-12 col-sm-12 col-xs-12" data-toggle="modal" data-target="#ZONAz">ZONA</button>
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                    <button class="btn red col-md-12 col-sm-12 col-xs-12" >Zona</button>
+                    <button type="button" class="btn red col-md-12 col-sm-12 col-xs-12"  data-toggle="modal" data-target="#ESTADOz">ESTADO</button>
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                   <button class="btn red col-md-12 col-sm-12 col-xs-12" >Zona</button>
+                    <button type="button" class="btn red col-md-12 col-sm-12 col-xs-12"  data-toggle="modal" data-target="#CIUDADz">CIUDAD</button>
                 </div>
-                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12" style="margin-top:10px;">
-                    <button class="btn red col-md-12 col-sm-12 col-xs-12" >Zona</button>
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12" style="margin-top:20px;">
+                    <button type="button" class="btn red col-md-12 col-sm-12 col-xs-12"  data-toggle="modal" data-target="#COLONIAz">COLONIA</button>
                 </div>
-                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12" style="margin-top:10px;">
-                    <button class="btn red col-md-12 col-sm-12 col-xs-12" >Zona</button>
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12" style="margin-top:20px;">
+                    <button type="button" class="btn red col-md-12 col-sm-12 col-xs-12"  data-toggle="modal" data-target="#CALLEz">CALLE</button>
                 </div>
-                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12" style="margin-top:10px;">
-                    <button class="btn red col-md-12 col-sm-12 col-xs-12" >Zona</button>
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12" style="margin-top:20px;">
+                    <button type="button" class="btn red col-md-12 col-sm-12 col-xs-12"  data-toggle="modal" data-target="#CPz">C.P</button>
                 </div>
+                
+            </div>
+      </div>
+      <div class="modal-footer" >
+        <button class="btn btn-default" type="button"  data-dismiss="modal">Cancelar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" id="ZONAz">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span></button>
+        <h4 class="modal-title" >Agregar una Zona</h4>
+      </div>
+      <div class="modal-body" >
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <label style="margin-top: 5px;">Nombre de la zona</label>
+                                        
+                    <input id="nombrezona" class="form-control" type="text"/>
+                </div>
+
+            </div>
+      </div>
+      <div class="modal-footer" >
+        <button class="btn btn-default" type="button"  data-dismiss="modal">Cancelar</button>
+          <button id="btn11" class="btn red pull-right" type="button" style="margin-top:15px !important;" onclick="GuardarZONA();">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" id="ESTADOz">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span></button>
+        <h4 class="modal-title" >Agregar un Estado</h4>
+      </div>
+      <div class="modal-body" >
+            <div class="row">
+                
+            </div>
+      </div>
+      <div class="modal-footer" >
+        <button class="btn btn-default" type="button"  data-dismiss="modal">Cancelar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" id="CIUDADz">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span></button>
+        <h4 class="modal-title" >Agregar una Ciudad</h4>
+      </div>
+      <div class="modal-body" >
+            <div class="row">
+                
+            </div>
+      </div>
+      <div class="modal-footer" >
+        <button class="btn btn-default" type="button"  data-dismiss="modal">Cancelar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" id="COLONIAz">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span></button>
+        <h4 class="modal-title" >Agregar una Colonia</h4>
+      </div>
+      <div class="modal-body" >
+            <div class="row">
+                
+            </div>
+      </div>
+      <div class="modal-footer" >
+        <button class="btn btn-default" type="button"  data-dismiss="modal">Cancelar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" id="CALLEz">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span></button>
+        <h4 class="modal-title" >Agregar una Calle</h4>
+      </div>
+      <div class="modal-body" >
+            <div class="row">
+                
+            </div>
+      </div>
+      <div class="modal-footer" >
+        <button class="btn btn-default" type="button"  data-dismiss="modal">Cancelar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" id="CPz">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span></button>
+        <h4 class="modal-title" >Agregar un Código postal</h4>
+      </div>
+      <div class="modal-body" >
+            <div class="row">
                 
             </div>
       </div>
@@ -241,11 +338,9 @@
 
 
 
-
-
-
-
      <script type="text/javascript">
+
+         var more = 1;
          $(document).ready(function () {
 
             // $('.select2').select2();
@@ -317,7 +412,14 @@
          }
 
          function b1() {
-            
+             var linea = '<div class="col-lg-5 col-md-5 col-sm-12 col-xs-12" style="margin-top:20px;"><input id="NoTel1' + more + '" class="form-control" type="text" placeholder="No. Telefónico."/></div><div class="col-md-3 col-sm-12" style="padding-left: 0px;margin-top:20px;"><select class="js-example-basic-single form-control col-md-12 col-sm-12 col-xs-12" id="Sel1' + more + '"><option value="CASA" selected>CASA</option> <option value="CELULAR">CELULAR</option><option value="OFICINA">OFICINA</option><option value="OTROS">OTROS</option></select></div>';
+             $('#addmore').append(linea);
+             more = more + 1;
+                                                           
+                                                            
+                                                            
+                                                          
+                                                      
          }
 
        
