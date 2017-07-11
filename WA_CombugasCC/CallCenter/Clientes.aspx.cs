@@ -96,6 +96,7 @@ namespace WA_CombugasCC.CallCenter
                 d.referencias = Ref;
                 d.latitud = 0.0;
                 d.longitud = 0.0;
+                d.observaciones = OB;
                 d.alta = DateTime.Now;
                 d.status = true;
                 context.Direccion.InsertOnSubmit(d);

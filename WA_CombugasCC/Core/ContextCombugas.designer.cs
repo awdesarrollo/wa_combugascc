@@ -7935,6 +7935,8 @@ namespace WA_CombugasCC.Core
 		
 		private System.Nullable<int> _entre_3;
 		
+		private string _observaciones;
+		
 		private EntitySet<Cliente_Direccion> _Cliente_Direccion;
 		
 		private EntityRef<calles> _calles;
@@ -7987,6 +7989,8 @@ namespace WA_CombugasCC.Core
     partial void OnlongitudChanged();
     partial void Onentre_3Changing(System.Nullable<int> value);
     partial void Onentre_3Changed();
+    partial void OnobservacionesChanging(string value);
+    partial void OnobservacionesChanged();
     #endregion
 		
 		public Direccion()
@@ -8361,6 +8365,26 @@ namespace WA_CombugasCC.Core
 					this._entre_3 = value;
 					this.SendPropertyChanged("entre_3");
 					this.Onentre_3Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_observaciones", DbType="Text", UpdateCheck=UpdateCheck.Never)]
+		public string observaciones
+		{
+			get
+			{
+				return this._observaciones;
+			}
+			set
+			{
+				if ((this._observaciones != value))
+				{
+					this.OnobservacionesChanging(value);
+					this.SendPropertyChanging();
+					this._observaciones = value;
+					this.SendPropertyChanged("observaciones");
+					this.OnobservacionesChanged();
 				}
 			}
 		}

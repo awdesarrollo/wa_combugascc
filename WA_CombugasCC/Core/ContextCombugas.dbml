@@ -370,6 +370,7 @@
       <Column Name="latitud" Type="System.Double" DbType="Float" CanBeNull="true" />
       <Column Name="longitud" Type="System.Double" DbType="Float" CanBeNull="true" />
       <Column Name="entre_3" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="observaciones" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
       <Association Name="Direccion_Cliente_Direccion" Member="Cliente_Direccion" ThisKey="id_direccion" OtherKey="id_direccion" Type="Cliente_Direccion" />
       <Association Name="calles_Direccion" Member="calles" ThisKey="id_calle" OtherKey="id_calle" Type="calles" IsForeignKey="true" />
       <Association Name="ciudades_Direccion" Member="ciudades" ThisKey="id_ciudad" OtherKey="id_ciudad" Type="ciudades" IsForeignKey="true" />
