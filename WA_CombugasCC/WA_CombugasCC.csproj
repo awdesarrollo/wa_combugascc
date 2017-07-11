@@ -108,6 +108,7 @@
     <Content Include="CallCenter\cp.aspx" />
     <Content Include="CallCenter\Default.aspx" />
     <Content Include="CallCenter\Estados.aspx" />
+    <Content Include="CallCenter\ListaClientes.aspx" />
     <Content Include="CallCenter\Operadores.aspx" />
     <Content Include="CallCenter\Productos.aspx" />
     <Content Include="CallCenter\tipocalle.aspx" />
@@ -251,6 +252,13 @@
     </Compile>
     <Compile Include="CallCenter\hn_FileUpload.ashx.cs">
       <DependentUpon>hn_FileUpload.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="CallCenter\ListaClientes.aspx.cs">
+      <DependentUpon>ListaClientes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CallCenter\ListaClientes.aspx.designer.cs">
+      <DependentUpon>ListaClientes.aspx</DependentUpon>
     </Compile>
     <Compile Include="CallCenter\Operadores.aspx.cs">
       <DependentUpon>Operadores.aspx</DependentUpon>

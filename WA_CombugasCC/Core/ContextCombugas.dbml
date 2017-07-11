@@ -53,29 +53,10 @@
       <Column Name="status" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Association Name="ciudades_calles" Member="calles" ThisKey="id_ciudad" OtherKey="id_ciudad" Type="calles" />
       <Association Name="ciudades_colonias" Member="colonias" ThisKey="id_ciudad" OtherKey="id_ciudad" Type="colonias" />
-      <Association Name="ciudades_Direccion" Member="Direccion" ThisKey="id_ciudad" OtherKey="id_ciudad" Type="Direccion" />
       <Association Name="ciudades_Rutas" Member="Rutas" ThisKey="id_ciudad" OtherKey="id_ciudad" Type="Rutas" />
+      <Association Name="ciudades_Direccion" Member="Direccion" ThisKey="id_ciudad" OtherKey="id_ciudad" Type="Direccion" />
       <Association Name="estados_ciudades" Member="estados" ThisKey="id_estado" OtherKey="id_estado" Type="estados" IsForeignKey="true" />
       <Association Name="zonas_ciudades" Member="zonas" ThisKey="id_zona" OtherKey="id_zona" Type="zonas" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.Cliente" Member="Cliente">
-    <Type Name="Cliente">
-      <Column Name="id_cliente" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="id_tipo" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="nombre" Type="System.String" DbType="VarChar(300)" CanBeNull="true" />
-      <Column Name="apellidoP" Type="System.String" DbType="VarChar(300)" CanBeNull="true" />
-      <Column Name="apellidoM" Type="System.String" DbType="VarChar(300)" CanBeNull="true" />
-      <Column Name="username" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
-      <Column Name="pass" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="foto" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="ultimoacceso" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="ultimopedido" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="alta" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="status" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Association Name="Cliente_Cliente_Direccion" Member="Cliente_Direccion" ThisKey="id_cliente" OtherKey="id_cliente" Type="Cliente_Direccion" />
-      <Association Name="Cliente_Cliente_Telefono" Member="Cliente_Telefono" ThisKey="id_cliente" OtherKey="id_cliente" Type="Cliente_Telefono" />
-      <Association Name="tipo_cliente_Cliente" Member="tipo_cliente" ThisKey="id_tipo" OtherKey="id_tipo" Type="tipo_cliente" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Cliente_Direccion" Member="Cliente_Direccion">
@@ -96,8 +77,8 @@
       <Column Name="id_cliente" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="alta" Type="System.DateTime" DbType="Date" CanBeNull="true" />
       <Column Name="status" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Association Name="Cliente_Cliente_Telefono" Member="Cliente" ThisKey="id_cliente" OtherKey="id_cliente" Type="Cliente" IsForeignKey="true" />
       <Association Name="Telefono_Cliente_Telefono" Member="Telefono" ThisKey="no_telefono" OtherKey="id_telefono" Type="Telefono" IsForeignKey="true" />
+      <Association Name="Cliente_Cliente_Telefono" Member="Cliente" ThisKey="id_cliente" OtherKey="id_cliente" Type="Cliente" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.colonias" Member="colonias">
@@ -130,31 +111,6 @@
       <Association Name="cp_Direccion" Member="Direccion" ThisKey="id_cp" OtherKey="id_cp" Type="Direccion" />
       <Association Name="estados_cp" Member="estados" ThisKey="id_estado" OtherKey="id_estado" Type="estados" IsForeignKey="true" />
       <Association Name="zonas_cp" Member="zonas" ThisKey="id_zona" OtherKey="id_zona" Type="zonas" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.Direccion" Member="Direccion">
-    <Type Name="Direccion">
-      <Column Name="id_direccion" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="id_calle" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="no_interior" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="no_exterior" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="id_colonia" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="id_ciudad" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="id_estado" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="id_zona" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="id_cp" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="entre_1" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="entre_2" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="referencias" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
-      <Column Name="alta" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="status" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Association Name="Direccion_Cliente_Direccion" Member="Cliente_Direccion" ThisKey="id_direccion" OtherKey="id_direccion" Type="Cliente_Direccion" />
-      <Association Name="calles_Direccion" Member="calles" ThisKey="id_calle" OtherKey="id_calle" Type="calles" IsForeignKey="true" />
-      <Association Name="ciudades_Direccion" Member="ciudades" ThisKey="id_ciudad" OtherKey="id_ciudad" Type="ciudades" IsForeignKey="true" />
-      <Association Name="colonias_Direccion" Member="colonias" ThisKey="id_colonia" OtherKey="id_colonia" Type="colonias" IsForeignKey="true" />
-      <Association Name="cp_Direccion" Member="cp" ThisKey="id_cp" OtherKey="id_cp" Type="cp" IsForeignKey="true" />
-      <Association Name="estados_Direccion" Member="estados" ThisKey="id_estado" OtherKey="id_estado" Type="estados" IsForeignKey="true" />
-      <Association Name="zonas_Direccion" Member="zonas" ThisKey="id_zona" OtherKey="id_zona" Type="zonas" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.estados" Member="estados">
@@ -362,8 +318,8 @@
       <Association Name="zonas_ciudades" Member="ciudades" ThisKey="id_zona" OtherKey="id_zona" Type="ciudades" />
       <Association Name="zonas_colonias" Member="colonias" ThisKey="id_zona" OtherKey="id_zona" Type="colonias" />
       <Association Name="zonas_cp" Member="cp" ThisKey="id_zona" OtherKey="id_zona" Type="cp" />
-      <Association Name="zonas_Direccion" Member="Direccion" ThisKey="id_zona" OtherKey="id_zona" Type="Direccion" />
       <Association Name="zonas_estados" Member="estados" ThisKey="id_zona" OtherKey="id_zona" Type="estados" />
+      <Association Name="zonas_Direccion" Member="Direccion" ThisKey="id_zona" OtherKey="id_zona" Type="Direccion" />
     </Type>
   </Table>
   <Table Name="dbo.Incidencias" Member="Incidencias">
@@ -374,6 +330,53 @@
       <Column Name="foto" Type="System.String" DbType="VarChar(300)" CanBeNull="true" />
       <Column Name="alta" Type="System.DateTime" DbType="Date" CanBeNull="true" />
       <Column Name="status" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Cliente" Member="Cliente">
+    <Type Name="Cliente">
+      <Column Name="id_cliente" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="id_tipo" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="nombre" Type="System.String" DbType="VarChar(300)" CanBeNull="true" />
+      <Column Name="apellidoP" Type="System.String" DbType="VarChar(300)" CanBeNull="true" />
+      <Column Name="apellidoM" Type="System.String" DbType="VarChar(300)" CanBeNull="true" />
+      <Column Name="username" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="pass" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="foto" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="ultimoacceso" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ultimopedido" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="alta" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="status" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="Cliente_Cliente_Direccion" Member="Cliente_Direccion" ThisKey="id_cliente" OtherKey="id_cliente" Type="Cliente_Direccion" />
+      <Association Name="Cliente_Cliente_Telefono" Member="Cliente_Telefono" ThisKey="id_cliente" OtherKey="id_cliente" Type="Cliente_Telefono" />
+      <Association Name="tipo_cliente_Cliente" Member="tipo_cliente" ThisKey="id_tipo" OtherKey="id_tipo" Type="tipo_cliente" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Direccion" Member="Direccion">
+    <Type Name="Direccion">
+      <Column Name="id_direccion" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="id_calle" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="no_interior" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="no_exterior" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="id_colonia" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="id_ciudad" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="id_estado" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="id_zona" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="id_cp" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="entre_1" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="entre_2" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="referencias" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="alta" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="status" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="latitud" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="longitud" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="entre_3" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Direccion_Cliente_Direccion" Member="Cliente_Direccion" ThisKey="id_direccion" OtherKey="id_direccion" Type="Cliente_Direccion" />
+      <Association Name="calles_Direccion" Member="calles" ThisKey="id_calle" OtherKey="id_calle" Type="calles" IsForeignKey="true" />
+      <Association Name="ciudades_Direccion" Member="ciudades" ThisKey="id_ciudad" OtherKey="id_ciudad" Type="ciudades" IsForeignKey="true" />
+      <Association Name="colonias_Direccion" Member="colonias" ThisKey="id_colonia" OtherKey="id_colonia" Type="colonias" IsForeignKey="true" />
+      <Association Name="cp_Direccion" Member="cp" ThisKey="id_cp" OtherKey="id_cp" Type="cp" IsForeignKey="true" />
+      <Association Name="estados_Direccion" Member="estados" ThisKey="id_estado" OtherKey="id_estado" Type="estados" IsForeignKey="true" />
+      <Association Name="zonas_Direccion" Member="zonas" ThisKey="id_zona" OtherKey="id_zona" Type="zonas" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>
